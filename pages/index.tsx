@@ -15,8 +15,10 @@ import { getScrollPosition, scrollCalculator } from '../components/utils/scroll-
 
 const Home: NextPage = () => {
   const [scroll, setScroll] = useState<number>(0);
+  const [currentTouch, setCurrentTouch] = useState<{ Y?: number, X?: number }>({});
+  let timer: NodeJS.Timeout;
+
   const divRef: React.LegacyRef<HTMLDivElement> | undefined = createRef();
-  let timer: number;
 
   const Scroller: (this: HTMLDivElement, ev: WheelEvent) => any = (e: any) => {
     e.preventDefault();
@@ -27,6 +29,25 @@ const Home: NextPage = () => {
     }
   }
 
+  function MobileScroller(arg0: string, e: TouchEvent) {
+    e.preventDefault();
+    const Y = e.changedTouches[0].clientY;
+    const X = e.changedTouches[0].clientX;
+    console.log("scrolling!!!", Y, X);
+    clearTimeout(timer);
+    const newScroll = getNewTouchScroll() currentTouch
+    setScroll(prev => (getNewScroll))
+    setCurrentTouch({ Y: Y, X: X })
+
+
+
+    timer = setTimeout(() => {
+      setCurrentTouch({});
+    }, 100)
+
+  }
+
+
   const onChapterClickEventHandler = (position: number) => {
     setScroll(getScrollPosition(position));
   }
@@ -34,6 +55,7 @@ const Home: NextPage = () => {
 
   useEffect(() => {
     divRef.current?.addEventListener("wheel", Scroller);
+    divRef.current?.addEventListener("touchmove", MobileScroller);
   }, [])
 
   return (
@@ -72,3 +94,4 @@ const Home: NextPage = () => {
 }
 
 export default Home
+

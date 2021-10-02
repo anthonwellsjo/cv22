@@ -27,3 +27,11 @@ export function isInZone(zone: [number, number], scroll: number): boolean {
   return false
 
 }
+
+export function getNewTouchScroll(last: { X: number, Y: number }, next: { X: number, Y: number }): boolean {
+  const position = getScrollPosition(scroll);
+  console.log("position", position);
+ 
+  return false
+
+}
