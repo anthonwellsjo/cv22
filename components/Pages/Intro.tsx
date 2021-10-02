@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import Head from "next/head";
+import Link from "next/link";
 
 
 
@@ -17,9 +19,15 @@ const IntroPage: React.FC = () => {
 
   return (
     <div style={{ position: "absolute" }}>
-
-      <p style={{ fontFamily: "Roboto" }}>{text}</p>
-
+      <Head>
+        <link
+          rel="preload"
+          href="/fonts/ReenieBeanie/ReenieBeanie.ttf"
+          as="font"
+          crossOrigin=""
+        />
+      </Head>
+      <h1 style={{ fontFamily: "Handwriting", fontSize: "70px" }}>{text}</h1>
     </div>
   )
 }
