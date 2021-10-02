@@ -19,9 +19,6 @@ a {
 @font-face {
   font-family: "Handwriting";
   src: url("/fonts/Reenie_Beanie/ReenieBeanie-Regular.ttf");
-  font-style: normal;
-  font-weight: 400;
-  font-display: swap;
 }
 /* @font-face {
   font-family: "EBGaramond";

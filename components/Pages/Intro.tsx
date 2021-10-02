@@ -17,10 +17,9 @@ const IntroPage: React.FC = () => {
 
   return (
     <div style={{ position: "absolute" }}>
-      <h2>Bio</h2>
-      <div style={{ maxWidth: "250px", wordBreak: "break-all" }}>
-        <p>{text}</p>
-      </div>
+
+      <p style={{ fontFamily: "Roboto" }}>{text}</p>
+
     </div>
   )
 }
