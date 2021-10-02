@@ -14,3 +14,19 @@ a {
 * {
   box-sizing: border-box;
 }
+
+
+@font-face {
+  font-family: "Handwriting";
+  src: url("/fonts/Reenie_Beanie/ReenieBeanie-Regular.ttf");
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
+/* @font-face {
+  font-family: "EBGaramond";
+  src: url("/fonts/EBGaramond/EBGaramond-Medium.ttf");
+  font-style: medium;
+  font-weight: 500;
+  font-display: swap;
+} */
