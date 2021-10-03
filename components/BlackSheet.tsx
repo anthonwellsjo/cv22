@@ -3,12 +3,13 @@ import ReactDOM from 'react-dom'
 import React, { useRef, useState } from 'react'
 import { Canvas, useFrame } from '@react-three/fiber'
 import { useSpring, a } from '@react-spring/three'
+import { thresHolds } from './utils/app-config'
 
-const thresHolds = [5, 10, 15, 20, 25, 30];
+
 
 const getScale = (scroll: number) => {
   if (scroll <= thresHolds[0]) {
-    return [5, 0.1, 5];
+    return [10, 0.1, 5];
   }
   if (scroll < thresHolds[1]) {
     return [2.5, 15, 5];
@@ -20,7 +21,7 @@ const getScale = (scroll: number) => {
     return [20, 20, 1];
   }
   if (scroll < thresHolds[4]) {
-    return [35, 0.1, 5];
+    return [1, 25, 1];
   }
   return [5, 5, 5]
 }
@@ -38,14 +39,26 @@ const getColor = (scroll: number) => {
     return "pink";
   }
   if (scroll < thresHolds[4]) {
-    return "green";
+    return "beige";
   }
   return "black";
 }
 
 const getPosition = (scroll: number) => {
-  if (scroll > thresHolds[0]) {
+  if (scroll < thresHolds[0]) {
     return [0, 0, -2];
+  }
+  if (scroll < thresHolds[1]) {
+    return [0, 0, 0]
+  }
+  if (scroll < thresHolds[2]) {
+    return [0, 0, 0]
+  }
+  if (scroll < thresHolds[3]) {
+    return [0, 0, 0]
+  }
+  if (scroll < thresHolds[4]) {
+    return [0, 2, -5];
   }
   return [0, 0, 0]
 }
@@ -55,16 +68,16 @@ const getRotation = (scroll: number) => {
     return [0, 0, 0];
   }
   if (scroll < thresHolds[1]) {
-    return [0, 0, 1];
+    return [0.4, -0.5, 1];
   }
   if (scroll < thresHolds[2]) {
-    return [0, 0, 2];
+    return [0.5, 0.65, 2];
   }
   if (scroll < thresHolds[3]) {
     return [0, 0, 0];
   }
   if (scroll < thresHolds[4]) {
-    return [0, 0, 0];
+    return [0.1, 0.2, 0];
   }
   return [0, 0, 0]
 }
@@ -83,9 +96,9 @@ export default function BlackSheet({ scroll, }: proppy) {
     scale: getScale(scroll),
     color: getColor(scroll),
     config: {
-      mass: 20,
-      friction: 100,
-      tension: 100
+      mass: 1,
+      friction: 8,
+      tension: 10
     }
   })
   const ref = useRef<THREE.Mesh>(null!)

@@ -1,4 +1,4 @@
-import { maxScroll } from "./app-config";
+import { maxScroll, thresHolds } from "./app-config";
 
 export function getScrollPercentage(scroll: number): number {
 
@@ -9,7 +9,7 @@ export function getScrollPosition(position: number): number {
   return (position * 30 / 100);
 }
 
-export function scrollCalculator(deltaY: number, deltaX: number): number {
+export const scrollCalculator = (deltaY: number, deltaX: number) => {
   if (Math.abs(deltaY) > Math.abs(deltaX)) {
     return deltaY / 500;
   }
@@ -19,9 +19,9 @@ export function scrollCalculator(deltaY: number, deltaX: number): number {
 }
 
 export function isInZone(zone: [number, number], scroll: number): boolean {
-  const position = getScrollPosition(scroll);
+  const position = scroll;
   console.log("position", position);
-  if (position > zone[0] && position < zone[1]) {
+  if (position >= zone[0] && position < zone[1]) {
     return true;
   }
   return false
@@ -29,9 +29,14 @@ export function isInZone(zone: [number, number], scroll: number): boolean {
 }
 
 export function getNewTouchScroll(last: { X: number, Y: number }, next: { X: number, Y: number }): boolean {
-  const position = getScrollPosition(scroll);
-  console.log("position", position);
- 
+
+  console.log("last", last, "next", next);
+
   return false
 
+}
+
+export function getClosestThreshold(scroll: number): number | undefined {
+  console.log(scroll);
+  return thresHolds.find(v => Math.abs(scroll - v) < 5)
 }

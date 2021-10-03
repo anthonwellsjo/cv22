@@ -10,7 +10,7 @@ interface props {
 }
 
 function isNear(scroll: number, position: number): boolean {
-  if ((Math.abs((scroll / 30 * 100) - position)) < 5) return true;
+  if ((Math.abs((scroll / 30 * 100) - position)) < 8) return true;
   return false;
 }
 
