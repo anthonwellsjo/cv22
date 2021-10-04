@@ -18,10 +18,13 @@ const getScale = (scroll: number) => {
     return [4, 25, 1];
   }
   if (scroll < thresHolds[3]) {
-    return [20, 20, 1];
+    return [2, 25, 1];
   }
   if (scroll < thresHolds[4]) {
-    return [1, 25, 1];
+    return [4, 20, 3];
+  }
+  if (scroll < thresHolds[5]) {
+    return [5, 15, 5];
   }
   return [5, 5, 5]
 }
@@ -36,10 +39,13 @@ const getColor = (scroll: number) => {
     return "red";
   }
   if (scroll < thresHolds[3]) {
-    return "pink";
+    return "beige";
   }
   if (scroll < thresHolds[4]) {
-    return "beige";
+    return "pink";
+  }
+  if (scroll < thresHolds[5]) {
+    return "grey";
   }
   return "black";
 }
@@ -55,10 +61,13 @@ const getPosition = (scroll: number) => {
     return [0, 0, 0]
   }
   if (scroll < thresHolds[3]) {
-    return [0, 0, 0]
+    return [1, 0, 0];
   }
   if (scroll < thresHolds[4]) {
-    return [0, 2, -5];
+    return [1, 0, 0]
+  }
+  if (scroll < thresHolds[5]) {
+    return [0, 0, -1]
   }
   return [0, 0, 0]
 }
@@ -74,10 +83,13 @@ const getRotation = (scroll: number) => {
     return [0.5, 0.65, 2];
   }
   if (scroll < thresHolds[3]) {
-    return [0, 0, 0];
+    return [0, 1.9, 3.5];
   }
   if (scroll < thresHolds[4]) {
-    return [0.1, 0.2, 0];
+    return [0, 2, 3];
+  }
+  if (scroll < thresHolds[5]) {
+    return [0.2, 2.5, 3];
   }
   return [0, 0, 0]
 }
