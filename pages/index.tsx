@@ -2,7 +2,7 @@ import { Canvas } from '@react-three/fiber'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Image from 'next/image'
-import { createRef, useEffect, useState } from 'react'
+import { createRef, useEffect, useRef, useState } from 'react'
 import styles from '../styles/Home.module.css'
 import BlackSheet from '../components/BlackSheet'
 import Chapter from '../components/Chapter'
@@ -16,14 +16,26 @@ import { thresHolds } from '../components/utils/app-config'
 
 const Home: NextPage = () => {
   const [scroll, setScroll] = useState(0);
-  const [currentTouch, setCurrentTouch] = useState<{ Y?: number, X?: number }>({});
-  let timer: NodeJS.Timeout;
+  const [currentTouch, setCurrentTouch] = useState<{ Y: number, X: number }>({ Y: 0.1, X: 0.1 });
+  const touchStateRef = useRef(currentTouch);
+  const setCurrentTouchExpanded = (Y: number, X: number) => {
+    setCurrentTouch({ X: X, Y: Y });
+    touchStateRef.current = ({ X: X, Y: Y });
+  };
+  let scrollDoneTimer: NodeJS.Timeout;
 
   const divRef: React.LegacyRef<HTMLDivElement> | undefined = createRef();
 
-  const Scroller: (e: any) => any = (e: any) => {
+  const onScrollFinished = () => {
+    console.log("scroll finished");
+    const newScroll = scroll;
+    const threshold = getClosestThreshold(newScroll);
+    if (threshold) setScroll(threshold + 2.5);
+  }
+
+  const scroller: (e: any) => any = (e: any) => {
     e.preventDefault();
-    clearTimeout(timer);
+    clearTimeout(scrollDoneTimer);
 
     const Y = e.wheelDeltaY;
     const X = e.wheelDeltaX;
@@ -31,34 +43,35 @@ const Home: NextPage = () => {
     console.log(newValue);
 
     setScroll(prev => (prev - newValue));
-    timer = setTimeout(() => {
-      console.log("scroll finished");
-      // const newScroll = scroll;
-      // const threshold = getClosestThreshold(newScroll);
-      // if (threshold) setScroll(threshold+2.5);
-    }, 300)
+
+
+    // scrollDoneTimer = setTimeout(() => {
+    //   onScrollFinished();
+    // }, 300)
 
   }
 
-  function MobileScroller(this: HTMLDivElement, e: TouchEvent) {
+
+  function mobileScroller(this: HTMLDivElement, e: TouchEvent) {
     e.preventDefault();
     const Y = e.changedTouches[0].clientY;
     const X = e.changedTouches[0].clientX;
     console.log("scrolling!!!", Y, X);
-    clearTimeout(timer);
-    setCurrentTouch({ Y: Y, X: X })
-    if (currentTouch.Y && currentTouch.X) {
-      const newScroll = getNewTouchScroll({ X: currentTouch.X, Y: currentTouch.Y }, { X: X, Y: Y })
-    }
-    // setScroll(prev => (getNewScroll))
+    clearTimeout(scrollDoneTimer);
+    console.log("new touch", Y, X);
+
+    const yes = getNewTouchScroll({ Y: touchStateRef.current.Y, X: touchStateRef.current.X }, { X: X, Y: Y })
+
+    console.log("yes", yes);
+    setScroll(prev => (prev - yes))
+
+    setCurrentTouchExpanded(Y, X);
 
 
 
-    timer = setTimeout(() => {
-      console.log("scroll finished");
-      // const threshold = getClosestThreshold(scroll);
-      // if (threshold) setScroll(threshold);
-    }, 300)
+    // scrollDoneTimer = setTimeout(() => {
+    //   onScrollFinished();
+    // }, 300)
 
   }
 
@@ -69,8 +82,8 @@ const Home: NextPage = () => {
 
 
   useEffect(() => {
-    divRef.current?.addEventListener("wheel", Scroller);
-    divRef.current?.addEventListener("touchmove", MobileScroller);
+    divRef.current?.addEventListener("wheel", scroller);
+    divRef.current?.addEventListener("touchmove", mobileScroller);
   }, [])
 
   return (

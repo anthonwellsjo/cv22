@@ -20,19 +20,17 @@ export const scrollCalculator = (deltaY: number, deltaX: number) => {
 
 export function isInZone(zone: [number, number], scroll: number): boolean {
   const position = scroll;
-  console.log("position", position);
   if (position >= zone[0] && position < zone[1]) {
     return true;
   }
-  return false
-
+  return false;
 }
 
-export function getNewTouchScroll(last: { X: number, Y: number }, next: { X: number, Y: number }): boolean {
-
+export function getNewTouchScroll(last: { X: number, Y: number }, next: { X: number, Y: number }): number {
+  const Y = (last.Y -  next.Y) / 20;
   console.log("last", last, "next", next);
 
-  return false
+  return Y;
 
 }
 
