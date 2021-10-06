@@ -17,6 +17,7 @@ import Title from '../components/Pages/Title'
 import TextWrapper from '../components/Pages/TextWrapper'
 
 const Home: NextPage = () => {
+  const divRef: React.LegacyRef<HTMLDivElement> | undefined = createRef();
   const [scroll, setScroll] = useState(0);
   const scrollRef = useRef(scroll);
   const setScrollExpanded = (newValue: number) => {
@@ -45,7 +46,6 @@ const Home: NextPage = () => {
 
 
 
-  const divRef: React.LegacyRef<HTMLDivElement> | undefined = createRef();
 
   const onScrollFinished = () => {
     console.log("scroll finished");
@@ -102,6 +102,7 @@ const Home: NextPage = () => {
 
   const onChapterClickEventHandler = (position: number) => {
     setScroll(getScrollPosition(position));
+    scrollRef.current = position;
   }
 
 
@@ -135,25 +136,25 @@ const Home: NextPage = () => {
           <spotLight castShadow={true} position={[100, 100, 100]} />
           <pointLight position={[100, 100, 100]} />
           <pointLight position={[100, 100, 100]} />
-          <BlackSheet scroll={scrollRef.current} position={[0, 0, 0]} />
+          <BlackSheet scroll={scroll} position={[0, 0, 0]} />
         </Canvas>
       </div>
 
-      <PageWrapper scroll={scrollRef.current} zone={[0, thresHolds[0]]}>
+      <PageWrapper scroll={scroll} zone={[0, thresHolds[0]]}>
         <IntroPage />
-        {/* <TextWrapper scroll={scrollRef.current} zone={[0, thresHolds[0]]} > */}
+        {/* <TextWrapper scroll={scroll} zone={[0, thresHolds[0]]} > */}
         <div style={{ width: "2px", height: "2px", backgroundColor: "black" }} />
         {/* </TextWrapper> */}
       </PageWrapper>
-      <PageWrapper scroll={scrollRef.current} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
-        <Title scroll={scrollRef.current} name="Bio" />
-        <TextWrapper scroll={scrollRef.current} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
+      <PageWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
+        <Title scroll={scroll} name="Bio" />
+        <TextWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
           <BioPage />
         </TextWrapper>
       </PageWrapper>
-      <PageWrapper scroll={scrollRef.current} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
-        <Title scroll={scrollRef.current} name="Skills" />
-        <TextWrapper scroll={scrollRef.current} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
+      <PageWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
+        <Title scroll={scroll} name="Skills" />
+        <TextWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
           <div style={{ position: "absolute", top: "100%" }}>
             <strong>Lorem, ipsum.</strong>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi? Nisi, praesentium nemo?</p>
@@ -162,8 +163,8 @@ const Home: NextPage = () => {
           </div>
         </TextWrapper>
       </PageWrapper>
-      <PageWrapper scroll={scrollRef.current} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
-        <Title scroll={scrollRef.current} name="CV" />
+      <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
+        <Title scroll={scroll} name="CV" />
         <div style={{ position: "absolute", top: "100%" }}>
           <strong>Lorem, ipsum.</strong>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi? Nisi, praesentium nemo?</p>
@@ -171,8 +172,8 @@ const Home: NextPage = () => {
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, aperiam!</p>
         </div>
       </PageWrapper>
-      <PageWrapper scroll={scrollRef.current} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
-        <Title scroll={scrollRef.current} name="Social" />
+      <PageWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
+        <Title scroll={scroll} name="Social" />
         <div style={{ position: "absolute", top: "100%" }}>
           <strong>Lorem, ipsum.</strong>
           <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi? Nisi, praesentium nemo?</p>
