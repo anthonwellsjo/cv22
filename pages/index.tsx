@@ -164,29 +164,33 @@ const Home: NextPage = () => {
         </TextWrapper>
       </PageWrapper>
       <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
-        <Title scroll={scroll} name="CV" />
-        <div style={{ position: "absolute", top: "100%" }}>
-          <strong>Lorem, ipsum.</strong>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi? Nisi, praesentium nemo?</p>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos commodi corporis aperiam autem et consequatur magni sint rem illum repellat, reprehenderit, quia dolore, voluptate at beatae deserunt? Autem, quisquam id sit necessitatibus magnam impedit earum, ipsa quidem voluptate eligendi deleniti.</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, aperiam!</p>
-        </div>
+        <Title scroll={scroll} name="Curriculum" />
+        <TextWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
+          <div style={{ position: "absolute", top: "100%" }}>
+            <strong>Lorem, ipsum.</strong>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi? Nisi, praesentium nemo?</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos commodi corporis aperiam autem et consequatur magni sint rem illum repellat, reprehenderit, quia dolore, voluptate at beatae deserunt? Autem, quisquam id sit necessitatibus magnam impedit earum, ipsa quidem voluptate eligendi deleniti.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, aperiam!</p>
+          </div>
+        </TextWrapper>
       </PageWrapper>
       <PageWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
         <Title scroll={scroll} name="Social" />
-        <div style={{ position: "absolute", top: "100%" }}>
-          <strong>Lorem, ipsum.</strong>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi? Nisi, praesentium nemo?</p>
-          <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos commodi corporis aperiam autem et consequatur magni sint rem illum repellat, reprehenderit, quia dolore, voluptate at beatae deserunt? Autem, quisquam id sit necessitatibus magnam impedit earum, ipsa quidem voluptate eligendi deleniti.</p>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, aperiam!</p>
-        </div>
+        <TextWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
+          <div style={{ position: "absolute", top: "100%" }}>
+            <strong>Lorem, ipsum.</strong>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi? Nisi, praesentium nemo?</p>
+            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos commodi corporis aperiam autem et consequatur magni sint rem illum repellat, reprehenderit, quia dolore, voluptate at beatae deserunt? Autem, quisquam id sit necessitatibus magnam impedit earum, ipsa quidem voluptate eligendi deleniti.</p>
+            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, aperiam!</p>
+          </div>
+        </TextWrapper>
       </PageWrapper>
       <IndexHolder>
         <ScrollBar {...{ scroll }} />
         <Chapter onClickEvent={onChapterClickEventHandler} position={5} {...{ scroll }} />
         <Chapter onClickEvent={onChapterClickEventHandler} title={"bio"} position={20} {...{ scroll }} />
         <Chapter onClickEvent={onChapterClickEventHandler} title={"skills"} position={40} {...{ scroll }} />
-        <Chapter onClickEvent={onChapterClickEventHandler} title={"curriculum"} position={60} {...{ scroll }} />
+        <Chapter onClickEvent={onChapterClickEventHandler} title={"cv"} position={60} {...{ scroll }} />
         <Chapter onClickEvent={onChapterClickEventHandler} title={"social"} position={80} {...{ scroll }} />
         <Chapter onClickEvent={onChapterClickEventHandler} position={95} {...{ scroll }} />
       </IndexHolder>
