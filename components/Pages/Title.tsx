@@ -18,7 +18,7 @@ const Title: React.FC<props> = ({ name }) => {
 
 
   return (
-    <div style={{ backgroundColor: "rgba(255,255,255,0.2)", position: "absolute", width: "100%", top: 0, height: "150px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+    <div style={{ backgroundColor: "rgba(255,255,255,0.2)", position: "absolute", width: "100%", top: 0, height: "100px", display: "flex", justifyContent: "center", alignItems: "center" }}>
       <a.h2 className="page-header" style={{ textAlign: "center", opacity: styles.opacity, fontWeight: 400, fontFamily: "Roboto", transform: "rotate(5deg)" }}>{name}</a.h2>
     </div>
   )
