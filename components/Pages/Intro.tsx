@@ -45,6 +45,7 @@ const IntroPage: React.FC = () => {
   }, [])
 
   return (
+    
     <div style={{ width: "100%", height: "100%", display: "flex", position: "absolute", justifyContent: "center", alignItems: "center" }}>
       <a.h1 id="anthon-wellsjo" style={{ fontWeight: 400, fontFamily: font, color: styles.color as any }}>Carl Anthon Wellsjö</a.h1>
     </div>
