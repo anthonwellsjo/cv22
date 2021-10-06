@@ -36,15 +36,14 @@ export function getPercentageOfZone(zone: [number, number], scroll: number): num
 }
 
 export function getNewTouchScroll(last: { X: number, Y: number }, next: { X: number, Y: number }): number {
-  if (next.Y > next.X) {
+  console.log("next Y", next.Y, "next X", next.X);
+  if (Math.abs(last.Y - next.Y) > Math.abs(last.X - next.X)) {
     const Y = (last.Y - next.Y) / 40;
     return Y;
-  }
-  if (next.X > next.Y) {
-    const X = (last.X - next.X) / 10;
+  } else {
+    const X = (last.X - next.X) / 30;
     return X
   }
-  return -1;
 
 }
 

@@ -60,14 +60,16 @@ const Home: NextPage = () => {
     const X = e.changedTouches[0].clientX;
     console.log("scrolling!!!", Y, X);
     clearTimeout(scrollDoneTimer);
+    console.log("new touch", Y, X);
 
-    const yes = getNewTouchScroll({ Y: touchStateRef.current.Y, X: touchStateRef.current.X }, { X: X, Y: Y })
+    if (touchStateRef.current.Y - Y <= 30) {
+      const yes = getNewTouchScroll({ Y: touchStateRef.current.Y, X: touchStateRef.current.X }, { X: X, Y: Y })
 
-    console.log("mobile scroll", yes);
-    if (yes < 3 && yes > -3) {
-      setScroll(prev => (prev + yes))
+      console.log("mobile scroll", yes);
+      if (yes < 2 && yes > -2) {
+        setScroll(prev => (prev + yes))
+      }
     }
-
 
     setCurrentTouchExpanded(Y, X);
 
