@@ -8,9 +8,6 @@ const BioPage: React.FC = () => {
 
   return (
     <div style={{ position: "absolute", top: "100%", flexDirection: "column", display: "flex", alignItems: "center" }}>
-      <div style={{ width: "180px", height: "180px", minHeight: "100px", borderRadius: "100%", top: "-90px", overflow: "hidden", display: "flex", alignItems: "center", justifyContent: "center", boxShadow: "1px 1px 30px lightgrey", marginBottom:"50px"}}>
-        <Image src={"/profile.jpg"} height={"200px"} width={"200px"} alt="Image of Anthon" />
-      </div>
       <div>
         <strong>Hey,</strong>
         <div style={{ wordBreak: "break-word" }}>
