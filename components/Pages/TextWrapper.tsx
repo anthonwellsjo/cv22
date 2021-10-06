@@ -11,7 +11,6 @@ function getMarginBottom(zone: [number, number], scroll: number): string {
 
 function getOpacity(zone: [number, number], scroll: number): number {
   const percentage = getPercentageOfZone(zone, scroll) / 100;
-  console.log("percentage", percentage);
   if (percentage === -1) return 0;
   if (percentage > 0.2 && percentage < 0.6) return 1;
   if (percentage <= 0.2) {

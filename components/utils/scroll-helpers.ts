@@ -36,14 +36,18 @@ export function getPercentageOfZone(zone: [number, number], scroll: number): num
 }
 
 export function getNewTouchScroll(last: { X: number, Y: number }, next: { X: number, Y: number }): number {
-  const Y = (last.Y - next.Y) / 20;
-  console.log("last", last, "next", next);
-
-  return Y;
+  if (next.Y > next.X) {
+    const Y = (last.Y - next.Y) / 40;
+    return Y;
+  }
+  if (next.X > next.Y) {
+    const X = (last.X - next.X) / 10;
+    return X
+  }
+  return -1;
 
 }
 
 export function getClosestThreshold(scroll: number): number | undefined {
-  console.log(scroll);
   return thresHolds.find(v => Math.abs(scroll - v) < 5)
 }

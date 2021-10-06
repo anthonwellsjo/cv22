@@ -42,7 +42,7 @@ const Home: NextPage = () => {
     const Y = e.wheelDeltaY;
     const X = e.wheelDeltaX;
     const newValue = scrollCalculator(Y, X);
-    console.log(newValue);
+    console.log("nromal scroll", newValue);
 
     setScroll(prev => (prev - newValue));
 
@@ -60,14 +60,14 @@ const Home: NextPage = () => {
     const X = e.changedTouches[0].clientX;
     console.log("scrolling!!!", Y, X);
     clearTimeout(scrollDoneTimer);
-    console.log("new touch", Y, X);
 
-    if (touchStateRef.current.Y - Y <= 50) {
-      const yes = getNewTouchScroll({ Y: touchStateRef.current.Y, X: touchStateRef.current.X }, { X: X, Y: Y })
+    const yes = getNewTouchScroll({ Y: touchStateRef.current.Y, X: touchStateRef.current.X }, { X: X, Y: Y })
 
-      console.log("yes", yes);
-      setScroll(prev => (prev - yes))
+    console.log("mobile scroll", yes);
+    if (yes < 3 && yes > -3) {
+      setScroll(prev => (prev + yes))
     }
+
 
     setCurrentTouchExpanded(Y, X);
 
