@@ -28,7 +28,7 @@ const IntroPage: React.FC = () => {
 
   const styles = useSpring({
     from: {
-      color: "white"
+      color: "black"
     },
     to: {
       color: "black"

@@ -18,6 +18,23 @@ import TextWrapper from '../components/Pages/TextWrapper'
 
 const Home: NextPage = () => {
   const [scroll, setScroll] = useState(0);
+  const scrollRef = useRef(scroll);
+  const setScrollExpanded = (newValue: number) => {
+    console.log("new value", newValue);
+    if (newValue > 0 && scrollRef.current < 1) {
+      setScroll(prev => (0.1));
+      scrollRef.current = 0.1;
+      return;
+    }
+    if (newValue < 0 && scrollRef.current > 29) {
+      setScroll(prev => (29.9));
+      scrollRef.current = 29.9;
+      return;
+    }
+    setScroll(prev => (prev - newValue));
+    scrollRef.current = scrollRef.current - newValue;
+
+  };
   const [currentTouch, setCurrentTouch] = useState<{ Y: number, X: number }>({ Y: 0.1, X: 0.1 });
   const touchStateRef = useRef(currentTouch);
   const setCurrentTouchExpanded = (Y: number, X: number) => {
@@ -25,6 +42,8 @@ const Home: NextPage = () => {
     touchStateRef.current = ({ X: X, Y: Y });
   };
   let scrollDoneTimer: NodeJS.Timeout;
+
+
 
   const divRef: React.LegacyRef<HTMLDivElement> | undefined = createRef();
 
@@ -43,8 +62,7 @@ const Home: NextPage = () => {
     const X = e.wheelDeltaX;
     const newValue = scrollCalculator(Y, X);
     console.log("nromal scroll", newValue);
-
-    setScroll(prev => (prev - newValue));
+    setScrollExpanded(newValue);
 
 
     // scrollDoneTimer = setTimeout(() => {

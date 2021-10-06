@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSpring, a } from '@react-spring/web';
 import { getScrollPercentage } from './utils/scroll-helpers';
+import { thresHolds } from './utils/app-config';
 
 
 interface props {
@@ -12,8 +13,8 @@ const ScrollBar = ({ scroll }: props) => {
   const getTop = (scroll: number) => {
 
     const percentage = getScrollPercentage(scroll);
-    if (percentage < 5) return "5%";
-    if (percentage > 95) return "95%"
+    
+    if (percentage > 95) return "91%"
     else return `${percentage}%`;
   }
 
@@ -23,7 +24,7 @@ const ScrollBar = ({ scroll }: props) => {
 
   return (
     <a.div style={{
-      left: "0",
+      left: `${thresHolds[0]+1}%`,
       width: styles.right,
       borderRadius: "2px",
       height: "2px",
