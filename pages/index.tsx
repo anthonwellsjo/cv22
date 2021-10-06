@@ -13,6 +13,8 @@ import PageWrapper from '../components/Pages/PageWrapper'
 import ScrollBar from '../components/ScrollBar'
 import { getClosestThreshold, getNewTouchScroll, getScrollPosition, scrollCalculator } from '../components/utils/scroll-helpers'
 import { thresHolds } from '../components/utils/app-config'
+import Title from '../components/Pages/Title'
+import TextWrapper from '../components/Pages/TextWrapper'
 
 const Home: NextPage = () => {
   const [scroll, setScroll] = useState(0);
@@ -60,10 +62,12 @@ const Home: NextPage = () => {
     clearTimeout(scrollDoneTimer);
     console.log("new touch", Y, X);
 
-    const yes = getNewTouchScroll({ Y: touchStateRef.current.Y, X: touchStateRef.current.X }, { X: X, Y: Y })
+    if (touchStateRef.current.Y - Y <= 50) {
+      const yes = getNewTouchScroll({ Y: touchStateRef.current.Y, X: touchStateRef.current.X }, { X: X, Y: Y })
 
-    console.log("yes", yes);
-    setScroll(prev => (prev - yes))
+      console.log("yes", yes);
+      setScroll(prev => (prev - yes))
+    }
 
     setCurrentTouchExpanded(Y, X);
 
@@ -113,7 +117,19 @@ const Home: NextPage = () => {
         <IntroPage />
       </PageWrapper>
       <PageWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
-        <BioPage />
+        <Title scroll={scroll} name="Bio" />
+        <TextWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
+          <BioPage />
+        </TextWrapper>
+      </PageWrapper>
+      <PageWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
+        <Title scroll={scroll} name="Skills" />
+      </PageWrapper>
+      <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
+        <Title scroll={scroll} name="CV" />
+      </PageWrapper>
+      <PageWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
+        <Title scroll={scroll} name="Social" />
       </PageWrapper>
       <IndexHolder>
         <ScrollBar {...{ scroll }} />

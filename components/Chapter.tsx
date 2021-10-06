@@ -13,11 +13,15 @@ function isNear(scroll: number, position: number): boolean {
   if ((Math.abs((scroll / 30 * 100) - position)) < 8) return true;
   return false;
 }
+function isPassed(scroll: number, position: number): boolean {
+  if ((scroll / 30 * 100) - position > -5) return true;
+  return false;
+}
 
 const Chapter = ({ children, position, scroll, title, onClickEvent }: props) => {
   const style = useSpring({
     scale: isNear(scroll, position) ? 2 : 1,
-    backgroundColor: isNear(scroll, position) ? "red" : "black"
+    backgroundColor: isPassed(scroll, position) ? "red" : "black"
   })
 
   return (

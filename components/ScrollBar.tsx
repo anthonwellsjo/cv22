@@ -18,18 +18,18 @@ const ScrollBar = ({ scroll }: props) => {
   }
 
   const styles = useSpring({
-    left: getTop(scroll)
+    right: getTop(scroll)
   })
 
   return (
     <a.div style={{
-      left: styles.left,
-      width: "5px",
+      left: "0",
+      width: styles.right,
       borderRadius: "2px",
-      height: "5px",
-      backgroundColor: "red",
+      height: "2px",
+      backgroundColor: "black",
       position: "absolute",
-      bottom: "10px"
+      bottom: "13px"
     }} />
   )
 }

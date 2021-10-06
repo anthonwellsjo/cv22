@@ -11,10 +11,10 @@ export function getScrollPosition(position: number): number {
 
 export const scrollCalculator = (deltaY: number, deltaX: number) => {
   if (Math.abs(deltaY) > Math.abs(deltaX)) {
-    return deltaY / 500;
+    return deltaY / 1000;
   }
   else {
-    return deltaX / 500;
+    return deltaX / 1000;
   }
 }
 
@@ -26,8 +26,17 @@ export function isInZone(zone: [number, number], scroll: number): boolean {
   return false;
 }
 
+//returns -1 if not inside zone
+export function getPercentageOfZone(zone: [number, number], scroll: number): number {
+  const total = zone[1] - zone[0];
+  const progress = scroll - zone[0];
+  if (progress < 0 || progress > total) return -1;
+  return progress / total * 100;
+
+}
+
 export function getNewTouchScroll(last: { X: number, Y: number }, next: { X: number, Y: number }): number {
-  const Y = (last.Y -  next.Y) / 20;
+  const Y = (last.Y - next.Y) / 20;
   console.log("last", last, "next", next);
 
   return Y;
