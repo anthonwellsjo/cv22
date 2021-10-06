@@ -32,19 +32,19 @@ a {
   font-size: 70px;
   margin-top: -30px;
 }
-@media only screen and (max-width: 800px){
+@media only screen and (max-width: 800px) {
   #anthon-wellsjo {
     font-size: 50px;
     margin-top: -20px;
   }
 }
-@media only screen and (max-width: 565px){
+@media only screen and (max-width: 565px) {
   #anthon-wellsjo {
     font-size: 30px;
     margin-top: -15px;
   }
 }
-@media only screen and (max-width: 330px){
+@media only screen and (max-width: 330px) {
   #anthon-wellsjo {
     font-size: 25px;
     margin-top: -10px;
@@ -55,17 +55,17 @@ a {
   font-size: 70px;
 }
 
-@media only screen and (max-width: 800px){
+@media only screen and (max-width: 800px) {
   .page-header {
     font-size: 70px;
   }
 }
-@media only screen and (max-width: 565px){
+@media only screen and (max-width: 565px) {
   .page-header {
     font-size: 50px;
   }
 }
-@media only screen and (max-width: 330px){
+@media only screen and (max-width: 330px) {
   .page-header {
     font-size: 45px;
   }

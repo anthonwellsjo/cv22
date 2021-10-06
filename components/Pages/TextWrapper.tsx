@@ -12,11 +12,11 @@ function getMarginBottom(zone: [number, number], scroll: number): string {
 function getOpacity(zone: [number, number], scroll: number): number {
   const percentage = getPercentageOfZone(zone, scroll) / 100;
   if (percentage === -1) return 0;
-  if (percentage > 0.2 && percentage < 0.6) return 1;
-  if (percentage <= 0.2) {
+  if (percentage > 0.1 && percentage < 0.8) return 1;
+  if (percentage <= 0.1) {
     return percentage;
   }
-  if (percentage >= 0.6) {
+  if (percentage >= 0.8) {
     return 1 - percentage;
   }
   return 1;
@@ -39,9 +39,11 @@ const TextWrapper: React.FC<props> = ({ children, zone, scroll }: props) => {
 
   return (
 
-    <a.div style={{ bottom: styles.bottom, position: "relative", marginTop: "10%", height: "80%", width: "80%", opacity: styles.opacity }}>
-      {children}
-    </a.div>
+    <div style={{ position: "relative", width: "100%", height: "50%", display: "flex", justifyContent: "center", marginTop: "10%" }}>
+      <a.div style={{ bottom: styles.bottom, position: "absolute", marginTop: "10%", height: "80%", width: "80%", opacity: styles.opacity }}>
+        {children}
+      </a.div>
+    </div>
 
   )
 }
