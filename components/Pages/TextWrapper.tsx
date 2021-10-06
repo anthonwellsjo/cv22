@@ -20,6 +20,7 @@ function getOpacity(zone: [number, number], scroll: number): number {
   if (percentage >= 0.8) {
     return 1 - percentage;
   }
+  return 1;
 }
 
 interface props {
