@@ -15,10 +15,10 @@ a {
   box-sizing: border-box;
 }
 
-
 @font-face {
-  font-family: "Handwriting";
-  src: url("/fonts/ReenieBeanie/ReenieBeanie.ttf");
+  font-family: 'Handwriting';
+  src: url('/fonts/ReenieBeanie/ReenieBeanie.ttf');
+  font-weight: 400;
 }
 /* @font-face {
   font-family: "EBGaramond";
@@ -27,3 +27,42 @@ a {
   font-weight: 500;
   font-display: swap;
 } */
+
+#anthon-wellsjo {
+  font-size: 70px;
+}
+@media only screen and (max-width: 800px){
+  #anthon-wellsjo {
+    font-size: 50px;
+  }
+}
+@media only screen and (max-width: 565px){
+  #anthon-wellsjo {
+    font-size: 30px;
+  }
+}
+@media only screen and (max-width: 330px){
+  #anthon-wellsjo {
+    font-size: 25px;
+  }
+}
+
+.page-header {
+  font-size: 90px;
+}
+
+@media only screen and (max-width: 800px){
+  .page-header {
+    font-size: 70px;
+  }
+}
+@media only screen and (max-width: 565px){
+  .page-header {
+    font-size: 50px;
+  }
+}
+@media only screen and (max-width: 330px){
+  .page-header {
+    font-size: 45px;
+  }
+}

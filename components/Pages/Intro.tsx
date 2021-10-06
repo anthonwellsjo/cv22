@@ -23,8 +23,8 @@ const IntroPage: React.FC = () => {
   )
 
   return (
-    <div style={{ width: "100%", display: "flex", justifyContent: "center", alignItems: "center", marginBottom: "120px" }}>
-      <a.h1 style={{ fontFamily: "Handwriting", fontSize: "100px", color: styles.color as any }}>Carl Anthon Wellsjö</a.h1>
+    <div style={{ width: "100%", height: "100%", display: "flex", position:"absolute", marginTop:"-30px", justifyContent: "center", alignItems: "center" }}>
+      <a.h1 id="anthon-wellsjo" style={{ fontWeight: 400, fontFamily: "Handwriting", color: styles.color as any }}>Carl Anthon Wellsjö</a.h1>
     </div>
   )
 }

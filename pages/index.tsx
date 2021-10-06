@@ -113,8 +113,12 @@ const Home: NextPage = () => {
           <BlackSheet scroll={scroll} position={[0, 0, 0]} />
         </Canvas>
       </div>
+
       <PageWrapper scroll={scroll} zone={[0, thresHolds[0]]}>
         <IntroPage />
+        {/* <TextWrapper scroll={scroll} zone={[0, thresHolds[0]]} > */}
+        <div style={{ width: "2px", height: "2px", backgroundColor: "black" }} />
+        {/* </TextWrapper> */}
       </PageWrapper>
       <PageWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
         <Title scroll={scroll} name="Bio" />

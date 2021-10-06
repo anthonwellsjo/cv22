@@ -9,7 +9,7 @@ import { thresHolds } from './utils/app-config'
 
 const getScale = (scroll: number) => {
   if (scroll <= thresHolds[0]) {
-    return [10, 0.1, 5];
+    return [5, 0.02, 5];
   }
   if (scroll < thresHolds[1]) {
     return [2.5, 15, 5];
