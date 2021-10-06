@@ -81,11 +81,11 @@ const Home: NextPage = () => {
     console.log("new touch", Y, X);
 
     if (touchStateRef.current.Y - Y <= 30) {
-      const yes = getNewTouchScroll({ Y: touchStateRef.current.Y, X: touchStateRef.current.X }, { X: X, Y: Y })
+      const newValue = getNewTouchScroll({ Y: touchStateRef.current.Y, X: touchStateRef.current.X }, { X: X, Y: Y })
 
-      console.log("mobile scroll", yes);
-      if (yes < 2 && yes > -2) {
-        setScroll(prev => (prev + yes))
+      console.log("mobile scroll", newValue);
+      if (newValue < 2 && newValue > -2) {
+        setScrollExpanded(-newValue);
       }
     }
 
