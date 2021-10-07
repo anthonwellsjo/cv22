@@ -15,16 +15,16 @@ const getScale = (scroll: number) => {
     return [2.5, 15, 5];
   }
   if (scroll < thresHolds[2]) {
-    return [4, 25, 1];
+    return [3, 25, 1];
   }
   if (scroll < thresHolds[3]) {
     return [2, 25, 1];
   }
   if (scroll < thresHolds[4]) {
-    return [4, 20, 3];
+    return [3, 20, 3];
   }
   if (scroll < thresHolds[5]) {
-    return [5, 15, 5];
+    return [3, 15, 5];
   }
   return [5, 5, 5]
 }

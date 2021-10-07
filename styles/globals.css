@@ -20,6 +20,23 @@ a {
   src: url('/fonts/ReenieBeanie/ReenieBeanie.ttf');
   font-weight: 400;
 }
+@font-face {
+  font-family: 'Text';
+  src: url('/fonts/Montserrat/Montserrat-ThinItalic.ttf');
+  font-weight: 100;
+  font-style: italic;
+}
+@font-face {
+  font-family: 'Text';
+  src: url('/fonts/Montserrat/Montserrat-Thin.ttf');
+  font-weight: 100;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'Text';
+  src: url('/fonts/Montserrat/Montserrat-Bold.ttf');
+  font-weight: bold;
+}
 /* @font-face {
   font-family: "EBGaramond";
   src: url("/fonts/EBGaramond/EBGaramond-Medium.ttf");
@@ -27,6 +44,11 @@ a {
   font-weight: 500;
   font-display: swap;
 } */
+
+p{
+  font-family: Text;
+  font-weight: 100;
+}
 
 #anthon-wellsjo {
   font-size: 70px;

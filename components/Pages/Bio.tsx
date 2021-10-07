@@ -9,7 +9,7 @@ const BioPage: React.FC = () => {
   return (
     <div style={{ position: "absolute", top: "100%", flexDirection: "column", display: "flex", alignItems: "center" }}>
       <div>
-        <strong>Hey,</strong>
+        <p><strong>Hey,</strong></p>
         <div style={{ wordBreak: "break-word" }}>
           <p>
             My name is <strong>Anthon</strong> and I&apos;m a Swedish <strong>full-stack web developer</strong> based in Perugia, Italy with my wife and three kids.
