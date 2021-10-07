@@ -166,7 +166,7 @@ const Home: NextPage = ({ builtOn }: any) => {
         <IntroPage />
         {/* <TextWrapper scroll={scroll} zone={[0, thresHolds[0]]} > */}
         <div style={{ width: "2px", height: "2px", backgroundColor: "black" }} />
-        <pre>{builtOn}</pre>
+        <pre>Build: {builtOn}</pre>
         {/* </TextWrapper> */}
       </PageWrapper>
       <PageWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
