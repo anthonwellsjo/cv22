@@ -62,8 +62,9 @@ const Home: NextPage = () => {
     const X = e.wheelDeltaX;
     const newValue = scrollCalculator(Y, X);
     console.log("nromal scroll", newValue);
-    setScrollExpanded(newValue);
-
+    if (newValue < 0.45 && newValue > -0.45) {
+      setScrollExpanded(newValue);
+    }
 
     // scrollDoneTimer = setTimeout(() => {
     //   onScrollFinished();
@@ -101,8 +102,9 @@ const Home: NextPage = () => {
 
 
   const onChapterClickEventHandler = (position: number) => {
-    setScroll(getScrollPosition(position));
-    scrollRef.current = position;
+    const ok = getScrollPosition(position)
+    setScroll(ok);
+    scrollRef.current = ok;
   }
 
 
