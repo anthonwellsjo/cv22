@@ -23,6 +23,16 @@ const Title: React.FC<props> = ({ name }) => {
       }, 50);
     }, time);
   }
+  const fontFlix2 = (time: number) => {
+    setTimeout(() => {
+      setFont("Roboto");
+      setTimeout(() => {
+        setFont("Handwriting");
+      }, 50);
+    }, time);
+  }
+
+
   const styles = useSpring({
     from: { top: "150%", opacity: 0 },
     to: { top: "0px", opacity: 1 },
@@ -32,14 +42,19 @@ const Title: React.FC<props> = ({ name }) => {
     }
   })
 
+  const onMouseEnterEventHandler = () => {
+    fontFlix2(10);
+    console.log("mouse enter")
+  }
+
   useEffect(() => {
     fontFlix(10000, Math.random() * 100);
   }, [])
 
 
   return (
-    <div style={{ backgroundColor: "rgba(255,255,255,0.2)", position: "absolute", width: "100%", top: 0, height: "100px", display: "flex", justifyContent: "center", alignItems: "center" }}>
-      <a.h2 className="page-header" style={{ textAlign: "center", opacity: styles.opacity, fontWeight: 100, fontFamily: font }}>{name}</a.h2>
+    <div style={{ backgroundColor: "rgba(255,255,255,0.2)", position: "absolute", width: "100%", top: 0, height: "100px", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1 }}>
+      <a.h2 onMouseEnter={onMouseEnterEventHandler} className="page-header" style={{ textAlign: "center", opacity: styles.opacity, fontWeight: 100, fontFamily: font }}>{name}</a.h2>
     </div>
   )
 }
