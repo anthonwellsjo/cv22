@@ -166,7 +166,6 @@ const Home: NextPage = () => {
         <IntroPage />
         {/* <TextWrapper scroll={scroll} zone={[0, thresHolds[0]]} > */}
         <div style={{ width: "2px", height: "2px", backgroundColor: "black" }} />
-        <span>{new Date().toLocaleString()}</span>
 
         {/* </TextWrapper> */}
       </PageWrapper>
