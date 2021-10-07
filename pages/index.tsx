@@ -197,8 +197,8 @@ const Home: NextPage = ({ builtOn, tech }: any) => {
       </PageWrapper>
       <PageWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
         <Title scroll={scroll} name="Skills" />
-        <TextWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
           <Skills {...{ tech }} />
+        <TextWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
         </TextWrapper>
       </PageWrapper>
       <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>

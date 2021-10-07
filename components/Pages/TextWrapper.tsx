@@ -40,7 +40,7 @@ const TextWrapper: React.FC<props> = ({ children, zone, scroll }: props) => {
   return (
 
     <div style={{ position: "relative", width: "100%", height: "50%", display: "flex", justifyContent: "center", marginTop: "10%" }}>
-      <a.div style={{ bottom: styles.bottom, position: "absolute", marginTop: "10%", height: "80%", width: "80%", opacity: styles.opacity }}>
+      <a.div style={{ bottom: styles.bottom, position: "absolute", marginTop: "10%", height: "80%", width: "100%", opacity: styles.opacity, display: "flex", justifyContent: "center" }}>
         {children}
       </a.div>
     </div>
