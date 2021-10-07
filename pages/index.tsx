@@ -16,7 +16,7 @@ import { thresHolds } from '../components/utils/app-config'
 import Title from '../components/Pages/Title'
 import TextWrapper from '../components/Pages/TextWrapper'
 
-const Home: NextPage = () => {
+const Home: NextPage = ({ builtOn }: any) => {
   const divRef: React.LegacyRef<HTMLDivElement> | undefined = createRef();
   const [scrollDirection, setScrollDirection] = useState<1 | -1 | null>(null)
   const scrollDirectionRef = useRef(scrollDirection);
@@ -166,7 +166,7 @@ const Home: NextPage = () => {
         <IntroPage />
         {/* <TextWrapper scroll={scroll} zone={[0, thresHolds[0]]} > */}
         <div style={{ width: "2px", height: "2px", backgroundColor: "black" }} />
-
+        <pre>{builtOn}</pre>
         {/* </TextWrapper> */}
       </PageWrapper>
       <PageWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
@@ -225,3 +225,8 @@ export default Home
 
 
 
+export async function getStaticProps() {
+  return {
+    props: { builtOn: new Date().toLocaleString() }, // will be passed to the page component as props
+  }
+}
