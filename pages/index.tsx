@@ -18,8 +18,25 @@ import TextWrapper from '../components/Pages/TextWrapper'
 
 const Home: NextPage = () => {
   const divRef: React.LegacyRef<HTMLDivElement> | undefined = createRef();
+  const [scrollDirection, setScrollDirection] = useState<1 | -1 | null>(null)
+  const scrollDirectionRef = useRef(scrollDirection);
   const [scroll, setScroll] = useState(0);
   const scrollRef = useRef(scroll);
+
+  const setScrollDirectionExpanded = (newValue: number) => {
+    if (scrollDirectionRef.current == null) {
+      console.log("scroll direction")
+      if (newValue > 0) {
+        setScrollDirection(-1);
+        scrollDirectionRef.current = -1;
+      }
+      if (newValue < 0) {
+        setScrollDirection(1);
+        scrollDirectionRef.current = 1;
+      }
+    }
+  }
+
   const setScrollExpanded = (newValue: number) => {
     console.log("new value", newValue);
     if (newValue > 0 && scrollRef.current < 1) {
@@ -61,9 +78,12 @@ const Home: NextPage = () => {
     const Y = e.wheelDeltaY;
     const X = e.wheelDeltaX;
     const newValue = scrollCalculator(Y, X);
+    setScrollDirectionExpanded(newValue);
     console.log("nromal scroll", newValue);
     if (newValue < 0.45 && newValue > -0.45) {
-      setScrollExpanded(newValue);
+      if (scrollDirectionRef.current != null) {
+        setScrollExpanded(newValue * scrollDirectionRef.current);
+      }
     }
 
     // scrollDoneTimer = setTimeout(() => {
