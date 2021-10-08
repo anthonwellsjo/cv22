@@ -17,7 +17,7 @@ import Title from '../components/Pages/Title'
 import TextWrapper from '../components/Pages/TextWrapper'
 import Skills from '../components/Pages/Skills'
 
-const Home: NextPage = ({ builtOn, tech }: any) => {
+const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
   const divRef: React.LegacyRef<HTMLDivElement> | undefined = createRef();
   const [scrollDirection, setScrollDirection] = useState<1 | -1 | null>(null)
   const scrollDirectionRef = useRef(scrollDirection);
@@ -197,8 +197,8 @@ const Home: NextPage = ({ builtOn, tech }: any) => {
       </PageWrapper>
       <PageWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
         <Title scroll={scroll} name="Skills" />
-          <Skills {...{ tech }} />
         <TextWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
+          <Skills {...{ tech, techTypes }} />
         </TextWrapper>
       </PageWrapper>
       <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
@@ -245,10 +245,11 @@ export async function getStaticProps() {
   
   `
 
-  let response = await fetch("https://2nwawwcw.api.sanity.io/v2021-06-07/data/query/production?query=*[_type=='tech']{title, techType->{techType}, techlogo{asset->{path, url}}}", {
-  });
-  const results = await response.json();
+  let tech = await fetch("https://2nwawwcw.api.sanity.io/v2021-06-07/data/query/production?query=*[_type=='tech']{title, techType->{techType}, techlogo{asset->{path, url}}}");
+  const techData = await tech.json();
+  let cat = await fetch("https://2nwawwcw.api.sanity.io/v2021-06-07/data/query/production?query=*[_type=='techType']");
+  const catData = await cat.json();
   return {
-    props: { builtOn: new Date().toLocaleString(), tech: results.result }, // will be passed to the page component as props
+    props: { builtOn: new Date().toLocaleString(), tech: techData.result, techTypes: catData }, // will be passed to the page component as props
   }
 }

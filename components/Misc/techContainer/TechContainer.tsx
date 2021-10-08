@@ -83,7 +83,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
               cursor: "pointer"
             }}>
             {/* <p style={{ textAlign: "center", fontFamily: "Martel", fontWeight: 800, fontSize: "1.8em", marginTop: "2px" }}>{items.techlogo.asset.url}</p> */}
-            <img onClick={() => { console.log("clicked") }} data-linkPath={items.link} data-description={items.description} data-title={items.title} src={`${items.techlogo.asset.url}?h=50`} style={{ width: "50px" }} />
+            <img onClick={() => { console.log("clicked") }} data-linkPath={items.link} data-description={items.description} data-title={items.title} src={items.techlogo != null ? `${items.techlogo.asset.url}?h=50` : undefined} style={{ width: "50px" }} />
           </div>
         </animated.div>
       ))}

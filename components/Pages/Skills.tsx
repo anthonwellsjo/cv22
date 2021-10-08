@@ -2,12 +2,14 @@ import React, { useEffect, useState } from 'react';
 import TechContainer from '../Misc/techContainer/TechContainer';
 
 interface props {
-  tech: Tech[]
+  tech: Tech[],
+  techTypes: string[]
 }
 type SortedTechType = "Language" | "Framework" | "Library" | "Source control" | "CMS" | "App communication" | "ORM" | "State machine";
 
-const Skills: React.FC<props> = ({ tech }) => {
+const Skills: React.FC<props> = ({ tech, techTypes }) => {
   const [windowWidth, setWindowWidth] = useState(1000);
+  const [categories, setCategories] = useState<string[]>([])
   let sortedTech: { [key in SortedTechType]: Tech[] } = { "Language": [], "Framework": [], "Library": [], "Source control": [], "CMS": [], "App communication": [], "ORM": [], "State machine": [] };
   const techToSort: SortedTechType[] = ["Language", "Framework", "Library", "Source control", "CMS", "App communication", "ORM", "State machine"];
   techToSort.forEach(tts => {
@@ -22,8 +24,8 @@ const Skills: React.FC<props> = ({ tech }) => {
   }
 
   useEffect(() => {
+    console.log("techTypes",techTypes);
     setWindowSize();
-
     window.addEventListener("resize", setWindowSize);
 
     return () => { window.removeEventListener("resize", setWindowSize); }
@@ -50,7 +52,7 @@ const Skills: React.FC<props> = ({ tech }) => {
         </div>
       </div>
     )
-  } else return(
+  } else return (
 
     <h1>hej</h1>
   )
