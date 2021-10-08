@@ -8,9 +8,10 @@ interface props {
 type SortedTechType = "Language" | "Framework" | "Library" | "Source control" | "CMS" | "App communication" | "ORM" | "State machine";
 
 const Skills: React.FC<props> = ({ tech, techTypes }) => {
+  console.log("tech to tech", tech);
   const [windowWidth, setWindowWidth] = useState(1000);
   const [visibleTech, setVisibleTech] = useState<Tech[]>([]);
-  const [categories, setCategories] = useState<string[]>(["Javascript"])
+  const [categories, setCategories] = useState<string[]>([])
   let sortedTech: { [key in SortedTechType]: Tech[] } = { "Language": [], "Framework": [], "Library": [], "Source control": [], "CMS": [], "App communication": [], "ORM": [], "State machine": [] };
   const techToSort: SortedTechType[] = ["Language", "Framework", "Library", "Source control", "CMS", "App communication", "ORM", "State machine"];
   techToSort.forEach(tts => {
@@ -21,15 +22,34 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
   const otherTech = tech.filter(t => !techToSort.includes(t.techType?.techType as SortedTechType));
 
   function setWindowSize() {
-    setWindowWidth(window.innerWidth)
+    setWindowWidth(window.innerWidth);
+  }
+  function refilterVisibleTech(command: "add" | "remove") {
+    switch (command) {
+      case "add": {
+        console.log("add tech");
+        return;
+      }
+      case "remove": {
+        console.log("remove tech");
+        return;
+      }
+    }
   }
 
   const onClickCatEvent = (name: string) => {
-    if(categories.includes(name)){
-
+    if (categories.includes(name)) {
+      setCategories(prev => ([...prev.filter(c => c !== name)]));
+      refilterVisibleTech("remove");
+    } else {
+      setCategories(prev => ([...prev, name]));
+      refilterVisibleTech("add");
     }
-
   }
+
+  useEffect(() => {
+    console.log("visible tech", visibleTech);
+  }, [visibleTech])
 
   useEffect(() => {
     console.log("techTypes", techTypes);
@@ -44,16 +64,16 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
 
 
   return (
-    <div style={{ position: "absolute", top: "50%", display: "flex", width: "90%", }}>
+    <div style={{ position: "absolute", top: "50%", display: "flex", width: "90%", zIndex: 1 }}>
       <div >
         {techTypes.map(t => {
           return (
-            <h4 onClick={() => { onClickCatEvent(t) }} style={{ lineHeight: "1px", fontFamily: "Text", fontWeight: categories.includes(t) ? "bold" : "normal", fontSize: ".9em" }} key={t}>{t}</h4>
+            <h4 onClick={() => { onClickCatEvent(t) }} style={{ cursor: "pointer", lineHeight: "1px", fontFamily: "Text", fontWeight: categories.includes(t) ? "bold" : "normal", fontSize: ".9em" }} key={t}>{t}</h4>
           )
         })}
       </div>
-      <div style={{ position: "absolute", top: "0", right: "0" }}>
-        {visibleTech && <TechContainer tech={visibleTech} itemsPerRow={8} />}
+      <div style={{ position: "absolute", top: "5%", right: "10%" }}>
+        {visibleTech && <TechContainer tech={visibleTech} itemsPerRow={5} />}
       </div>
     </div>
   )

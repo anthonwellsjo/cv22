@@ -26,9 +26,8 @@ interface Tech {
   _updatedAt: Date;
   description: string;
   link: string;
-  techType: TechType;
   techlogo: Techlogo;
   title: string;
-  techType: TechType;
+  techType: TechType[];
 }
 

@@ -241,11 +241,11 @@ export default Home
 
 
 export async function getStaticProps() {
-  let gropq = `
-  
-  `
 
-  let tech = await fetch("https://2nwawwcw.api.sanity.io/v2021-06-07/data/query/production?query=*[_type=='tech']{title, techType->{techType}, techlogo{asset->{path, url}}}");
+  let tech = await fetch(`https://2nwawwcw.api.sanity.io/v2021-06-07/data/query/production?query=*[_type=='tech']{
+    title, 
+    techType[]->{techType}, 
+  techlogo{asset->{path, url}}}`);
   const techData = await tech.json();
   let cat = await fetch("https://2nwawwcw.api.sanity.io/v2021-06-07/data/query/production?query=*[_type=='techType']");
   const catData = await cat.json();
