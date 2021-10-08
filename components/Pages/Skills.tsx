@@ -9,7 +9,8 @@ type SortedTechType = "Language" | "Framework" | "Library" | "Source control" | 
 
 const Skills: React.FC<props> = ({ tech, techTypes }) => {
   const [windowWidth, setWindowWidth] = useState(1000);
-  const [categories, setCategories] = useState<string[]>([])
+  const [visibleTech, setVisibleTech] = useState<Tech[]>([]);
+  const [categories, setCategories] = useState<string[]>(["Javascript"])
   let sortedTech: { [key in SortedTechType]: Tech[] } = { "Language": [], "Framework": [], "Library": [], "Source control": [], "CMS": [], "App communication": [], "ORM": [], "State machine": [] };
   const techToSort: SortedTechType[] = ["Language", "Framework", "Library", "Source control", "CMS", "App communication", "ORM", "State machine"];
   techToSort.forEach(tts => {
@@ -23,8 +24,17 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
     setWindowWidth(window.innerWidth)
   }
 
+  const onClickCatEvent = (name: string) => {
+    if(categories.includes(name)){
+
+    }
+
+  }
+
   useEffect(() => {
-    console.log("techTypes",techTypes);
+    console.log("techTypes", techTypes);
+    setVisibleTech(tech);
+
     setWindowSize();
     window.addEventListener("resize", setWindowSize);
 
@@ -32,30 +42,22 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
   }, [])
 
 
-  console.log("tech", tech);
-  console.log("sorted tech", sortedTech);
-  console.log("other tech", otherTech);
-  if (windowWidth > 1100) {
-    return (
-      <div style={{ position: "absolute", top: "50%", display: "flex", justifyContent: "space-evenly", width: "100%", }}>
-        {techToSort.map(t => {
+
+  return (
+    <div style={{ position: "absolute", top: "50%", display: "flex", width: "90%", }}>
+      <div >
+        {techTypes.map(t => {
           return (
-            <div key={t} style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-              <p style={{ textAlign: "center" }}><strong>{t}</strong></p>
-              <TechContainer tech={sortedTech[`${t}`]} itemsPerRow={1} />
-            </div>
+            <h4 onClick={() => { onClickCatEvent(t) }} style={{ lineHeight: "1px", fontFamily: "Text", fontWeight: categories.includes(t) ? "bold" : "normal", fontSize: ".9em" }} key={t}>{t}</h4>
           )
         })}
-        <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
-          <p><strong>Other</strong></p>
-          <TechContainer tech={otherTech} itemsPerRow={1} />
-        </div>
       </div>
-    )
-  } else return (
-
-    <h1>hej</h1>
+      <div style={{ position: "absolute", top: "0", right: "0" }}>
+        {visibleTech && <TechContainer tech={visibleTech} itemsPerRow={8} />}
+      </div>
+    </div>
   )
+
 }
 
 export default Skills;

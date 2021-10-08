@@ -33,7 +33,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
     return () => {
       clearInterval(interval)
     };
-  }, [])
+  }, [tech])
 
 
 
@@ -44,8 +44,6 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
     config: { mass: 1, tension: 200 },
 
   })
-
-
 
 
   return (

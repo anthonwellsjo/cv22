@@ -249,7 +249,8 @@ export async function getStaticProps() {
   const techData = await tech.json();
   let cat = await fetch("https://2nwawwcw.api.sanity.io/v2021-06-07/data/query/production?query=*[_type=='techType']");
   const catData = await cat.json();
+  const catDataMapped = catData.result.map((r: any) => r.techType);
   return {
-    props: { builtOn: new Date().toLocaleString(), tech: techData.result, techTypes: catData }, // will be passed to the page component as props
+    props: { builtOn: new Date().toLocaleString(), tech: techData.result, techTypes: catDataMapped }, // will be passed to the page component as props
   }
 }
