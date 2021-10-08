@@ -13,13 +13,7 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
   const [visibleTech, setVisibleTech] = useState<Tech[]>([]);
   const [categories, setCategories] = useState<string[]>([])
   let sortedTech: { [key in SortedTechType]: Tech[] } = { "Language": [], "Framework": [], "Library": [], "Source control": [], "CMS": [], "App communication": [], "ORM": [], "State machine": [] };
-  const techToSort: SortedTechType[] = ["Language", "Framework", "Library", "Source control", "CMS", "App communication", "ORM", "State machine"];
-  techToSort.forEach(tts => {
-    const arr = tech.filter(t => t.techType?.techType === tts)
 
-    sortedTech[`${tts}`] = arr;
-  })
-  const otherTech = tech.filter(t => !techToSort.includes(t.techType?.techType as SortedTechType));
 
   function setWindowSize() {
     setWindowWidth(window.innerWidth);
