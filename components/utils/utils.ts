@@ -23,7 +23,6 @@ export const FilterVisibleTechAfterRemoval = (previousTech: Tech[], categories: 
   const leftTech = previousTech.filter(t => {
     let keep = false;
     t.techType.forEach(tt => {
-      console.log(categories.includes(tt.techType));
       if (categories.includes(tt.techType)) keep = true; return;
     })
     return keep;

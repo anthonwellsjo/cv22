@@ -135,7 +135,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
   }, [])
 
   return (
-    <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", position: "absolute" }}>
+    <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems:"center", position: "absolute" }}>
       <Head>
         <title>anthon.tech</title>
         <meta name="Anthon Wellsjö's online portfolio website" content="An SPA created with Next.js" />
@@ -166,7 +166,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
         />
       </Head>
 
-      <div style={{ width: "90%", maxWidth: "1000px", minWidth: "300px", backgroundColor: "red", height: "100vh", }}>
+      <div style={{ width: "90%", maxWidth: "1000px", minWidth: "300px", maxHeight: "900px", backgroundColor: "red", height: "100vh", }}>
         <Canvas style={{ width: "100%", backgroundColor: "white" }}>
           <ambientLight />
           <spotLight castShadow={true} position={[100, 100, 100]} />
@@ -198,7 +198,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
       <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
         <Title scroll={scroll} name="Curriculum" />
         <TextWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
-          <div style={{ position: "absolute", top: "100%" }}>
+          <div style={{ position: "absolute", top: "130%", width:"90%" }}>
             <strong>Lorem, ipsum.</strong>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi? Nisi, praesentium nemo?</p>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos commodi corporis aperiam autem et consequatur magni sint rem illum repellat, reprehenderit, quia dolore, voluptate at beatae deserunt? Autem, quisquam id sit necessitatibus magnam impedit earum, ipsa quidem voluptate eligendi deleniti.</p>
@@ -209,7 +209,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
       <PageWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
         <Title scroll={scroll} name="Social" />
         <TextWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
-          <div style={{ position: "absolute", top: "100%" }}>
+          <div style={{ position: "absolute", top: "155%", width:"90%" }}>
             <strong>Lorem, ipsum.</strong>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi? Nisi, praesentium nemo?</p>
             <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos commodi corporis aperiam autem et consequatur magni sint rem illum repellat, reprehenderit, quia dolore, voluptate at beatae deserunt? Autem, quisquam id sit necessitatibus magnam impedit earum, ipsa quidem voluptate eligendi deleniti.</p>

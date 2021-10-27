@@ -53,8 +53,6 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
   function refilterVisibleTech(command: "add" | "remove", techTypeSelected: string) {
     switch (command) {
       case "add": {
-        console.log("add tech");
-
         setVisibleTech(prev => {
           const newVisibleTech = [...prev, ...GetVisibleTechAfterAdding(prev, categoriesCurrentlyViewedRef.current, tech)];
           return newVisibleTech;
@@ -62,11 +60,8 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
         return;
       }
       case "remove": {
-        console.log("remove tech");
-
         setVisibleTech(prev => {
           const techLeft = [...FilterVisibleTechAfterRemoval(prev, categoriesCurrentlyViewedRef.current)];
-          console.log("techleft", techLeft)
           return techLeft;
         });
         return;
@@ -85,6 +80,17 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
     }
   }
 
+  const getItemsPerRow = () => {
+    const items = Math.floor(windowWidth / 170);
+    if (items > 5) return 5;
+    else return items;
+  }
+
+  const getItemSize = () => {
+    const size = windowWidth / 10;;
+    if (size > 50) return 50;
+    return size;
+  }
 
   useEffect(() => {
     // console.log("techTypes", techTypes);
@@ -99,7 +105,7 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
 
 
   return (
-    <div style={{ position: "absolute", top: "50%", display: "flex", width: "90%", zIndex: 1 }}>
+    <div style={{ position: "absolute", top: "90%", display: "flex", width: "90%", zIndex: 1 }}>
       <div >
         {techTypes.map(t => {
           return (
@@ -107,8 +113,8 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
           )
         })}
       </div>
-      <div style={{ position: "absolute", top: "5%", right: "10%" }}>
-        {visibleTech && <TechContainer tech={visibleTech} itemsPerRow={5} />}
+      <div style={{ position: "absolute", top: "5%", right: `${windowWidth / 100}%` }}>
+        {visibleTech && <TechContainer itemSize={getItemSize()} tech={visibleTech} itemsPerRow={getItemsPerRow()} />}
       </div>
     </div>
   )

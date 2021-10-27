@@ -1,15 +1,17 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { useTransition, animated, useSpring } from '@react-spring/web'
+import Image from 'next/image';
 
 
 interface props {
   tech: Tech[],
   onFinishedAnimation?: () => void,
-  itemsPerRow: number
+  itemsPerRow: number,
+  itemSize: number
 }
 
 
-const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
+const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow, itemSize }: props) => {
 
 
 
@@ -46,17 +48,31 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: "50px",
-            height: "50px"
+            width: `${itemSize}px`,
+            height: `${itemSize}px`
           }}>
           <div
             style={{
-              width: "50px",
+              width: `${itemSize}px`,
               display: "inline",
               cursor: "pointer"
             }}>
             {/* <p style={{ textAlign: "center", fontFamily: "Martel", fontWeight: 800, fontSize: "1.8em", marginTop: "2px" }}>{tech.techlogo.asset.url}</p> */}
-            <img onClick={() => { console.log("clicked") }} data-linkPath={tech.link} data-description={tech.description} data-title={tech.title} src={tech.techlogo != null ? `${tech.techlogo.asset.url}?h=50` : undefined} style={{ width: "50px" }} />
+            {tech.techlogo?.asset?.url ?
+              <Image
+                alt={tech.title}
+                onClick={() => { console.log("clicked") }}
+                data-linkPath={tech.link}
+                data-description={tech.description}
+                data-title={tech.title}
+                width={itemSize}
+                height={itemSize}
+                src={tech.techlogo.asset.url}
+              />
+              :
+              <p style={{ fontSize: ".8em", textAlign: "center" }}>{tech.title}</p>
+
+            }
           </div>
         </animated.div>
       ))}
