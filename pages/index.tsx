@@ -27,7 +27,6 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
 
   const setScrollDirectionExpanded = (newValue: number) => {
     if (scrollDirectionRef.current == null) {
-      console.log("scroll direction")
       if (newValue > 0) {
         setScrollDirection(-1);
         scrollDirectionRef.current = -1;
@@ -40,7 +39,6 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
   }
 
   const setScrollExpanded = (newValue: number) => {
-    console.log("new value", newValue);
     if (newValue > 0 && scrollRef.current < 1) {
       setScroll(prev => (0.1));
       scrollRef.current = 0.1;
@@ -81,7 +79,6 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
     const X = e.wheelDeltaX;
     const newValue = scrollCalculator(Y, X);
     setScrollDirectionExpanded(newValue);
-    console.log("nromal scroll", newValue);
     if (newValue < 0.45 && newValue > -0.45) {
       if (scrollDirectionRef.current != null) {
         setScrollExpanded(newValue * scrollDirectionRef.current);
@@ -95,18 +92,15 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
   }
 
 
-  function mobileScroller(this: HTMLDivElement, e: TouchEvent) {
+  const mobileScroller = (e: TouchEvent) => {
     e.preventDefault();
     const Y = e.changedTouches[0].clientY;
     const X = e.changedTouches[0].clientX;
-    console.log("scrolling!!!", Y, X);
     clearTimeout(scrollDoneTimer);
-    console.log("new touch", Y, X);
 
     if (touchStateRef.current.Y - Y <= 30) {
       const newValue = getNewTouchScroll({ Y: touchStateRef.current.Y, X: touchStateRef.current.X }, { X: X, Y: Y })
 
-      console.log("mobile scroll", newValue);
       if (newValue < 0.45 && newValue > -0.45) {
         setScrollExpanded(-newValue);
       }
@@ -131,17 +125,17 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
 
 
   useEffect(() => {
-    divRef.current?.addEventListener("wheel", scroller);
-    divRef.current?.addEventListener("touchmove", mobileScroller);
+    window.addEventListener("wheel", scroller);
+    window.addEventListener("touchmove", mobileScroller);
 
     return () => {
-      divRef.current?.removeEventListener("wheel", scroller);
-      divRef.current?.removeEventListener("touchmove", mobileScroller);
+      window.removeEventListener("wheel", scroller);
+      window.removeEventListener("touchmove", mobileScroller);
     }
   }, [])
 
   return (
-    <div ref={divRef != null ? divRef : null} style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", position: "absolute" }}>
+    <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", position: "absolute" }}>
       <Head>
         <title>anthon.tech</title>
         <meta name="Anthon Wellsjö's online portfolio website" content="An SPA created with Next.js" />

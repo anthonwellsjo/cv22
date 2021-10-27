@@ -10,34 +10,10 @@ interface props {
 
 
 const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
-  const [items, setItems] = useState<Tech[]>([]);
-
-  let x = 0;
-  const [sound, setSound] = useState(0.1);
-
-  useEffect(() => {
-    let interval = setInterval(() => {
-      if (tech[x] !== undefined) {
-        setItems(prev => ([...prev, tech[x]]));
-        x++;
-      } else {
-        clearInterval(interval);
-      }
-      if (tech.length - 1 === x) {
-        if (onFinishedAnimation != null) {
-          onFinishedAnimation();
-        }
-      }
-    }, 100);
-
-    return () => {
-      clearInterval(interval)
-    };
-  }, [tech])
 
 
 
-  const transitions = useTransition(items, {
+  const transitions = useTransition(tech, {
     from: { opacity: 0, transform: "scale(0)" },
     enter: { opacity: 1, transform: "scale(1)" },
     leave: { opacity: 0, transform: "scale(0)" },
@@ -53,7 +29,6 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
         display: "grid",
         height: `${Math.ceil(tech.length / itemsPerRow) * 60}px`,
         maxWidth: "80%",
-
         width: "auto",
         gridColumnGap: "10px",
         gridRowGap: "10px",
@@ -62,7 +37,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
         padding: "10px",
       }
       }>
-      {transitions(({ opacity, transform }, items) => (
+      {transitions(({ opacity, transform }, tech) => (
         <animated.div
           onClick={e => { e.stopPropagation(); }}
           style={{
@@ -80,8 +55,8 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow }: props) => {
               display: "inline",
               cursor: "pointer"
             }}>
-            {/* <p style={{ textAlign: "center", fontFamily: "Martel", fontWeight: 800, fontSize: "1.8em", marginTop: "2px" }}>{items.techlogo.asset.url}</p> */}
-            <img onClick={() => { console.log("clicked") }} data-linkPath={items.link} data-description={items.description} data-title={items.title} src={items.techlogo != null ? `${items.techlogo.asset.url}?h=50` : undefined} style={{ width: "50px" }} />
+            {/* <p style={{ textAlign: "center", fontFamily: "Martel", fontWeight: 800, fontSize: "1.8em", marginTop: "2px" }}>{tech.techlogo.asset.url}</p> */}
+            <img onClick={() => { console.log("clicked") }} data-linkPath={tech.link} data-description={tech.description} data-title={tech.title} src={tech.techlogo != null ? `${tech.techlogo.asset.url}?h=50` : undefined} style={{ width: "50px" }} />
           </div>
         </animated.div>
       ))}
