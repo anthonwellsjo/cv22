@@ -12,32 +12,39 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
   const [windowWidth, setWindowWidth] = useState(1000);
   const [visibleTech, setVisibleTech] = useState<Tech[]>([]);
   const [categoriesCurrentlyViewed, setcategoriesCurrentlyViewed] = useState<string[]>([])
-  const categoriesRef = useRef(categoriesCurrentlyViewed);
+  const categoriesCurrentlyViewedRef = useRef(categoriesCurrentlyViewed);
   const removeCategory = (category: string) => {
     setcategoriesCurrentlyViewed(prev => ([...prev.filter(c => c !== category)]));
-    categoriesRef.current = categoriesRef.current.filter(c => c !== category);
+    categoriesCurrentlyViewedRef.current = categoriesCurrentlyViewedRef.current.filter(c => c !== category);
   }
   const addCategory = (category: string) => {
     setcategoriesCurrentlyViewed(prev => ([...prev, category]));
-    categoriesRef.current = [...categoriesRef.current, category];
+    categoriesCurrentlyViewedRef.current = [...categoriesCurrentlyViewedRef.current, category];
+  }
+  const addCategories = (categories: string[]) => {
+    setcategoriesCurrentlyViewed(prev => ([...prev, ...categories]));
+    categoriesCurrentlyViewedRef.current = [...categoriesCurrentlyViewedRef.current, ...categories];
   }
   let sortedTech: { [key in SortedTechType]: Tech[] } = { "Language": [], "Framework": [], "Library": [], "Source control": [], "CMS": [], "App communication": [], "ORM": [], "State machine": [] };
 
   const resetSelectedCategories = () => {
-    const categoriesToVerify = techTypes.filter(t => !categoriesRef.current.includes(t));
-    console.log("to veruify", categoriesToVerify);
-    const categoriesToAdd = techTypes.filter(tt1 => {
-      const techWithThatCategory = tech.filter(t => {
+    const categoriesToVerify = techTypes.filter(t => !categoriesCurrentlyViewedRef.current.includes(t));
+
+    const categoriesToAdd = categoriesToVerify.filter(tt1 => {
+      const allTechWithThatCategory = tech.filter(t => {
         let thisTechIsInThatCategory = false;
-        t.techType.every(tt2 => {
-          if (tt2.techType === tt1) thisTechIsInThatCategory = true; return false;
+        t.techType.forEach(tt2 => {
+          if (tt2.techType === tt1) { thisTechIsInThatCategory = true; }
         });
         return thisTechIsInThatCategory;
       });
 
+      const techsVisibleInThatCategory = allTechWithThatCategory.filter(t => visibleTech.includes(t));
+      return techsVisibleInThatCategory.length === allTechWithThatCategory.length && techsVisibleInThatCategory.length > 0;
+
     });
 
-    console.log("keep these categoriesCurrentlyViewed", categoriesToAdd);
+    addCategories(categoriesToAdd);
   }
 
   function setWindowSize() {
@@ -49,7 +56,7 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
         console.log("add tech");
 
         setVisibleTech(prev => {
-          const newVisibleTech = [...prev, ...GetVisibleTechAfterAdding(prev, categoriesRef.current, tech)];
+          const newVisibleTech = [...prev, ...GetVisibleTechAfterAdding(prev, categoriesCurrentlyViewedRef.current, tech)];
           return newVisibleTech;
         });
         return;
@@ -58,24 +65,23 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
         console.log("remove tech");
 
         setVisibleTech(prev => {
-          const techLeft = [...FilterVisibleTechAfterRemoval(prev, categoriesRef.current)];
+          const techLeft = [...FilterVisibleTechAfterRemoval(prev, categoriesCurrentlyViewedRef.current)];
           console.log("techleft", techLeft)
           return techLeft;
         });
-
-        resetSelectedCategories();
         return;
       }
     }
   }
 
   const onClickCatEvent = (techTypeSelected: string) => {
-    if (categoriesCurrentlyViewed.includes(techTypeSelected)) {
+    if (categoriesCurrentlyViewedRef.current.includes(techTypeSelected)) {
       removeCategory(techTypeSelected);
       refilterVisibleTech("remove", techTypeSelected);
     } else {
       addCategory(techTypeSelected);
       refilterVisibleTech("add", techTypeSelected);
+      resetSelectedCategories();
     }
   }
 
