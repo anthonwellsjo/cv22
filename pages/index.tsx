@@ -16,6 +16,7 @@ import { thresHolds } from '../components/utils/app-config'
 import Title from '../components/Pages/Title'
 import TextWrapper from '../components/Pages/TextWrapper'
 import Skills from '../components/Pages/Skills'
+import AppFrame from '../components/AppFrame'
 
 const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
   const divRef: React.LegacyRef<HTMLDivElement> | undefined = createRef();
@@ -135,7 +136,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
   }, [])
 
   return (
-    <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems:"center", position: "absolute" }}>
+    <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center", position: "absolute" }}>
       <Head>
         <title>anthon.tech</title>
         <meta name="Anthon Wellsjö's online portfolio website" content="An SPA created with Next.js" />
@@ -165,67 +166,66 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
           crossOrigin=""
         />
       </Head>
-
-      <div style={{ width: "90%", maxWidth: "1000px", minWidth: "300px", maxHeight: "900px", backgroundColor: "red", height: "100vh", }}>
-        <Canvas style={{ width: "100%", backgroundColor: "white" }}>
-          <ambientLight />
-          <spotLight castShadow={true} position={[100, 100, 100]} />
-          <pointLight position={[100, 100, 100]} />
-          <pointLight position={[100, 100, 100]} />
-          <BlackSheet scroll={scroll} position={[0, 0, 0]} />
-        </Canvas>
-      </div>
-
-      <PageWrapper scroll={scroll} zone={[0, thresHolds[0]]}>
-        <IntroPage />
-        {/* <TextWrapper scroll={scroll} zone={[0, thresHolds[0]]} > */}
-        <div style={{ width: "2px", height: "2px", backgroundColor: "black" }} />
-        <pre>Build: {builtOn}</pre>
-        {/* </TextWrapper> */}
-      </PageWrapper>
-      <PageWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
-        <Title scroll={scroll} name="Bio" />
-        <TextWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
-          <BioPage />
-        </TextWrapper>
-      </PageWrapper>
-      <PageWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
-        <Title scroll={scroll} name="Skills" />
-        <TextWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
-          <Skills {...{ tech, techTypes }} />
-        </TextWrapper>
-      </PageWrapper>
-      <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
-        <Title scroll={scroll} name="Curriculum" />
-        <TextWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
-          <div style={{ position: "absolute", top: "130%", width:"90%" }}>
-            <strong>Lorem, ipsum.</strong>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi? Nisi, praesentium nemo?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos commodi corporis aperiam autem et consequatur magni sint rem illum repellat, reprehenderit, quia dolore, voluptate at beatae deserunt? Autem, quisquam id sit necessitatibus magnam impedit earum, ipsa quidem voluptate eligendi deleniti.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, aperiam!</p>
-          </div>
-        </TextWrapper>
-      </PageWrapper>
-      <PageWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
-        <Title scroll={scroll} name="Social" />
-        <TextWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
-          <div style={{ position: "absolute", top: "155%", width:"90%" }}>
-            <strong>Lorem, ipsum.</strong>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi? Nisi, praesentium nemo?</p>
-            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Dignissimos commodi corporis aperiam autem et consequatur magni sint rem illum repellat, reprehenderit, quia dolore, voluptate at beatae deserunt? Autem, quisquam id sit necessitatibus magnam impedit earum, ipsa quidem voluptate eligendi deleniti.</p>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt, aperiam!</p>
-          </div>
-        </TextWrapper>
-      </PageWrapper>
-      <IndexHolder>
-        <ScrollBar {...{ scroll }} />
-        <Chapter onClickEvent={onChapterClickEventHandler} position={5} {...{ scroll }} />
-        <Chapter onClickEvent={onChapterClickEventHandler} title={"bio"} position={20} {...{ scroll }} />
-        <Chapter onClickEvent={onChapterClickEventHandler} title={"skills"} position={40} {...{ scroll }} />
-        <Chapter onClickEvent={onChapterClickEventHandler} title={"cv"} position={60} {...{ scroll }} />
-        <Chapter onClickEvent={onChapterClickEventHandler} title={"social"} position={80} {...{ scroll }} />
-        <Chapter onClickEvent={onChapterClickEventHandler} position={95} {...{ scroll }} />
-      </IndexHolder>
+      <Canvas style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%" }}>
+        <ambientLight />
+        <spotLight castShadow={true} position={[100, 100, 100]} />
+        <pointLight position={[100, 100, 100]} />
+        <pointLight position={[100, 100, 100]} />
+        <BlackSheet scroll={scroll} position={[0, 0, 0]} />
+      </Canvas>
+      <div style={{position:"absolute", left:0, top:0, bottom:0, width: "10%", backdropFilter:"blur(40px)"}}/>
+      <AppFrame>
+        <PageWrapper scroll={scroll} zone={[0, thresHolds[0]]}>
+          <IntroPage />
+          {/* <TextWrapper scroll={scroll} zone={[0, thresHolds[0]]} > */}
+          <div style={{ width: "2px", height: "2px", backgroundColor: "black" }} />
+          <pre>Build: {builtOn}</pre>
+          {/* </TextWrapper> */}
+        </PageWrapper>
+        <PageWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
+          <Title scroll={scroll} name="Bio" />
+          <TextWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
+            <BioPage />
+          </TextWrapper>
+        </PageWrapper>
+        <PageWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
+          <Title scroll={scroll} name="Skills" />
+          <TextWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
+            <Skills {...{ tech, techTypes }} />
+          </TextWrapper>
+        </PageWrapper>
+        <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
+          <Title scroll={scroll} name="Curriculum" />
+          <TextWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
+            <div style={{ position: "absolute", top: "130%", width: "90%" }}>
+              <strong>Lorem, ipsum.</strong>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi?Nisi, praesentium nemo?</p>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.Dignissimos commodi corporis aperiam autem et consequatur magni sint rem illum repellat, reprehenderit, quia dolore, voluptate at beatae deserunt?Autem, quisquam id sit necessitatibus magnam impedit earum, ipsa quidem voluptate eligendi deleniti.</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.Deserunt, aperiam!</p>
+            </div>
+          </TextWrapper>
+        </PageWrapper>
+        <PageWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
+          <Title scroll={scroll} name="Social" />
+          <TextWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
+            <div style={{ position: "absolute", top: "155%", width: "90%" }}>
+              <strong>Lorem, ipsum.</strong>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi?Nisi, praesentium nemo?</p>
+              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.Dignissimos commodi corporis aperiam autem et consequatur magni sint rem illum repellat, reprehenderit, quia dolore, voluptate at beatae deserunt?Autem, quisquam id sit necessitatibus magnam impedit earum, ipsa quidem voluptate eligendi deleniti.</p>
+              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.Deserunt, aperiam!</p>
+            </div>
+          </TextWrapper>
+        </PageWrapper>
+        <IndexHolder>
+          <ScrollBar {...{ scroll }} />
+          <Chapter onClickEvent={onChapterClickEventHandler} position={5} {...{ scroll }} />
+          <Chapter onClickEvent={onChapterClickEventHandler} title={"bio"} position={20} {...{ scroll }} />
+          <Chapter onClickEvent={onChapterClickEventHandler} title={"skills"} position={40} {...{ scroll }} />
+          <Chapter onClickEvent={onChapterClickEventHandler} title={"cv"} position={60} {...{ scroll }} />
+          <Chapter onClickEvent={onChapterClickEventHandler} title={"social"} position={80} {...{ scroll }} />
+          <Chapter onClickEvent={onChapterClickEventHandler} position={95} {...{ scroll }} />
+        </IndexHolder>
+      </AppFrame>
     </div>
   )
 }

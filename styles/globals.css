@@ -48,8 +48,48 @@ a {
 } */
 
 p {
-  font-family: Text;
+  font-family: Optimistic, Montserrat, Helvetica, Arial, Noto Sans, sans-serif;
   font-weight: 100;
+  color: rgb(61, 61, 61);
+}
+
+h2 {
+  font-family: Optimistic, Montserrat, Helvetica, Arial, Noto Sans, sans-serif;
+  font-weight: 100;
+  color: rgb(61, 61, 61);
+}
+
+@media (min-width: 1200px) {
+  p {
+    font-size: 1.2vw;
+  }
+  h1 {
+    font-size: 1.2vw;
+  }
+}
+@media (min-width: 800px) and (max-width: 1199px) {
+  p {
+    font-size: 1.8vw;
+  }
+  h1 {
+    font-size: 1.8vw;
+  }
+}
+@media (min-width: 500px) and (max-width: 799px) {
+  p {
+    font-size: 2.5vw;
+  }
+  h1 {
+    font-size: 2.5vw;
+  }
+}
+@media (min-width: 200px) and (max-width: 499px) {
+  p {
+    font-size: 3.5vw;
+  }
+  h1 {
+    font-size: 3.5vw;
+  }
 }
 
 #anthon-wellsjo {
@@ -93,4 +133,19 @@ p {
   .page-header {
     font-size: 45px;
   }
+}
+
+.contentBoxLeft {
+  background-color: rgba(256, 256, 256, 0.5);
+  backdrop-filter: blur(20px);
+  outline: 2px solid black;
+  padding: 25px;
+  box-sizing: border-box;
+}
+.contentBoxRight {
+  background-color: rgba(256, 256, 256, 0.5);
+  backdrop-filter: blur(20px);
+  border: 2px solid black;
+  padding: 25px;
+  box-sizing: border-box;
 }

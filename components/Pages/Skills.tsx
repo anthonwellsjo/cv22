@@ -105,18 +105,18 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
 
 
   return (
-    <div style={{ position: "absolute", top: "90%", display: "flex", width: "90%", zIndex: 1 }}>
-      <div >
+    <div className="contentBoxLeft" style={{ position: "absolute", marginTop: "100px", display: "flex", width: "90%", zIndex: 1 }}>
+      <div style={{ width: "100%" }}>
         {techTypes.map(t => {
           return (
-            <h4 onClick={() => { onClickCatEvent(t) }} style={{ cursor: "pointer", lineHeight: "1px", fontFamily: "Text", fontWeight: categoriesCurrentlyViewed.includes(t) ? "bold" : "normal", fontSize: ".9em" }} key={t}>{t}</h4>
+            <h4 onClick={() => { onClickCatEvent(t) }} style={{ cursor: "pointer", lineHeight: "1px", lineBreak: "unset", fontFamily: "Text", fontWeight: categoriesCurrentlyViewed.includes(t) ? "bold" : "normal", fontSize: ".9em" }} key={t}>{t}</ h4>
           )
         })}
       </div>
-      <div style={{ position: "absolute", top: "5%", right: `${windowWidth / 100}%` }}>
-        {visibleTech && <TechContainer itemSize={getItemSize()} tech={visibleTech} itemsPerRow={getItemsPerRow()} />}
-      </div>
+      <div style={{position: "absolute", top: "5%", right: `${windowWidth / 100}%` }}>
+      {visibleTech && <TechContainer itemSize={getItemSize()} tech={visibleTech} itemsPerRow={getItemsPerRow()} />}
     </div>
+    </div >
   )
 
 }

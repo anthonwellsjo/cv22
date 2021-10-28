@@ -13,7 +13,7 @@ const ScrollBar = ({ scroll }: props) => {
   const getTop = (scroll: number) => {
 
     const percentage = getScrollPercentage(scroll);
-    
+
     if (percentage > 95) return "91%"
     else return `${percentage}%`;
   }
@@ -24,10 +24,11 @@ const ScrollBar = ({ scroll }: props) => {
 
   return (
     <a.div style={{
-      left: `${thresHolds[0]+1}%`,
-      width: styles.right,
-      borderRadius: "2px",
+      // 
+      left: styles.right,
       height: "2px",
+      width: "2px",
+      boxShadow:"1px 1px 20px black",
       backgroundColor: "black",
       position: "absolute",
       bottom: "13px"

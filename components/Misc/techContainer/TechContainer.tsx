@@ -30,8 +30,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow, itemSize }: pro
       style={{
         display: "grid",
         height: `${Math.ceil(tech.length / itemsPerRow) * 60}px`,
-        maxWidth: "80%",
-        width: "auto",
+        
         gridColumnGap: "10px",
         gridRowGap: "10px",
         gridTemplateColumns: `repeat(${itemsPerRow}, 1fr)`,
@@ -66,6 +65,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow, itemSize }: pro
                 data-title={tech.title}
                 width={itemSize}
                 height={itemSize}
+                objectFit="scale-down"
                 src={tech.techlogo.asset.url}
               />
               :

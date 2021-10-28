@@ -13,7 +13,7 @@ interface props {
 
 const PageWrapper = ({ zone, scroll, children }: props) => {
   return (
-    <div style={{ height: "100%", width: "90%", maxWidth: "1000px", minWidth: "300px",display: "flex", position: "absolute", justifyContent: "center", outline: "2px solid black" }}>
+    <div style={{position:"absolute", top:0, height: "100%", width: "100%", minWidth: "300px",display: "flex", justifyContent: "center", outline: "2px solid black" }}>
       {isInZone(zone, scroll) && children}
     </div >
   )
