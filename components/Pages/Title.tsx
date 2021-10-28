@@ -7,16 +7,16 @@ interface props {
 }
 
 const Title: React.FC<props> = ({ name }) => {
-  const [font, setFont] = useState("Handwriting");
+  const [font, setFont] = useState("Roboto");
   const fontFlix = (time: number, time2: number) => {
     setTimeout(() => {
-      setFont("Roboto");
+      setFont("Handwriting");
       setTimeout(() => {
-        setFont("Handwriting");
+        setFont("Roboto");
         setTimeout(() => {
-          setFont("Roboto");
+          setFont("Handwriting");
           setTimeout(() => {
-            setFont("Handwriting");
+            setFont("Roboto");
             fontFlix(Math.random() * 5000, Math.random() * 500);
           }, time2);
         }, 20);
@@ -25,9 +25,9 @@ const Title: React.FC<props> = ({ name }) => {
   }
   const fontFlix2 = (time: number) => {
     setTimeout(() => {
-      setFont("Roboto");
+      setFont("Handwriting");
       setTimeout(() => {
-        setFont("Handwriting");
+        setFont("Roboto");
       }, 50);
     }, time);
   }
@@ -53,8 +53,8 @@ const Title: React.FC<props> = ({ name }) => {
 
 
   return (
-    <div style={{ backgroundColor: "rgba(255,255,255,0.2)", position: "absolute", width: "100%", top: 0, height: "100px", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1 }}>
-      <a.h2 onMouseEnter={onMouseEnterEventHandler} className="page-header" style={{ textAlign: "center", opacity: styles.opacity, fontWeight: 100, fontFamily: font }}>{name}</a.h2>
+    <div style={{ backgroundColor: "rgba(255,255,255,0.2)", position: "absolute", width: "100%", top: 0, height: "100px", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1, borderBottom: "3px solid grey", }}>
+      <a.h2 onMouseEnter={onMouseEnterEventHandler} className="page-header" style={{ textAlign: "center", opacity: styles.opacity, fontWeight: 100, fontFamily: font, textTransform:"uppercase" }}>{name}</a.h2>
     </div>
   )
 }

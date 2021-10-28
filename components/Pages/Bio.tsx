@@ -7,7 +7,7 @@ const BioPage: React.FC = () => {
 
 
   return (
-    <div style={{ position: "absolute", top: "100%", flexDirection: "column", display: "flex", alignItems: "center", width:"90%" }}>
+    <div style={{ position: "absolute", marginTop: "-50px", flexDirection: "column", display: "flex", alignItems: "center", width: "90%" }}>
       <div>
         <p><strong>Hey,</strong></p>
         <div style={{ wordBreak: "break-word" }}>

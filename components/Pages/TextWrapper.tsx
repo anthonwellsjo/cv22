@@ -39,8 +39,8 @@ const TextWrapper: React.FC<props> = ({ children, zone, scroll }: props) => {
 
   return (
 
-    <div style={{ position: "relative", width: "100%", height: "50%", display: "flex", justifyContent: "center", marginTop: "10%" }}>
-      <a.div style={{ bottom: styles.bottom, position: "absolute", marginTop: "10%", height: "80%", width: "100%", opacity: styles.opacity, display: "flex", justifyContent: "center" }}>
+    <div style={{ position: "relative", width: "100%", height: "50%", display: "flex", justifyContent: "center", marginTop: "45%", }}>
+      <a.div style={{ bottom: styles.bottom, position: "absolute", height: "80%", width: "100%", opacity: styles.opacity, display: "flex", justifyContent: "center", alignItems: "center", backgroundColor: "rgba(256,256,256,0.5)", backdropFilter: "blur(20px)", borderTop:"3px solid black", borderBottom:"3px solid black" }}>
         {children}
       </a.div>
     </div>

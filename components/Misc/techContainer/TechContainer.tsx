@@ -1,5 +1,5 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { useTransition, animated, useSpring } from '@react-spring/web'
+import React from 'react';
+import { useTransition, animated } from '@react-spring/web'
 import Image from 'next/image';
 
 
@@ -48,12 +48,11 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow, itemSize }: pro
             display: "flex",
             alignItems: "center",
             justifyContent: "center",
-            width: `${itemSize}px`,
-            height: `${itemSize}px`
           }}>
           <div
             style={{
               width: `${itemSize}px`,
+              height: `${itemSize}px`,
               display: "inline",
               cursor: "pointer"
             }}>
@@ -71,7 +70,6 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow, itemSize }: pro
               />
               :
               <p style={{ fontSize: ".8em", textAlign: "center" }}>{tech.title}</p>
-
             }
           </div>
         </animated.div>

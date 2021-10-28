@@ -4,7 +4,7 @@ const Presentation: React.FC = () => {
   
 
   return (
-    <div style={{ position: "absolute" }}>
+    <div style={{ position: "absolute",}}>
       <h1>Carl Anthon Wellsjö</h1>
     </div>
   )
