@@ -173,7 +173,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
         <pointLight position={[100, 100, 100]} />
         <BlackSheet scroll={scroll} position={[0, 0, 0]} />
       </Canvas>
-      <div style={{position:"absolute", left:0, top:0, bottom:0, width: "10%", backdropFilter:"blur(40px)"}}/>
+      <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "20%", backdropFilter: "blur(40px)" }} />
       <AppFrame>
         <PageWrapper scroll={scroll} zone={[0, thresHolds[0]]}>
           <IntroPage />

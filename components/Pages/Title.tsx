@@ -53,7 +53,7 @@ const Title: React.FC<props> = ({ name }) => {
 
 
   return (
-    <div style={{ backgroundColor: "rgba(255,255,255,0.5)", position: "absolute", width: "100%", top: 0, height: "100px", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1, }}>
+    <div style={{ position: "absolute", width: "100%", top: 0, height: "100px", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1, }}>
       <a.h1 onMouseEnter={onMouseEnterEventHandler} className="page-header" style={{ textAlign: "center", opacity: styles.opacity, fontWeight: 100, fontFamily: font, textTransform: "uppercase" }}>{name}</a.h1>
     </div>
   )

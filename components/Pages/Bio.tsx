@@ -8,7 +8,7 @@ const BioPage: React.FC = () => {
 
   return (
     <div style={{ position: "relative", width: "100%", height: "50%", marginTop: "60%" }}>
-      <div className="contentBoxLeft" style={{ position: "absolute", borderLeft: "none", top: 0, left: 0, flexDirection: "column", display: "flex", alignItems: "center", width: "70%" }}>
+      <div style={{ position: "absolute", borderLeft: "none", top: 0, left: 0, flexDirection: "column", display: "flex", alignItems: "center", width: "100%", paddingLeft: "20%", paddingRight:"20%" }}>
         <div>
           <p><strong>Hey,</strong></p>
           <div style={{ wordBreak: "break-word" }}>
@@ -23,22 +23,7 @@ const BioPage: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className="contentBoxRight" style={{
-        position: "absolute",
-        right: 0,
-        width: "30%",
-        height: "200px",
-        top: "-200px",
-        borderRight: "none",
-        outline: "none",
-        borderLeft: "2px solid black",
-        display: "flex",
-        alignItems: "center",
-        justifyContent: "center",
-        padding: 0
-      }}>
-        {/* <Image src={"/profile.jpg"} height={150} width={250} objectFit="scale-down" alt="profile photo" /> */}
-      </div>
+      
     </div>
   )
 }
