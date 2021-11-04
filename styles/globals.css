@@ -59,7 +59,20 @@ h2 {
   color: rgb(61, 61, 61);
 }
 
+.navbarTitle {
+  font-size: 1vw;
+  font-family: Text;
+  font-weight: 400;
+  text-transform: uppercase;
+}
+
 @media (min-width: 1200px) {
+  #indexHolder {
+    width: 50%;
+  }
+  .navbarTitle {
+    font-size: 1.5vw;
+  }
   p {
     font-size: 1.2vw;
   }
@@ -68,6 +81,12 @@ h2 {
   }
 }
 @media (min-width: 800px) and (max-width: 1199px) {
+  #indexHolder {
+    width: 60%;
+  }
+  .navbarTitle {
+    font-size: 1.5vw;
+  }
   p {
     font-size: 1.8vw;
   }
@@ -76,6 +95,12 @@ h2 {
   }
 }
 @media (min-width: 500px) and (max-width: 799px) {
+  #indexHolder {
+    width: 80%;
+  }
+  .navbarTitle {
+    font-size: 2vw;
+  }
   p {
     font-size: 2.5vw;
   }
@@ -84,6 +109,12 @@ h2 {
   }
 }
 @media (min-width: 200px) and (max-width: 499px) {
+  #indexHolder {
+    width: 90%;
+  }
+  .navbarTitle {
+    font-size: 4vw;
+  }
   p {
     font-size: 3.5vw;
   }
@@ -94,24 +125,24 @@ h2 {
 
 #anthon-wellsjo {
   font-size: 70px;
-  margin-top: -30px;
+  
 }
 @media only screen and (max-width: 800px) {
   #anthon-wellsjo {
     font-size: 50px;
-    margin-top: -20px;
+    
   }
 }
 @media only screen and (max-width: 565px) {
   #anthon-wellsjo {
     font-size: 30px;
-    margin-top: -15px;
+    
   }
 }
 @media only screen and (max-width: 330px) {
   #anthon-wellsjo {
     font-size: 25px;
-    margin-top: -10px;
+    
   }
 }
 
@@ -133,12 +164,4 @@ h2 {
   .page-header {
     font-size: 45px;
   }
-}
-
-
-.navbarTitle {
-  font-size: 1vw;
-  font-family: Text;
-  /* font-weight: 400; */
-  text-transform: uppercase;
 }

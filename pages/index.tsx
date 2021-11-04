@@ -179,8 +179,10 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
       </Canvas>
 
       <AppFrame>
-        <PageWrapper scroll={scroll} zone={[0, thresHolds[0]]}>
-          <IntroPage />
+        <PageWrapper marginTop={"-100px"} scroll={scroll} zone={[0, thresHolds[0]]}>
+          <BorderAnim scroll={scroll} zone={[0 + 0.1, thresHolds[0]]}>
+            <IntroPage />
+          </BorderAnim>
           {/* <TextWrapper scroll={scroll} zone={[0, thresHolds[0]]} > */}
           <div style={{ width: "2px", height: "2px", backgroundColor: "black" }} />
           <pre>Build: {builtOn}</pre>
@@ -221,7 +223,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
             </div>
           </TextWrapper>
         </PageWrapper>
-        <IndexHolder>
+        <IndexHolder zone={[2, thresHolds[4]]} scroll={scroll}>
           <Chapter onClickEvent={onChapterClickEventHandler} position={5} {...{ scroll }} />
           <Chapter onClickEvent={onChapterClickEventHandler} title={"bio"} position={20} {...{ scroll }} />
           <Chapter onClickEvent={onChapterClickEventHandler} title={"skills"} position={40} {...{ scroll }} />
