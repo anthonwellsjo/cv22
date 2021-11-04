@@ -17,6 +17,7 @@ import Title from '../components/Pages/Title'
 import TextWrapper from '../components/Pages/TextWrapper'
 import Skills from '../components/Pages/Skills'
 import AppFrame from '../components/AppFrame'
+import BorderAnim from '../components/Misc/BorderAnimations/BorderAnim'
 
 const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
   const divRef: React.LegacyRef<HTMLDivElement> | undefined = createRef();
@@ -50,7 +51,10 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
       scrollRef.current = 29.9;
       return;
     }
-    setScroll(prev => (prev - newValue));
+    setScroll(prev => {
+      console.log(prev, newValue);
+      return (prev - newValue)
+    });
     scrollRef.current = scrollRef.current - newValue;
 
   };
@@ -173,7 +177,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
         <pointLight position={[100, 100, 100]} />
         <BlackSheet scroll={scroll} position={[0, 0, 0]} />
       </Canvas>
-      <div style={{ position: "absolute", left: 0, top: 0, bottom: 0, width: "20%", backdropFilter: "blur(40px)" }} />
+
       <AppFrame>
         <PageWrapper scroll={scroll} zone={[0, thresHolds[0]]}>
           <IntroPage />
@@ -184,9 +188,10 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
           <Title scroll={scroll} name="Bio" />
-          <TextWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
+          <BorderAnim scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
             <BioPage />
-          </TextWrapper>
+          </BorderAnim>
+
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
           <Title scroll={scroll} name="Skills" />
@@ -217,7 +222,6 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
           </TextWrapper>
         </PageWrapper>
         <IndexHolder>
-          <ScrollBar {...{ scroll }} />
           <Chapter onClickEvent={onChapterClickEventHandler} position={5} {...{ scroll }} />
           <Chapter onClickEvent={onChapterClickEventHandler} title={"bio"} position={20} {...{ scroll }} />
           <Chapter onClickEvent={onChapterClickEventHandler} title={"skills"} position={40} {...{ scroll }} />
@@ -226,6 +230,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
           <Chapter onClickEvent={onChapterClickEventHandler} position={95} {...{ scroll }} />
         </IndexHolder>
       </AppFrame>
+      <ScrollBar {...{ scroll }} />
     </div>
   )
 }

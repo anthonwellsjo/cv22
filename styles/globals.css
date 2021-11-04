@@ -135,20 +135,6 @@ h2 {
   }
 }
 
-.contentBoxLeft {
-  background-color: rgba(256, 256, 256, 0.5);
-  backdrop-filter: blur(20px);
-  outline: 1px solid grey;
-  padding: 25px;
-  box-sizing: border-box;
-}
-.contentBoxRight {
-  background-color: rgba(256, 256, 256, 0.5);
-  backdrop-filter: blur(20px);
-  border: 1px solid grey;
-  padding: 25px;
-  box-sizing: border-box;
-}
 
 .navbarTitle {
   font-size: 1vw;

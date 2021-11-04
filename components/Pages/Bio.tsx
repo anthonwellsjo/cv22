@@ -7,8 +7,7 @@ const BioPage: React.FC = () => {
 
 
   return (
-    <div style={{ position: "relative", width: "100%", height: "50%", marginTop: "60%" }}>
-      <div style={{ position: "absolute", borderLeft: "none", top: 0, left: 0, flexDirection: "column", display: "flex", alignItems: "center", width: "100%", paddingLeft: "20%", paddingRight:"20%" }}>
+      <div style={{ }}>
         <div>
           <p><strong>Hey,</strong></p>
           <div style={{ wordBreak: "break-word" }}>
@@ -24,7 +23,6 @@ const BioPage: React.FC = () => {
         </div>
       </div>
       
-    </div>
   )
 }
 

@@ -16,7 +16,7 @@ export const GetVisibleTechAfterAdding = (previousTech: Tech[], categories: stri
       return keep;
     })
   }
-return newTech;
+  return newTech;
 }
 
 export const FilterVisibleTechAfterRemoval = (previousTech: Tech[], categories: string[]) => {
