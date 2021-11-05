@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { a, useSpring } from '@react-spring/web'
+import GetMediaPort from '../Misc/GetMediaPort';
+import { MediaPort } from '../../enums';
+import { useViewport } from '../Misc/ViewPort';
 
 interface props {
   name: string,
@@ -7,6 +10,7 @@ interface props {
 }
 
 const Title: React.FC<props> = ({ name }) => {
+  const { width, height } = useViewport();
   const [font, setFont] = useState("Header");
   const fontFlix = (time: number, time2: number) => {
     setTimeout(() => {
@@ -51,12 +55,14 @@ const Title: React.FC<props> = ({ name }) => {
     fontFlix(10000, Math.random() * 100);
   }, [])
 
-
-  return (
-    <div style={{ position: "absolute", width: "100%", top: 0, height: "100px", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1, }}>
-      <a.h1 onMouseEnter={onMouseEnterEventHandler} className="pageHeader" style={{ textAlign: "center", opacity: styles.opacity, fontWeight: 100, fontFamily: font, textTransform: "uppercase" }}>{name}</a.h1>
-    </div>
-  )
+  if (GetMediaPort({ width, height }) !== MediaPort.mobile) {
+    return (
+      <div style={{ position: "absolute", width: "100%", top: 0, height: "100px", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1, }}>
+        <a.h1 onMouseEnter={onMouseEnterEventHandler} className="pageHeader" style={{ textAlign: "center", opacity: styles.opacity, fontWeight: 100, fontFamily: font, textTransform: "uppercase" }}>{name}</a.h1>
+      </div>
+    )
+  }
+  return null;
 }
 
 export default Title;

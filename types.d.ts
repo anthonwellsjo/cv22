@@ -31,3 +31,9 @@ interface Tech {
   techType: TechType[];
 }
 
+
+
+interface ScreenSize {
+  height: number | undefined,
+  width: number | undefined
+}

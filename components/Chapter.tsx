@@ -1,5 +1,8 @@
 import React from 'react';
 import { useSpring, a } from '@react-spring/web';
+import GetMediaPort from './Misc/GetMediaPort';
+import { MediaPort } from '../enums';
+import { useViewport } from './Misc/ViewPort';
 
 interface props {
   children?: React.ReactNode,
@@ -19,18 +22,25 @@ function isPassed(scroll: number, position: number): boolean {
 }
 
 const Chapter = ({ children, position, scroll, title, onClickEvent }: props) => {
+  const { width, height } = useViewport();
+
   const style = useSpring({
     backgroundColor: isNear(scroll, position) ? "black" : "lightgrey",
     color: isNear(scroll, position) ? "black" : "lightgrey"
   })
 
+  const getMarginTop = () => {
+    if (GetMediaPort({ height, width }) === MediaPort.mobile) return "10px";
+    return "20px";
+  }
+
   return (
-    <a.div onClick={() => onClickEvent(position)} style={{ position: "absolute", width: "10px", marginTop: "20px", height: "10px", borderRadius: "10px", backgroundColor: !title ? style.backgroundColor : "transparent", left: `${position}%`, cursor: "pointer", display: "flex", alignItems: "center" }}>
+    <a.div onClick={() => onClickEvent(position)} style={{ position: "absolute", width: "10px", marginTop: getMarginTop(), height: "10px", borderRadius: "10px", backgroundColor: !title ? style.backgroundColor : "transparent", left: `${position}%`, cursor: "pointer", display: "flex", alignItems: "center" }}>
       <a.div style={{ color: style.color, width: "100%", display: "flex", justifyContent: "center", position: "absolute", textAlign: "center", userSelect: "none" }}>
-        {title && <a.h4 className="navbarTitle">{title}</a.h4>}
+        {title && < a.h4 className="navbarTitle">{title}</a.h4>}
       </a.div>
       {children}
-    </a.div>
+    </a.div >
 
   )
 }

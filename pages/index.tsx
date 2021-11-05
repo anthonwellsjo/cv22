@@ -18,12 +18,16 @@ import TextWrapper from '../components/Pages/TextWrapper'
 import Skills from '../components/Pages/Skills'
 import AppFrame from '../components/AppFrame'
 import BorderAnim from '../components/Misc/BorderAnimations/BorderAnim'
+import { useViewport } from '../components/Misc/ViewPort'
+import GetMediaPort from '../components/Misc/GetMediaPort'
+import { MediaPort } from '../enums'
 
 const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
   const [scrollDirection, setScrollDirection] = useState<1 | -1 | null>(null)
   const scrollDirectionRef = useRef(scrollDirection);
   const [scroll, setScroll] = useState(0);
   const scrollRef = useRef(scroll);
+  const { width, height } = useViewport();
 
 
   const setScrollDirectionExpanded = (newValue: number) => {
@@ -51,7 +55,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
       return;
     }
     setScroll(prev => {
-      
+
       return (prev - newValue)
     });
     scrollRef.current = scrollRef.current - newValue;
@@ -138,6 +142,8 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
     }
   }, [])
 
+  const mediaPort = GetMediaPort({ width, height });
+
   return (
     <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center", position: "absolute" }}>
       <Head>
@@ -187,7 +193,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
           <pre>Build: {builtOn}</pre>
           {/* </TextWrapper> */}
         </PageWrapper>
-        <PageWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
+        <PageWrapper marginTop={mediaPort === MediaPort.mobile ? "-150px" : "auto"} scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
           <Title scroll={scroll} name="Bio" />
           <BorderAnim scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
             <BioPage />
