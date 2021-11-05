@@ -28,6 +28,20 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
   const [scroll, setScroll] = useState(0);
   const scrollRef = useRef(scroll);
   const { width, height } = useViewport();
+  const [autoScrollActivatorTimer, setAutoScrollActivatorTimer] = useState<NodeJS.Timeout>();
+  const [autoSroll, setAutoScroll] = useState<NodeJS.Timer>();
+
+  useEffect(() => {
+    setAutoScrollActivatorTimer(setTimeout(() => {
+      setAutoScroll(setInterval(() => {
+        
+        setScrollExpanded(-0.15);
+      }, 100))
+    }, 1000))
+  }, [])
+
+
+
 
 
   const setScrollDirectionExpanded = (newValue: number) => {
@@ -185,7 +199,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
 
       <AppFrame>
         <PageWrapper marginTop={"-100px"} scroll={scroll} zone={[0, thresHolds[0]]}>
-          <BorderAnim scroll={scroll} zone={[0 + 0.1, thresHolds[0]]}>
+          <BorderAnim scroll={scroll} zone={[0 + 0.1, thresHolds[0] - 1]}>
             <IntroPage />
           </BorderAnim>
           {/* <TextWrapper scroll={scroll} zone={[0, thresHolds[0]]} > */}

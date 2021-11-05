@@ -30,7 +30,8 @@ export function isInZone(zone: [number, number], scroll: number): boolean {
 export function getPercentageOfZone(zone: [number, number], scroll: number): number {
   const total = zone[1] - zone[0];
   const progress = scroll - zone[0];
-  if (progress < 0 || progress > total) return -1;
+  if (progress < 0) return 0;
+  if (progress > total) return 100;
   return progress / total * 100;
 
 }

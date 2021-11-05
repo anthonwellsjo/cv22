@@ -143,8 +143,8 @@ const BorderAnim: React.FC<props> = ({ children, zone, scroll }) => {
     const totPlates = getTotalNoOfPlates();
     const orderPercentage = order / totPlates * 100;
     const scrollPerc = getPercentageOfZone(zone, scroll);
-    // console.log("percentages", orderPercentage, scrollPerc, orderPercentage - scrollPerc);
-    if ((scrollPerc - orderPercentage) > -.5) return true;
+    // console.log(order, scrollPerc, orderPercentage - scrollPerc);
+    if ((scrollPerc - orderPercentage) > 0 || scrollPerc > 90) return true;
     return false;
   }
 

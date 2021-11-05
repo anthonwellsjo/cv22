@@ -6,6 +6,10 @@ import { a, useSpring } from '@react-spring/web';
 
 const IntroPage: React.FC = () => {
   const [font, setFont] = useState("Handwriting");
+  
+
+
+
   const fontFlix = (time: number, time2: number) => {
     setTimeout(() => {
       setFont("Optimistic, Montserrat, Helvetica, Arial");
@@ -39,6 +43,8 @@ const IntroPage: React.FC = () => {
     }
   },
   )
+
+  
 
   useEffect(() => {
     fontFlix(2000, Math.random() * 500);

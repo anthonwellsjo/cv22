@@ -15,12 +15,16 @@ interface props {
 const IndexHolder: React.FC<props> = ({ children, zone, scroll }) => {
   const { width, height } = useViewport();
 
-  const getHeight = () => {
+  const getHeightOpen = () => {
     if (GetMediaPort({ width, height }) === MediaPort.mobile) return "27px";
     return "45px";
   }
+  const getHeightClosed = () => {
+    if (GetMediaPort({ width, height }) === MediaPort.mobile) return "27px";
+    return "0px";
+  }
   const styles = useSpring({
-    height: isInZone(zone, scroll) ? getHeight() : "0px",
+    height: isInZone(zone, scroll) ? getHeightOpen() : getHeightClosed(),
     config: {
       mass: 50,
       friction: 100
