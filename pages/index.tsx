@@ -20,7 +20,6 @@ import AppFrame from '../components/AppFrame'
 import BorderAnim from '../components/Misc/BorderAnimations/BorderAnim'
 
 const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
-  const divRef: React.LegacyRef<HTMLDivElement> | undefined = createRef();
   const [scrollDirection, setScrollDirection] = useState<1 | -1 | null>(null)
   const scrollDirectionRef = useRef(scrollDirection);
   const [scroll, setScroll] = useState(0);

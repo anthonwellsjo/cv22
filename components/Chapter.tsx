@@ -20,8 +20,8 @@ function isPassed(scroll: number, position: number): boolean {
 
 const Chapter = ({ children, position, scroll, title, onClickEvent }: props) => {
   const style = useSpring({
-    backgroundColor: isNear(scroll, position) ? "black" : "grey",
-    color: isNear(scroll, position) ? "black" : "grey"
+    backgroundColor: isNear(scroll, position) ? "black" : "lightgrey",
+    color: isNear(scroll, position) ? "black" : "lightgrey"
   })
 
   return (
