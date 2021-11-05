@@ -52,7 +52,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
       return;
     }
     setScroll(prev => {
-      console.log(prev, newValue);
+      
       return (prev - newValue)
     });
     scrollRef.current = scrollRef.current - newValue;
