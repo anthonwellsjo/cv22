@@ -35,7 +35,7 @@ const Chapter = ({ children, position, scroll, title, onClickEvent }: props) => 
   }
 
   return (
-    <a.div onClick={() => onClickEvent(position)} style={{ position: "absolute", width: "10px", marginTop: getMarginTop(), height: "10px", borderRadius: "10px", backgroundColor: !title ? style.backgroundColor : "transparent", left: `${position}%`, cursor: "pointer", display: "flex", alignItems: "center" }}>
+    <a.div onClick={() => onClickEvent(position-6)} style={{ position: "absolute", width: "10px", marginTop: getMarginTop(), height: "10px", borderRadius: "10px", backgroundColor: !title ? style.backgroundColor : "transparent", left: `${position}%`, cursor: "pointer", display: "flex", alignItems: "center" }}>
       <a.div style={{ color: style.color, width: "100%", display: "flex", justifyContent: "center", position: "absolute", textAlign: "center", userSelect: "none" }}>
         {title && < a.h4 className="navbarTitle">{title}</a.h4>}
       </a.div>

@@ -29,3 +29,12 @@ export const FilterVisibleTechAfterRemoval = (previousTech: Tech[], categories: 
   });
   return leftTech;
 }
+
+export const scrollIsntCloseToAnyThreshold = (scroll: number, thresHolds: number[]) => {
+  let answer = true;
+  thresHolds.forEach(t => {
+    console.log("scroll on threshold", t, scroll - t);
+    if (Math.abs(scroll - t) < 0.1) answer = false; return;
+  })
+  return answer;
+}
