@@ -14,8 +14,11 @@ interface props {
 }
 
 function isNear(scroll: number, position: number): boolean {
-  console.log("is near", Math.abs((scroll / maxScroll * 100) - position));
-  if ((scroll / maxScroll * 100) - position > -5 && Math.abs((scroll / maxScroll * 100) - position) < 15 ) return true;
+
+  const closeNumber = (scroll / maxScroll * 100) - position;
+
+  console.log(closeNumber, closeNumber > 0, closeNumber < 15);
+  if (closeNumber > 0 && closeNumber < 17) return true;
   return false;
 }
 function isPassed(scroll: number, position: number): boolean {
@@ -37,7 +40,7 @@ const Chapter = ({ children, position, scroll, title, onClickEvent }: props) => 
   }
 
   return (
-    <a.div onClick={() => onClickEvent(position-6)} style={{ position: "absolute", width: "10px", marginTop: getMarginTop(), height: "10px", borderRadius: "10px", backgroundColor: !title ? style.backgroundColor : "transparent", left: `${position}%`, cursor: "pointer", display: "flex", alignItems: "center" }}>
+    <a.div onClick={() => onClickEvent(position + 0.4)} style={{ position: "absolute", width: "10px", marginTop: getMarginTop(), height: "10px", borderRadius: "10px", backgroundColor: !title ? style.backgroundColor : "transparent", left: `${position}%`, cursor: "pointer", display: "flex", alignItems: "center" }}>
       <a.div style={{ color: style.color, width: "100%", display: "flex", justifyContent: "center", position: "absolute", textAlign: "center", userSelect: "none" }}>
         {title && < a.h4 className="navbarTitle">{title}</a.h4>}
       </a.div>

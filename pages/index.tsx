@@ -12,7 +12,7 @@ import IntroPage from '../components/Pages/Intro'
 import PageWrapper from '../components/Pages/PageWrapper'
 import ScrollBar from '../components/ScrollBar'
 import { getClosestThreshold, getNewTouchScroll, getScrollPosition, scrollCalculator } from '../components/utils/scroll-helpers'
-import { thresHolds } from '../components/utils/app-config'
+import { maxScroll, thresHolds } from '../components/utils/app-config'
 import Title from '../components/Pages/Title'
 import TextWrapper from '../components/Pages/TextWrapper'
 import Skills from '../components/Pages/Skills'
@@ -21,7 +21,7 @@ import BorderAnim from '../components/Misc/BorderAnimations/BorderAnim'
 import { useViewport } from '../components/Misc/ViewPort'
 import GetMediaPort from '../components/Misc/GetMediaPort'
 import { MediaPort } from '../enums'
-import { scrollIsntCloseToAnyThreshold } from '../components/utils/utils'
+import { calculatePosition, scrollIsntCloseToAnyThreshold } from '../components/utils/utils'
 
 const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
   const [scrollDirection, setScrollDirection] = useState<1 | -1 | null>(null)
@@ -227,7 +227,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
         </PageWrapper>
         <PageWrapper marginTop={mediaPort === MediaPort.mobile ? "-150px" : "auto"} scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
           <Title scroll={scroll} name="Bio" />
-          <BorderAnim scroll={scroll} zone={[thresHolds[0] + 0.1, thresHolds[1]-1]}>
+          <BorderAnim scroll={scroll} zone={[thresHolds[0] + 0.1, thresHolds[1] - 1]}>
             <BioPage />
           </BorderAnim>
 
@@ -260,13 +260,13 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
             </div>
           </TextWrapper>
         </PageWrapper>
-        <IndexHolder zone={[2, thresHolds[4]]} scroll={scroll}>
-          <Chapter onClickEvent={onChapterClickEventHandler} position={5} {...{ scroll }} />
-          <Chapter onClickEvent={onChapterClickEventHandler} title={"bio"} position={20} {...{ scroll }} />
-          <Chapter onClickEvent={onChapterClickEventHandler} title={"skills"} position={40} {...{ scroll }} />
-          <Chapter onClickEvent={onChapterClickEventHandler} title={"cv"} position={60} {...{ scroll }} />
-          <Chapter onClickEvent={onChapterClickEventHandler} title={"social"} position={80} {...{ scroll }} />
-          <Chapter onClickEvent={onChapterClickEventHandler} position={95} {...{ scroll }} />
+        <IndexHolder zone={[2, thresHolds[5]]} scroll={scroll}>
+          <Chapter onClickEvent={onChapterClickEventHandler} position={0} {...{ scroll }} />
+          <Chapter onClickEvent={onChapterClickEventHandler} title={"bio"} position={calculatePosition(thresHolds[0], maxScroll)} {...{ scroll }} />
+          <Chapter onClickEvent={onChapterClickEventHandler} title={"skills"} position={calculatePosition(thresHolds[1], maxScroll)} {...{ scroll }} />
+          <Chapter onClickEvent={onChapterClickEventHandler} title={"cv"} position={calculatePosition(thresHolds[2], maxScroll)} {...{ scroll }} />
+          <Chapter onClickEvent={onChapterClickEventHandler} title={"social"} position={calculatePosition(thresHolds[3], maxScroll)} {...{ scroll }} />
+          <Chapter onClickEvent={onChapterClickEventHandler} position={calculatePosition(thresHolds[4], maxScroll)} {...{ scroll }} />
         </IndexHolder>
       </AppFrame>
       <ScrollBar {...{ scroll }} />

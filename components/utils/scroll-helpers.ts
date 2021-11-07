@@ -6,7 +6,7 @@ export function getScrollPercentage(scroll: number): number {
 }
 export function getScrollPosition(position: number): number {
 
-  return (position * 30 / 100);
+  return (position * maxScroll / 100);
 }
 
 export const scrollCalculator = (deltaY: number, deltaX: number) => {
