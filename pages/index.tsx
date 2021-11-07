@@ -227,7 +227,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
         </PageWrapper>
         <PageWrapper marginTop={mediaPort === MediaPort.mobile ? "-150px" : "auto"} scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
           <Title scroll={scroll} name="Bio" />
-          <BorderAnim scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
+          <BorderAnim scroll={scroll} zone={[thresHolds[0] + 0.1, thresHolds[1]-1]}>
             <BioPage />
           </BorderAnim>
 

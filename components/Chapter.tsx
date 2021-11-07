@@ -3,6 +3,7 @@ import { useSpring, a } from '@react-spring/web';
 import GetMediaPort from './Misc/GetMediaPort';
 import { MediaPort } from '../enums';
 import { useViewport } from './Misc/ViewPort';
+import { maxScroll } from './utils/app-config';
 
 interface props {
   children?: React.ReactNode,
@@ -13,7 +14,8 @@ interface props {
 }
 
 function isNear(scroll: number, position: number): boolean {
-  if ((Math.abs((scroll / 30 * 100) - position)) < 8) return true;
+  console.log("is near", Math.abs((scroll / maxScroll * 100) - position));
+  if ((scroll / maxScroll * 100) - position > -5 && Math.abs((scroll / maxScroll * 100) - position) < 15 ) return true;
   return false;
 }
 function isPassed(scroll: number, position: number): boolean {
