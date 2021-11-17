@@ -6,10 +6,11 @@ import { getPercentageOfZone, getScrollPercentage, isInZone } from '../../utils/
 interface props {
   zone: [number, number],
   scroll: number,
-  children: React.ReactNode
+  children: React.ReactNode,
+  rotate?: string
 }
 
-const BorderAnim: React.FC<props> = ({ children, zone, scroll }) => {
+const BorderAnim: React.FC<props> = ({ children, zone, scroll, rotate }) => {
   const [plates, setPlates] = useState<{ top: Plate[], right: Plate[], bottom: Plate[], left: Plate[] }>({ top: [], right: [], bottom: [], left: [] });
   const [divDimensions, setDivDimensions] = useState<{ width: number, height: number }>({ width: 1000, height: 1000 });
   const divDimensionsRef = useRef(divDimensions);
@@ -194,7 +195,7 @@ const BorderAnim: React.FC<props> = ({ children, zone, scroll }) => {
   )
 
   return (
-    <div ref={divRef} style={{ width: "80%", position: "absolute", top: "40%", padding: "5%" }}>
+    <div ref={divRef} style={{ transform: rotate ? `rotate(${rotate})` : "none", width: "80%", position: "absolute", top: "40%", padding: "5%" }}>
       {divRef != null && (
         <>
           <div style={{ left: 0, top: 0, width: "100%", position: "absolute", display: "flex", justifyContent: "space-evenly" }}>
@@ -229,7 +230,6 @@ const BorderAnim: React.FC<props> = ({ children, zone, scroll }) => {
       )
       }
       {children}
-
     </div>
   )
 }

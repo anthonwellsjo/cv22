@@ -17,11 +17,11 @@ const IntroPage: React.FC = () => {
 
   const fontFlix = (time: number, time2: number) => {
     setTimeout(() => {
-      setFont("Optimistic, Montserrat, Helvetica, Arial");
+      setFont("Roboto");
       setTimeout(() => {
         setFont("Handwriting");
         setTimeout(() => {
-          setFont("Optimistic, Montserrat, Helvetica, Arial");
+          setFont("Roboto");
           setTimeout(() => {
             setFont("Handwriting");
             fontFlix(Math.random() * 5000, Math.random() * 500);

@@ -22,6 +22,7 @@ import { useViewport } from '../components/Misc/ViewPort'
 import GetMediaPort from '../components/Misc/GetMediaPort'
 import { MediaPort } from '../enums'
 import { calculatePosition, scrollIsntCloseToAnyThreshold } from '../components/utils/utils'
+import FadeIn from '../components/Misc/FadeIn'
 
 const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
   const [scrollDirection, setScrollDirection] = useState<1 | -1 | null>(null)
@@ -40,7 +41,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
       autoScroll = setInterval(() => {
         autoScrollYep();
       }, 50)
-    }, 2000);
+    }, 500);
 
     return () => {
       clearTimeout(autoScrollActivatorTimer);
@@ -217,8 +218,10 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
 
       <AppFrame>
         <PageWrapper marginTop={"-100px"} scroll={scroll} zone={[0, thresHolds[0]]}>
-          <BorderAnim scroll={scroll} zone={[0 + 0.1, thresHolds[0] - 1]}>
-            <IntroPage />
+          <BorderAnim rotate={mediaPort === MediaPort.mobile ? "90deg" : undefined} scroll={scroll} zone={[0 + 0.1, thresHolds[0] - 1]}>
+            <FadeIn>
+              <IntroPage />
+            </FadeIn>
           </BorderAnim>
           {/* <TextWrapper scroll={scroll} zone={[0, thresHolds[0]]} > */}
           <div style={{ width: "2px", height: "2px", backgroundColor: "black" }} />
@@ -228,15 +231,17 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
         <PageWrapper marginTop={mediaPort === MediaPort.mobile ? "-150px" : "auto"} scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
           <Title scroll={scroll} name="Bio" />
           <BorderAnim scroll={scroll} zone={[thresHolds[0] + 0.1, thresHolds[1] - 1]}>
-            <BioPage />
+            <FadeIn>
+              <BioPage />
+            </FadeIn>
           </BorderAnim>
 
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
           <Title scroll={scroll} name="Skills" />
-          <TextWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
+          <div style={{ width: "80%", position: "absolute", top: "5%", padding: "5%" }}>
             <Skills {...{ tech, techTypes }} />
-          </TextWrapper>
+          </div>
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
           <Title scroll={scroll} name="Curriculum" />

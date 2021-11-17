@@ -28,9 +28,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow, itemSize }: pro
     <div
       onClick={e => { e.stopPropagation() }}
       style={{
-        display: "grid",
-        height: `${Math.ceil(tech.length / itemsPerRow) * 60}px`,
-        
+        display: "grid",        
         gridColumnGap: "10px",
         gridRowGap: "10px",
         gridTemplateColumns: `repeat(${itemsPerRow}, 1fr)`,

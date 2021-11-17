@@ -20,7 +20,7 @@ const IndexHolder: React.FC<props> = ({ children, zone, scroll }) => {
     return "45px";
   }
   const getHeightClosed = () => {
-    if (GetMediaPort({ width, height }) === MediaPort.mobile) return "27px";
+    
     return "0px";
   }
   const styles = useSpring({
