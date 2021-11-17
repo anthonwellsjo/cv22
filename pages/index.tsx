@@ -14,7 +14,7 @@ import ScrollBar from '../components/ScrollBar'
 import { getClosestThreshold, getNewTouchScroll, getScrollPosition, scrollCalculator } from '../components/utils/scroll-helpers'
 import { maxScroll, thresHolds } from '../components/utils/app-config'
 import Title from '../components/Pages/Title'
-import TextWrapper from '../components/Pages/TextWrapper'
+import AutoScroller from '../components/Pages/AutoScroller'
 import Skills from '../components/Pages/Skills'
 import AppFrame from '../components/AppFrame'
 import BorderAnim from '../components/Misc/BorderAnimations/BorderAnim'
@@ -23,8 +23,16 @@ import GetMediaPort from '../components/Misc/GetMediaPort'
 import { MediaPort } from '../enums'
 import { calculatePosition, scrollIsntCloseToAnyThreshold } from '../components/utils/utils'
 import FadeIn from '../components/Misc/FadeIn'
+import WorkDesktop from '../components/Pages/Work'
 
-const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
+interface HomeProps {
+  builtOn: string,
+  tech: Tech[],
+  techTypes: string[],
+  work: WorkDocument.RootObject[]
+}
+
+const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
   const [scrollDirection, setScrollDirection] = useState<1 | -1 | null>(null)
   const scrollDirectionRef = useRef(scrollDirection);
   const [scroll, setScroll] = useState(0);
@@ -32,6 +40,7 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
   const { width, height } = useViewport();
   // const [autoScrollActivatorTimer, setAutoScrollActivatorTimer] = useState<NodeJS.Timeout | undefined>();
   const [autoSroll, setAutoScroll] = useState<NodeJS.Timer | undefined>();
+
 
 
   useEffect(() => {
@@ -223,10 +232,10 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
               <IntroPage />
             </FadeIn>
           </BorderAnim>
-          {/* <TextWrapper scroll={scroll} zone={[0, thresHolds[0]]} > */}
+          {/* <AutoScroller scroll={scroll} zone={[0, thresHolds[0]]} > */}
           <div style={{ width: "2px", height: "2px", backgroundColor: "black" }} />
           <pre>Build: {builtOn}</pre>
-          {/* </TextWrapper> */}
+          {/* </AutoScroller> */}
         </PageWrapper>
         <PageWrapper marginTop={mediaPort === MediaPort.mobile ? "-150px" : "auto"} scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
           <Title scroll={scroll} name="Bio" />
@@ -244,32 +253,27 @@ const Home: NextPage = ({ builtOn, tech, techTypes }: any) => {
           </div>
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
-          <Title scroll={scroll} name="Curriculum" />
-          <TextWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
-            <div style={{ position: "absolute", top: "130%", width: "90%" }}>
-              <strong>Lorem, ipsum.</strong>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi?Nisi, praesentium nemo?</p>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.Dignissimos commodi corporis aperiam autem et consequatur magni sint rem illum repellat, reprehenderit, quia dolore, voluptate at beatae deserunt?Autem, quisquam id sit necessitatibus magnam impedit earum, ipsa quidem voluptate eligendi deleniti.</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.Deserunt, aperiam!</p>
-            </div>
-          </TextWrapper>
+          <Title scroll={scroll} name="Work" />
+          {/* <AutoScroller scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}> */}
+            <WorkDesktop {...{ work }} />
+          {/* </AutoScroller> */}
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
           <Title scroll={scroll} name="Social" />
-          <TextWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
+          <AutoScroller scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
             <div style={{ position: "absolute", top: "155%", width: "90%" }}>
               <strong>Lorem, ipsum.</strong>
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi?Nisi, praesentium nemo?</p>
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.Dignissimos commodi corporis aperiam autem et consequatur magni sint rem illum repellat, reprehenderit, quia dolore, voluptate at beatae deserunt?Autem, quisquam id sit necessitatibus magnam impedit earum, ipsa quidem voluptate eligendi deleniti.</p>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.Deserunt, aperiam!</p>
             </div>
-          </TextWrapper>
+          </AutoScroller>
         </PageWrapper>
         <IndexHolder zone={[2, thresHolds[5]]} scroll={scroll}>
           <Chapter onClickEvent={onChapterClickEventHandler} position={0} {...{ scroll }} />
           <Chapter onClickEvent={onChapterClickEventHandler} title={"bio"} position={calculatePosition(thresHolds[0], maxScroll)} {...{ scroll }} />
           <Chapter onClickEvent={onChapterClickEventHandler} title={"skills"} position={calculatePosition(thresHolds[1], maxScroll)} {...{ scroll }} />
-          <Chapter onClickEvent={onChapterClickEventHandler} title={"cv"} position={calculatePosition(thresHolds[2], maxScroll)} {...{ scroll }} />
+          <Chapter onClickEvent={onChapterClickEventHandler} title={"work"} position={calculatePosition(thresHolds[2], maxScroll)} {...{ scroll }} />
           <Chapter onClickEvent={onChapterClickEventHandler} title={"social"} position={calculatePosition(thresHolds[3], maxScroll)} {...{ scroll }} />
           <Chapter onClickEvent={onChapterClickEventHandler} position={calculatePosition(thresHolds[4], maxScroll)} {...{ scroll }} />
         </IndexHolder>
@@ -293,7 +297,12 @@ export async function getStaticProps() {
   let cat = await fetch("https://2nwawwcw.api.sanity.io/v2021-06-07/data/query/production?query=*[_type=='techType']");
   const catData = await cat.json();
   const catDataMapped = catData.result.map((r: any) => r.techType);
+  let work = await fetch(`https://2nwawwcw.api.sanity.io/v2021-06-07/data/query/production?query=*[_type=='project']{
+    title,
+    mainImage{asset->{path, url}}
+  }`);
+  const workData = await work.json();
   return {
-    props: { builtOn: new Date().toLocaleString(), tech: techData.result, techTypes: catDataMapped }, // will be passed to the page component as props
+    props: { builtOn: new Date().toLocaleString(), tech: techData.result, techTypes: catDataMapped, work: workData.result }, // will be passed to the page component as props
   }
 }

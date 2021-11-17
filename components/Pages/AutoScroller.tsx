@@ -28,7 +28,7 @@ interface props {
   children: ReactNode
 }
 
-const TextWrapper: React.FC<props> = ({ children, zone, scroll }: props) => {
+const AutoScroller: React.FC<props> = ({ children, zone, scroll }: props) => {
 
 
   const styles = useSpring({
@@ -48,7 +48,7 @@ const TextWrapper: React.FC<props> = ({ children, zone, scroll }: props) => {
   )
 }
 
-export default TextWrapper;
+export default AutoScroller;
 
 
 
