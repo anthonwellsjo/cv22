@@ -14,7 +14,7 @@ import ScrollBar from '../components/ScrollBar'
 import { getClosestThreshold, getNewTouchScroll, getScrollPosition, scrollCalculator } from '../components/utils/scroll-helpers'
 import { maxScroll, thresHolds } from '../components/utils/app-config'
 import Title from '../components/Pages/Title'
-import AutoScroller from '../components/Pages/AutoScroller'
+import Scroller from '../components/Pages/Scroller'
 import Skills from '../components/Pages/Skills'
 import AppFrame from '../components/AppFrame'
 import BorderAnim from '../components/Misc/BorderAnimations/BorderAnim'
@@ -64,7 +64,8 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
   const autoScrollYep = () => {
 
     if (scrollIsntCloseToAnyThreshold(scrollRef.current, thresHolds)) {
-      setScrollExpanded(-0.07);
+      if (scrollRef.current > thresHolds[3] || scrollRef.current < thresHolds[2])
+        setScrollExpanded(-0.07);
     } else {
       console.log("no scroll");
     }
@@ -232,10 +233,10 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
               <IntroPage />
             </FadeIn>
           </BorderAnim>
-          {/* <AutoScroller scroll={scroll} zone={[0, thresHolds[0]]} > */}
+          {/* <Scroller scroll={scroll} zone={[0, thresHolds[0]]} > */}
           <div style={{ width: "2px", height: "2px", backgroundColor: "black" }} />
           <pre>Build: {builtOn}</pre>
-          {/* </AutoScroller> */}
+          {/* </Scroller> */}
         </PageWrapper>
         <PageWrapper marginTop={mediaPort === MediaPort.mobile ? "-150px" : "auto"} scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
           <Title scroll={scroll} name="Bio" />
@@ -254,20 +255,20 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
           <Title scroll={scroll} name="Work" />
-          {/* <AutoScroller scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}> */}
+          <Scroller scroll={scroll} zone={[thresHolds[2] -0.43, thresHolds[3]]}>
             <WorkDesktop {...{ work }} />
-          {/* </AutoScroller> */}
+          </Scroller>
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
           <Title scroll={scroll} name="Social" />
-          <AutoScroller scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
+          <Scroller scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
             <div style={{ position: "absolute", top: "155%", width: "90%" }}>
               <strong>Lorem, ipsum.</strong>
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi?Nisi, praesentium nemo?</p>
               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.Dignissimos commodi corporis aperiam autem et consequatur magni sint rem illum repellat, reprehenderit, quia dolore, voluptate at beatae deserunt?Autem, quisquam id sit necessitatibus magnam impedit earum, ipsa quidem voluptate eligendi deleniti.</p>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.Deserunt, aperiam!</p>
             </div>
-          </AutoScroller>
+          </Scroller>
         </PageWrapper>
         <IndexHolder zone={[2, thresHolds[5]]} scroll={scroll}>
           <Chapter onClickEvent={onChapterClickEventHandler} position={0} {...{ scroll }} />
@@ -298,8 +299,7 @@ export async function getStaticProps() {
   const catData = await cat.json();
   const catDataMapped = catData.result.map((r: any) => r.techType);
   let work = await fetch(`https://2nwawwcw.api.sanity.io/v2021-06-07/data/query/production?query=*[_type=='project']{
-    title,
-    mainImage{asset->{path, url}}
+    ...
   }`);
   const workData = await work.json();
   return {

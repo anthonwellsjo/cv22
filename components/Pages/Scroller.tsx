@@ -28,7 +28,7 @@ interface props {
   children: ReactNode
 }
 
-const AutoScroller: React.FC<props> = ({ children, zone, scroll }: props) => {
+const Scroller: React.FC<props> = ({ children, zone, scroll }: props) => {
 
 
   const styles = useSpring({
@@ -48,7 +48,7 @@ const AutoScroller: React.FC<props> = ({ children, zone, scroll }: props) => {
   )
 }
 
-export default AutoScroller;
+export default Scroller;
 
 
 
