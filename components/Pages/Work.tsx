@@ -12,14 +12,12 @@ const WorkDesktop: React.FC<props> = ({ work }) => {
 
 
   return (
-    <div style={{ position: "relative", top: "25%", width: "100", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center" }}>
+    <div style={{ position: "relative", top: "25%", width: "80%", display:"flex", flexDirection:"column", alignItems:"center", justifyContent:"center" }}>
       {work.map(w => {
         return (
           <WorkItem key={w._id} item={w} />
         )
       })}
-
-
     </div>
   )
 }
