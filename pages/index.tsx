@@ -238,7 +238,7 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
           <pre>Build: {builtOn}</pre>
           {/* </Scroller> */}
         </PageWrapper>
-        <PageWrapper marginTop={mediaPort === MediaPort.mobile ? "-150px" : "auto"} scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
+        <PageWrapper marginTop={mediaPort === MediaPort.mobile ? "-150px" : "-80px"} scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
           <Title scroll={scroll} name="Bio" />
           <BorderAnim scroll={scroll} zone={[thresHolds[0] + 0.1, thresHolds[1] - 1]}>
             <FadeIn>
@@ -291,7 +291,10 @@ export default Home
 export async function getStaticProps() {
 
   let tech = await fetch(`https://2nwawwcw.api.sanity.io/v2021-06-07/data/query/production?query=*[_type=='tech']{
-    title, 
+    title,
+    _id,
+    description,
+    link,
     techType[]->{techType}, 
   techlogo{asset->{path, url}}}`);
   const techData = await tech.json();

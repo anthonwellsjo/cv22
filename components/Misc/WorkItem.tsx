@@ -77,8 +77,8 @@ const WorkItem: React.FC<props> = ({ item }) => {
       justifyContent: "center",
       cursor: "pointer",
       width: "100%",
-      height: `${hover ? height! * 0.5 : height! * 0.3}px`,
-      marginBottom: hover ? "100px" : "20px", opacity: hover ? 1 : 0.5
+      height: `${hover ? height! * 0.6 : 150}px`,
+      marginBottom: hover ? "200px" : "20px", opacity: hover ? 1 : 0.5
     }}>
       <BorderAnim scroll={scrollRef.current} zone={[5, 100]}>
         <div
@@ -92,7 +92,7 @@ const WorkItem: React.FC<props> = ({ item }) => {
             backgroundColor: item.projectColor,
             width: "100%",
             outline: "1px solid black",
-            height: `${hover ? height! * 0.5 : height! * 0.3}px`
+            height: `${hover ? height! * 0.5 : 100}px`
           }} >
           <h1 style={{ position: "absolute" }}>{item.title}</h1>
         </div>
