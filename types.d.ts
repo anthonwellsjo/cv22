@@ -71,9 +71,14 @@ declare module WorkDocument {
   }
 
   export interface Tech {
-      _key: string;
-      _ref: string;
-      _type: string;
+    _createdAt: Date;
+    _id: string;
+    _rev: string;
+    _type: string;
+    _updatedAt: Date;
+    description: string;
+    link: string;
+    title: string;
   }
 
   export interface Asset2 {

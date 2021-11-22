@@ -31,7 +31,8 @@ const ScrollBar = ({ scroll }: props) => {
       boxShadow: "1px 1px 20px black",
       backgroundColor: "black",
       position: "absolute",
-      bottom: "0px"
+      bottom: "0px",
+      zIndex:2
     }} />
   )
 }
