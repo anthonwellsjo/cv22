@@ -89,6 +89,8 @@ declare module WorkDocument {
   export interface VideoDesktop {
       _type: string;
       asset: Asset2;
+      url: string;
+      path: string;
   }
 
   export interface Asset3 {

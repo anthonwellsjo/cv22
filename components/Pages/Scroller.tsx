@@ -22,13 +22,16 @@ function getOpacity(zone: [number, number], scroll: number): number {
   return 1;
 }
 
+
+
 interface props {
   zone: [number, number],
   scroll: number,
-  children: ReactNode
+  children: ReactNode,
+  divHeight?: string
 }
 
-const Scroller: React.FC<props> = ({ children, zone, scroll }: props) => {
+const Scroller: React.FC<props> = ({ children, zone, scroll, divHeight }: props) => {
 
 
   const styles = useSpring({
@@ -36,11 +39,12 @@ const Scroller: React.FC<props> = ({ children, zone, scroll }: props) => {
     opacity: getOpacity(zone, scroll)
   })
 
+  console.log("divheight", divHeight);
 
   return (
 
-    <div style={{ position: "absolute", top: "150px", width: "100%", height: "100%", display: "flex", justifyContent: "center", overflow: "hidden" }}>
-      <a.div style={{ bottom: styles.bottom, position: "absolute", height: "80%", width: "100%", opacity: styles.opacity, display: "flex", justifyContent: "center", alignItems: "center", }}>
+    <div style={{ position: "relative", top: "150px", width: "100%", height: divHeight, display: "flex", justifyContent: "center", overflow: "hidden" }}>
+      <a.div style={{ bottom: styles.bottom, position: "absolute", width: "100%", height: divHeight, opacity: styles.opacity, display: "flex", justifyContent: "center", alignItems: "center", }}>
         {children}
       </a.div>
     </div>
