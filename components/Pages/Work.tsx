@@ -22,9 +22,9 @@ const WorkDesktop: React.FC<props> = ({ work }) => {
             justifyContent: "center",
 
         }}>
-            {work.map(w => {
+            {work.map((w, i) => {
                 return (
-                    <WorkItem key={w._id} item={w} />
+                    <WorkItem key={w._id} item={w} index={i} />
                 )
             })}
             <div
@@ -33,9 +33,9 @@ const WorkDesktop: React.FC<props> = ({ work }) => {
                     top: "0",
                     width: "80vw",
                     height: "80vh",
-                    backgroundColor:"white",
-                    zIndex:2,
-                    borderTop:"2px solid black"
+                    backgroundColor: "white",
+                    zIndex: 2,
+                    borderTop: "2px solid black"
                 }}
             ></div>
         </div>

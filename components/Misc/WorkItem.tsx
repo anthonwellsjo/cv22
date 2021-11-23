@@ -4,10 +4,11 @@ import { useViewport } from './ViewPort';
 import BorderAnim from './BorderAnimations/BorderAnim';
 
 interface props {
-    item: WorkDocument.RootObject
+    item: WorkDocument.RootObject,
+    index: number
 }
 
-const WorkItem: React.FC<props> = ({ item }) => {
+const WorkItem: React.FC<props> = ({ item, index }) => {
     const [hover, setHover] = useState(false);
     const [scroll, setScroll] = useState(0);
     const scrollRef = useRef(scroll);
@@ -73,16 +74,15 @@ const WorkItem: React.FC<props> = ({ item }) => {
     return (
         <div style={{
             transition: "all .3s",
-            position: "relative",
+            position: "absolute",
             zIndex: 2,
             display: "flex",
             justifyContent: "center",
             cursor: "pointer",
-            width: "100%",
-            height: `${80}px`,
-            marginBottom: "-30px",
-            top: "-50px",
-            opacity: hover ? 1 : 0.5,
+            marginLeft: `${index * 250}px`,
+            top: "-40px",
+            opacity: hover ? 1 : 0.8,
+            backgroundColor:"red"
         }}>
             <div
                 onMouseEnter={() => { setHover(true) }}
@@ -90,15 +90,16 @@ const WorkItem: React.FC<props> = ({ item }) => {
                 style={{
                     position: "relative",
                     transition: "all .3s",
-                    left: "50%",
-                    transform: `translate(-50%, ${hover ? -250 : -100}px)`,
+                    transform: `translateY(${hover ? -90 : 0}px)`,
                     backgroundColor: item.projectColor,
-                    width: "100%",
+                    width: "50vw",
                     outline: "1px solid black",
-                    height: `${height! * 0.6}px`
+                    height: `${height! * 0.6}px`,
                 }} >
-                <h1 style={{ position: "absolute", left: "5px", top: "-8px" }}>{item.title}</h1>
-                {item.tech.map((t, i) => <span style={{marginTop:"25px"}} key={t._id}>{t.title}, </span>)}
+                <h3 style={{ position: "absolute", left: "5px", top: "-30px", fontFamily: "Handwriting", fontSize: "33px", padding: "0 5px" }}>{item.title}</h3>
+                <div style={{ position: "absolute", left: "5px", top: "40px", fontSize: "12px", padding: "1px 3px" }}>
+                    {item.tech.map((t, i) => <span style={{ backgroundColor: "black", color: "white", marginRight: "2px", padding: "1px 4px" }} key={t._id}>{t.title}</span>)}
+                </div>
             </div>
         </div>
     )
