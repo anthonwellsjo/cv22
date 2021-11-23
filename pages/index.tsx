@@ -101,11 +101,19 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
       scrollRef.current = 29.9;
       return;
     }
-    setScroll(prev => {
 
-      return (prev - newValue)
-    });
-    scrollRef.current = scrollRef.current - newValue;
+    if (scrollRef.current > thresHolds[2] && scrollRef.current < thresHolds[3]) {
+      setScroll(prev => {
+        return (prev - newValue / tech.length * 7)
+      });
+      scrollRef.current = scrollRef.current - newValue / tech.length * 7;
+    } else {
+      setScroll(prev => {
+        return (prev - newValue)
+      });
+      scrollRef.current = scrollRef.current - newValue;
+    }
+
 
   };
   const [currentTouch, setCurrentTouch] = useState<{ Y: number, X: number }>({ Y: 0.1, X: 0.1 });
@@ -146,6 +154,10 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
 
   }
 
+  const jumpToScroll = (scroll: number) => {
+    setScroll(scroll);
+    scrollRef.current = scroll;
+  }
 
   const mobileScroller = (e: TouchEvent) => {
     e.preventDefault();
@@ -259,7 +271,7 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
           <Title scroll={scroll} name="Work" />
-          <WorkDesktop {...{ work, scroll }} />
+          <WorkDesktop setScroll={jumpToScroll} {...{ work, scroll }} />
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
           <Title scroll={scroll} name="Social" />
@@ -306,7 +318,8 @@ export async function getStaticProps() {
   let work = await fetch(`https://2nwawwcw.api.sanity.io/v2021-06-07/data/query/production?query=*[_type=='project']{
     ...,
     tech[]->{title},
-    videoDesktop{asset->{path,url}}
+    videoDesktop{asset->{path,url}},
+    videoMobile{asset->{path,url}},
   }`);
   const workData = await work.json();
   return {

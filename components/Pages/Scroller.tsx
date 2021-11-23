@@ -39,7 +39,6 @@ const Scroller: React.FC<props> = ({ children, zone, scroll, divHeight }: props)
     opacity: getOpacity(zone, scroll)
   })
 
-  console.log("divheight", divHeight);
 
   return (
 

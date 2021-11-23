@@ -89,7 +89,7 @@ const WorkItem: React.FC<props> = ({ item, index, totalItems, selected, onClick 
         style={{
           position: "relative",
           transition: "all .3s",
-          transform: `translateX(${hover || selected ? 220 : 0}px)`,
+          transform: `translateX(${hover || selected ? 40 : 0}px)`,
           backgroundColor: item.projectColor,
           width: "230px",
           outline: "1px solid black",
@@ -99,7 +99,7 @@ const WorkItem: React.FC<props> = ({ item, index, totalItems, selected, onClick 
         }} >
         <div style={{
           position: "absolute",
-          bottom: "10%",
+          top: "10%",
           fontSize: "12px",
           textAlign: "justify",
           padding: "1px 3px",
@@ -126,7 +126,7 @@ const WorkItem: React.FC<props> = ({ item, index, totalItems, selected, onClick 
             textOverflow: "ellipsis",
             position: "absolute",
             right: "-80px",
-            top: "20%",
+            top: "40px",
             transform: `${hover || selected ? "rotate(90deg) translate(-30px, 50px)" : "rotate(90deg) translate(-30px, -5px)"}`
           }}>
           <h3>{item.title}</h3>
