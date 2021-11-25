@@ -135,7 +135,6 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
   }
 
   const scroller: (e: any) => any = (e: any) => {
-    e.preventDefault();
     clearTimeout(scrollDoneTimer);
 
     const Y = e.wheelDeltaY;
@@ -317,6 +316,7 @@ export async function getStaticProps() {
   const catDataMapped = catData.result.map((r: any) => r.techType);
   let work = await fetch(`https://2nwawwcw.api.sanity.io/v2021-06-07/data/query/production?query=*[_type=='project']{
     ...,
+    _id,
     tech[]->{title},
     videoDesktop{asset->{path,url}},
     videoMobile{asset->{path,url}},

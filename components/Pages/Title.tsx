@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { a, useSpring } from '@react-spring/web'
 import GetMediaPort from '../Misc/GetMediaPort';
 import { MediaPort } from '../../enums';
@@ -12,28 +12,42 @@ interface props {
 const Title: React.FC<props> = ({ name }) => {
   const { width, height } = useViewport();
   const [font, setFont] = useState("Header");
+  const mounted = useRef(false);
+
+  useEffect(() => {
+    mounted.current = true;
+
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
+
   const fontFlix = (time: number, time2: number) => {
     setTimeout(() => {
-      setFont("Handwriting");
+      if (mounted.current) setFont("Handwriting");
       setTimeout(() => {
-        setFont("Header");
+        if (mounted.current) setFont("Header");
         setTimeout(() => {
-          setFont("Handwriting");
-          setTimeout(() => {
-            setFont("Header");
-            fontFlix(Math.random() * 5000, Math.random() * 500);
-          }, time2);
+          if (mounted.current) {
+            setFont("Handwriting");
+            setTimeout(() => {
+              setFont("Header");
+              fontFlix(Math.random() * 5000, Math.random() * 500);
+            }, time2);
+          }
         }, 20);
       }, 50);
     }, time);
   }
   const fontFlix2 = (time: number) => {
-    setTimeout(() => {
-      setFont("Handwriting");
+    if (mounted.current) {
       setTimeout(() => {
-        setFont("Header");
-      }, 50);
-    }, time);
+        setFont("Handwriting");
+        setTimeout(() => {
+          setFont("Header");
+        }, 50);
+      }, time);
+    }
   }
 
 

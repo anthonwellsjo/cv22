@@ -50,7 +50,7 @@ const WorkDesktop: React.FC<props> = ({ work, scroll, setScroll }) => {
 
 
   return (
-    <body style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
       <Scroller scroll={scroll} divHeight={divHeight != null ? `${divHeight}px` : `${200 * TechContainer.length}vh`} zone={[thresHolds[2] - 0.43, thresHolds[3]]}>
         <div ref={divRef} style={{
           paddingTop: "200vh",
@@ -80,7 +80,7 @@ const WorkDesktop: React.FC<props> = ({ work, scroll, setScroll }) => {
           })}
         </div>
       </FadeIn>
-    </body>
+    </div>
   )
 }
 

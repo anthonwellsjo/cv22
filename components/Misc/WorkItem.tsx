@@ -113,7 +113,7 @@ const WorkItem: React.FC<props> = ({ item, index, totalItems, selected, onClick 
             color: "white",
             marginRight: "2px",
             padding: "1px 4px",
-          }} key={t._id}>{t.title}</span>)}
+          }} key={i}>{t.title}</span>)}
         </div>
         <div
           style={{

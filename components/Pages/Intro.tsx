@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Head from "next/head";
 import { a, useSpring } from '@react-spring/web';
 import { useViewport } from '../Misc/ViewPort';
@@ -10,21 +10,36 @@ import { MediaPort } from '../../enums';
 const IntroPage: React.FC = () => {
   const [font, setFont] = useState("Handwriting");
   const { width, height } = useViewport();
+  const mounted = useRef(false);
 
+  useEffect(() => {
+    mounted.current = true;
 
+    return () => {
+      mounted.current = false;
+    };
+  }, []);
 
 
 
   const fontFlix = (time: number, time2: number) => {
     setTimeout(() => {
-      setFont("Roboto");
+      if (mounted.current) {
+        setFont("Roboto");
+      }
       setTimeout(() => {
-        setFont("Handwriting");
+        if (mounted.current) {
+          setFont("Handwriting");
+        }
         setTimeout(() => {
-          setFont("Roboto");
+          if (mounted.current) {
+            setFont("Roboto");
+          }
           setTimeout(() => {
-            setFont("Handwriting");
-            fontFlix(Math.random() * 5000, Math.random() * 500);
+            if (mounted.current) {
+              setFont("Handwriting");
+              fontFlix(Math.random() * 5000, Math.random() * 500);
+            }
           }, time2);
         }, 20);
       }, 50);
@@ -60,7 +75,7 @@ const IntroPage: React.FC = () => {
   if (mediaPort === MediaPort.mobile) return (
 
     <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-      <a.h1 id="anthon-wellsjo" style={{ fontWeight: 400, fontFamily: font, color: styles.color as any, lineBreak: "anywhere"}}>Carl Anthon Wellsjö</a.h1>
+      <a.h1 id="anthon-wellsjo" style={{ fontWeight: 400, fontFamily: font, color: styles.color as any, lineBreak: "anywhere" }}>Carl Anthon Wellsjö</a.h1>
     </div>
 
   )

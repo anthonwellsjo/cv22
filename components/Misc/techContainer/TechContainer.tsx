@@ -69,7 +69,7 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow, itemSize }: pro
                                 <Image
                                     alt={tech.title}
                                     onClick={() => { console.log("clicked") }}
-                                    data-linkPath={tech.link}
+                                    // data-linkPath={tech.link}
                                     data-description={tech.description}
                                     data-title={tech.title}
                                     width={itemSize}
