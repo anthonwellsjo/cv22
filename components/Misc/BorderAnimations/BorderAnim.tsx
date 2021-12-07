@@ -7,10 +7,11 @@ interface props {
   zone: [number, number],
   scroll: number,
   children: React.ReactNode,
-  rotate?: string
+  rotate?: string,
+  marginTop?: string
 }
 
-const BorderAnim: React.FC<props> = ({ children, zone, scroll, rotate }) => {
+const BorderAnim: React.FC<props> = ({ children, zone, scroll, rotate, marginTop = "auto" }) => {
   const [plates, setPlates] = useState<{ top: Plate[], right: Plate[], bottom: Plate[], left: Plate[] }>({ top: [], right: [], bottom: [], left: [] });
   const [divDimensions, setDivDimensions] = useState<{ width: number, height: number }>({ width: 1000, height: 1000 });
   const divDimensionsRef = useRef(divDimensions);
@@ -195,7 +196,7 @@ const BorderAnim: React.FC<props> = ({ children, zone, scroll, rotate }) => {
   )
 
   return (
-    <div ref={divRef} style={{ transform: rotate ? `rotate(${rotate})` : "none", width: "80%", position: "absolute", top: "40%", padding: "5%" }}>
+    <div ref={divRef} style={{ transform: rotate ? `rotate(${rotate})` : "none", width: "80%", position: "absolute", top: "40%", padding: "5%", marginTop: marginTop }}>
       {divRef != null && (
         <>
           <div style={{ left: 0, top: 0, width: "100%", position: "absolute", display: "flex", justifyContent: "space-evenly" }}>

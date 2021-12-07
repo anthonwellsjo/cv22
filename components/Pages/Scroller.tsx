@@ -42,7 +42,7 @@ const Scroller: React.FC<props> = ({ children, zone, scroll, divHeight }: props)
 
   return (
 
-    <div style={{ position: "relative", top: "150px", width: "100%", height: divHeight, display: "flex", justifyContent: "center", overflow: "hidden" }}>
+    <div style={{ position: "relative",  width: "100%", height: divHeight, display: "flex", justifyContent: "center", overflow: "hidden" }}>
       <a.div style={{ bottom: styles.bottom, position: "absolute", width: "100%", height: divHeight, opacity: styles.opacity, display: "flex", justifyContent: "center", alignItems: "center", }}>
         {children}
       </a.div>

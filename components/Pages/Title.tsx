@@ -71,9 +71,12 @@ const Title: React.FC<props> = ({ name }) => {
 
   if (GetMediaPort({ width, height }) !== MediaPort.mobile) {
     return (
-      <div style={{ position: "absolute", width: "100%", top: 0, height: "100px", display: "flex", justifyContent: "center", alignItems: "center", zIndex: 1, }}>
-        <a.h1 onMouseEnter={onMouseEnterEventHandler} className="pageHeader" style={{ textAlign: "center", opacity: styles.opacity, fontWeight: 100, fontFamily: font, textTransform: "uppercase" }}>{name}</a.h1>
-      </div>
+      <>
+        <div style={{ position: "absolute", width: "100%", top: "-200px", height: "100px", display: "flex", justifyContent: "center", alignItems: "center", zIndex: -1, }}>
+          <a.h1 onMouseEnter={onMouseEnterEventHandler} className="pageHeader" style={{ textShadow: "2px 260px 20px lightgrey", color: "grey", textAlign: "center", fontSize: "10vw", opacity: styles.opacity, fontWeight: 100, fontFamily: font, textTransform: "uppercase" }}>{name}</a.h1>
+        </div>
+        <div style={{ position: "absolute", left: 0, right: 0, top: 0, bottom: 0, backdropFilter: "blur(5px)", zIndex: -1 }} />
+      </>
     )
   }
   return null;

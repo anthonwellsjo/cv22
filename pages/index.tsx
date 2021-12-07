@@ -241,9 +241,9 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
         <BlackSheet scroll={scroll} position={[0, 0, 0]} />
       </Canvas>
 
-      <AppFrame>
+      <AppFrame mobile={mediaPort === MediaPort.mobile}>
         <PageWrapper marginTop={"-100px"} scroll={scroll} zone={[0, thresHolds[0]]}>
-          <BorderAnim rotate={mediaPort === MediaPort.mobile ? "90deg" : undefined} scroll={scroll} zone={[0 + 0.1, thresHolds[0] - 1]}>
+          <BorderAnim scroll={scroll} zone={[0 + 0.1, thresHolds[0] - 1]}>
             <FadeIn>
               <IntroPage />
             </FadeIn>
@@ -253,9 +253,9 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
           <pre>Build: {builtOn}</pre>
           {/* </Scroller> */}
         </PageWrapper>
-        <PageWrapper marginTop={mediaPort === MediaPort.mobile ? "-150px" : "-80px"} scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
+        <PageWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
           <Title scroll={scroll} name="Bio" />
-          <BorderAnim scroll={scroll} zone={[thresHolds[0] + 0.1, thresHolds[1] - 1]}>
+          <BorderAnim marginTop={"-100px"} scroll={scroll} zone={[thresHolds[0] + 0.1, thresHolds[1] - 1]}>
             <FadeIn>
               <BioPage />
             </FadeIn>
@@ -264,7 +264,7 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
           <Title scroll={scroll} name="Skills" />
-          <div style={{ width: "80%", position: "absolute", top: "5%", padding: "5%" }}>
+          <div style={{ width: mediaPort === MediaPort.desktop ? "80%" : "90%", position: "absolute", top: "5%", padding: "5%" }}>
             <Skills {...{ tech, techTypes }} />
           </div>
         </PageWrapper>
