@@ -264,7 +264,7 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
           <Title scroll={scroll} name="Skills" />
-          <div style={{ width: mediaPort === MediaPort.desktop ? "80%" : "90%", position: "absolute", top: "5%", padding: "5%" }}>
+          <div style={{ width: mediaPort === MediaPort.desktop ? "80%" : "90%", position: "absolute", padding: "5%" }}>
             <Skills {...{ tech, techTypes }} />
           </div>
         </PageWrapper>
