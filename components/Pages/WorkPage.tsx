@@ -38,8 +38,13 @@ const WorkPage: React.FC<props> = ({ project, tech, scroll }) => {
     return width! < 356 ? `${-width! / 0.4 / 60}px` : width! < 486 ? `${-width! / 0.4 / 10}px` : width! < 732 ? `${-width! / 0.4 / 100}px` : "auto"
   }
 
+
+  const backgroundColor = project.projectColor + "80";
+
+  console.log("color", project.projectColor, backgroundColor);
+
   return (
-    <div id={project._id} style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", marginBottom: "100px", backgroundColor: project.projectColor, padding: "40px", borderRadius: "10px", boxShadow: "1px -3px 80px lightgrey" }}>
+    <div id={project._id} style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", marginBottom: "100px", backgroundColor: backgroundColor, padding: "40px", borderRadius: "10px", boxShadow: "1px -3px 80px lightgrey" }}>
       <h2 style={{ textAlign: "center", fontFamily: "Handwriting", fontSize: "10vw" }}>{project.title}</h2>
       <div style={{ position: "relative", marginTop: width! < 450 ? "-150px" : "-250px", width: "100%", height: "500px", display: "flex", justifyContent: "center", alignItems: "center" }}>
         <BorderAnimAuto mobile={isMobile}>
