@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import { MediaPort } from '../../enums';
 import BorderAnimAuto from '../Misc/BorderAnimations/BorderAnimAuto';
+import GetMediaPort from '../Misc/GetMediaPort';
 import TechContainer from '../Misc/techContainer/TechContainer';
 import { useViewport } from '../Misc/ViewPort';
 import { getTechItemSize, getTechItemsPerRow } from '../utils/utils';
@@ -13,6 +15,7 @@ interface props {
 
 const WorkPage: React.FC<props> = ({ project, tech, scroll }) => {
   const { width, height } = useViewport();
+  const isMobile = GetMediaPort({ width, height }) === MediaPort.mobile;
   const [showTech, setShowTech] = useState<Tech[]>([]);
 
   useEffect(() => {
@@ -25,6 +28,9 @@ const WorkPage: React.FC<props> = ({ project, tech, scroll }) => {
   const getVideoMarginTop = () => {
     return width! < 356 ? `${-width! / 0.4 / 40}px` : width! < 486 ? `${-width! / 0.4 / 50}px` : width! < 732 ? `${-width! / 0.4 / 80}px` : "auto"
   }
+  const getVideoMobileMarginTop = () => {
+    return width! < 356 ? `${-width! / 0.4 / 40}px` : width! < 486 ? `${-width! / 0.4 / 80}px` : width! < 732 ? `${-width! / 0.4 / 150}px` : "auto"
+  }
   const getTopMallMarginTop = () => {
     return width! < 356 ? `${-width! / 0.4 / 60}px` : width! < 486 ? `${-width! / 0.4 / 80}px` : width! < 732 ? `${-width! / 0.4 / 100}px` : "auto"
   }
@@ -36,7 +42,7 @@ const WorkPage: React.FC<props> = ({ project, tech, scroll }) => {
     <div id={project._id} style={{ position: "relative", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", marginBottom: "100px", backgroundColor: project.projectColor, padding: "40px", borderRadius: "10px", boxShadow: "1px -3px 80px lightgrey" }}>
       <h2 style={{ textAlign: "center", fontFamily: "Handwriting", fontSize: "10vw" }}>{project.title}</h2>
       <div style={{ position: "relative", marginTop: width! < 450 ? "-150px" : "-250px", width: "100%", height: "500px", display: "flex", justifyContent: "center", alignItems: "center" }}>
-        <BorderAnimAuto >
+        <BorderAnimAuto mobile={isMobile}>
           <TechContainer itemSize={getTechItemSize(width!)} tech={showTech} itemsPerRow={getTechItemsPerRow(width!)} />
         </BorderAnimAuto>
       </div>
@@ -64,7 +70,7 @@ const WorkPage: React.FC<props> = ({ project, tech, scroll }) => {
         <img src="../../mobileFrame.svg" style={{ position: "absolute", width: `${width! / 3.5}px`, maxWidth: "290px", marginTop: "0px" }} alt="screen" />
         <div style={{ position: "relative", width: "100%", marginTop: "25px", display: "flex", justifyContent: "center" }}>
           <a rel="noreferrer" href={project.deployUrl ? project.deployUrl : undefined} target="_blank">
-            <div style={{ width: `${width! / 3.9}px`, maxWidth: "265px", borderRadius: "15px", overflow: "hidden" }}>
+            <div style={{ marginTop: getVideoMobileMarginTop(), width: `${width! / 3.9}px`, maxWidth: "265px", borderRadius: "15px", overflow: "hidden" }}>
               <video muted width={"100%"} height="auto" autoPlay playsInline loop>
                 <source src={project.videoMobile.asset.url} type="video/mp4" />
               </video>

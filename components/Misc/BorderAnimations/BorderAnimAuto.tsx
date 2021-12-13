@@ -6,10 +6,11 @@ import { getPercentageOfZone, getScrollPercentage, isInZone } from '../../utils/
 interface props {
   children: React.ReactNode,
   rotate?: string,
-  marginTop?: string
+  marginTop?: string,
+  mobile: boolean
 }
 
-const BorderAnimAuto: React.FC<props> = ({ children, rotate, marginTop = "auto" }) => {
+const BorderAnimAuto: React.FC<props> = ({ children, rotate, marginTop = "auto", mobile }) => {
   const zone: [number, number] = [0, 100];
   const [scroll, _setScroll] = useState<number>(0);
   const scrollRef = useRef(scroll);
@@ -90,11 +91,17 @@ const BorderAnimAuto: React.FC<props> = ({ children, rotate, marginTop = "auto" 
       default: horizontalPlates = divDimensionsRef.current.width / (divDimensionsRef.current.width / 8);
     }
     switch (true) {
-      case (divDimensionsRef.current.height < 200 && divDimensionsRef.current.height < divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 50; break;
-      case (divDimensionsRef.current.height < 250 && divDimensionsRef.current.height < divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 60; break;
-      case (divDimensionsRef.current.height < 300 && divDimensionsRef.current.height < divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 70; break;
-      case (divDimensionsRef.current.height < 350 && divDimensionsRef.current.height < divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 100; break;
-      case (divDimensionsRef.current.height < 400 && divDimensionsRef.current.height < divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 90; break;
+      case (mobile && divDimensionsRef.current.height < 200 && divDimensionsRef.current.height < divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 10; break;
+      case (mobile && divDimensionsRef.current.height < 250 && divDimensionsRef.current.height < divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 12; break;
+      case (mobile && divDimensionsRef.current.height < 300 && divDimensionsRef.current.height < divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 15; break;
+      case (mobile && divDimensionsRef.current.height < 350 && divDimensionsRef.current.height < divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 20; break;
+      case (mobile && divDimensionsRef.current.height < 400 && divDimensionsRef.current.height < divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 18; break;
+
+      case (!mobile && divDimensionsRef.current.height < 200 && divDimensionsRef.current.height < divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 30; break;
+      case (!mobile && divDimensionsRef.current.height < 250 && divDimensionsRef.current.height < divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 40; break;
+      case (!mobile && divDimensionsRef.current.height < 300 && divDimensionsRef.current.height < divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 50; break;
+      case (!mobile && divDimensionsRef.current.height < 350 && divDimensionsRef.current.height < divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 70; break;
+      case (!mobile && divDimensionsRef.current.height < 400 && divDimensionsRef.current.height < divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 60; break;
 
       case (divDimensionsRef.current.height < 200 && divDimensionsRef.current.height > divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 50; break;
       case (divDimensionsRef.current.height < 250 && divDimensionsRef.current.height >= 200 && divDimensionsRef.current.height > divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 60; break;
