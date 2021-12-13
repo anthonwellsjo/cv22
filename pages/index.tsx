@@ -23,7 +23,8 @@ import GetMediaPort from '../components/Misc/GetMediaPort'
 import { MediaPort } from '../enums'
 import { calculatePosition, scrollIsntCloseToAnyThreshold } from '../components/utils/utils'
 import FadeIn from '../components/Misc/FadeIn'
-import WorkDesktop from '../components/Pages/Work'
+import Work from '../components/Pages/Work'
+import Social from '../components/Pages/Social'
 
 interface HomeProps {
   builtOn: string,
@@ -264,24 +265,17 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
           <Title scroll={scroll} name="Skills" />
-          <div style={{ width: mediaPort === MediaPort.desktop ? "80%" : "90%", position: "absolute", padding: "5%" }}>
+          <div style={{ width: mediaPort === MediaPort.desktop ? "80%" : "90%", position: "relative", padding: "5%" }}>
             <Skills {...{ tech, techTypes }} />
           </div>
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
           <Title scroll={scroll} name="Work" />
-          <WorkDesktop setScroll={jumpToScroll} {...{ work, scroll }} />
+          <Work tech={tech} setScroll={jumpToScroll} {...{ work, scroll }} />
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
           <Title scroll={scroll} name="Social" />
-          <Scroller scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
-            <div style={{ position: "absolute", top: "155%", width: "90%" }}>
-              <strong>Lorem, ipsum.</strong>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.Labore quidem placeat fugiat eveniet ratione earum natus, nostrum assumenda ipsa ab porro tempore veniam aliquam voluptate vitae quasi?Nisi, praesentium nemo?</p>
-              <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit.Dignissimos commodi corporis aperiam autem et consequatur magni sint rem illum repellat, reprehenderit, quia dolore, voluptate at beatae deserunt?Autem, quisquam id sit necessitatibus magnam impedit earum, ipsa quidem voluptate eligendi deleniti.</p>
-              <p>Lorem ipsum dolor sit amet consectetur adipisicing elit.Deserunt, aperiam!</p>
-            </div>
-          </Scroller>
+          <Social />
         </PageWrapper>
         <IndexHolder zone={[2, thresHolds[5]]} scroll={scroll}>
           <Chapter onClickEvent={onChapterClickEventHandler} position={0} {...{ scroll }} />
@@ -317,7 +311,7 @@ export async function getStaticProps() {
   let work = await fetch(`https://2nwawwcw.api.sanity.io/v2021-06-07/data/query/production?query=*[_type=='project']{
     ...,
     _id,
-    tech[]->{title},
+    tech[]->{title, _id},
     videoDesktop{asset->{path,url}},
     videoMobile{asset->{path,url}},
   }`);

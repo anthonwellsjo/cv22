@@ -11,16 +11,18 @@ import { getPercentageOfZone } from '../utils/scroll-helpers';
 interface props {
   work: WorkDocument.RootObject[],
   scroll: number,
-  setScroll: (scroll: number) => void
+  setScroll: (scroll: number) => void,
+  tech: Tech[]
 }
 
-const WorkDesktop: React.FC<props> = ({ work, scroll, setScroll }) => {
+const Work: React.FC<props> = ({ work, scroll, setScroll, tech }) => {
   const [currentProject, setCurrentProject] = useState(work[2]);
   const [divHeight, setDivHeight] = useState<undefined | number>(undefined)
   const projectThresholds = useMemo(() => work.map((w, i) => [100 / work.length * i, 100 / work.length * i + 100 / work.length, w._id]), [])
 
   let divRef: LegacyRef<HTMLDivElement> | null = useMemo(() => createRef(), [])
 
+  const { width, height } = useViewport();
 
   const onWorkItemClickedEventHandler = (item: WorkDocument.RootObject) => {
     console.log(divRef);
@@ -50,7 +52,7 @@ const WorkDesktop: React.FC<props> = ({ work, scroll, setScroll }) => {
 
 
   return (
-    <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
+    <div style={{ position: "relative", zIndex: 1, width: "100%", display: "flex", justifyContent: "center" }}>
       <Scroller scroll={scroll} divHeight={divHeight != null ? `${divHeight}px` : `${200 * TechContainer.length}vh`} zone={[thresHolds[2] - 0.43, thresHolds[3]]}>
         <div ref={divRef} style={{
           paddingTop: "200vh",
@@ -60,7 +62,10 @@ const WorkDesktop: React.FC<props> = ({ work, scroll, setScroll }) => {
           justifyContent: "center",
           width: "80%"
         }}>
-          {work.map(w => <WorkPage key={w._id} project={w} />)}
+          {width! < 1400 && height! < 1300 && <div style={{ height: `${height! / 0.9}px` }} />}
+          {width! > 1400 && height! < 1000 && <div style={{ height: `${height! / 0.9}px` }} />}
+          {work.map(w => <WorkPage scroll={scroll} tech={tech} key={w._id} project={w} />)}
+          <div style={{ height: "1500px" }} />
         </div>
       </Scroller>
 
@@ -73,15 +78,15 @@ const WorkDesktop: React.FC<props> = ({ work, scroll, setScroll }) => {
           justifyContent: "center",
           backgroundColor: "blue",
         }}>
-          {work.map((w, i) => {
+          {/* {work.map((w, i) => {
             return (
               <WorkItem key={w._id} item={w} index={i} totalItems={work.length} onClick={onWorkItemClickedEventHandler} selected={currentProject._id === w._id} />
             )
-          })}
+          })} */}
         </div>
       </FadeIn>
     </div>
   )
 }
 
-export default WorkDesktop;
+export default Work;

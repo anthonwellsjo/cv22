@@ -4,6 +4,7 @@ import TechContainer from '../Misc/techContainer/TechContainer';
 import { useViewport } from '../Misc/ViewPort';
 
 import { MediaPort } from '../../enums'
+import { getTechItemSize, getTechItemsPerRow } from '../utils/utils';
 
 
 interface props {
@@ -45,33 +46,23 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
     }
   }
 
-  const getItemsPerRow = () => {
-    const items = Math.floor(width! / 170);
-    if (items > 5) return 5;
-    else return items;
-  }
 
-  const getItemSize = () => {
-    const size = width! / 15;
-    if (size > 50) return 50;
-    return size;
-  }
+
+
 
 
   return (
-    <div style={{ position: "relative", backgroundColor: "yellow", display: "flex", alignItems: "center", width: "90%", zIndex: 1 }}>
-      <div style={{ position: "relative", width: "100%", display: "flex", flexDirection: "column", justifyContent: "space-evenly" }}>
+    <div style={{ position: "relative", display: "flex", alignItems: "center", width: "90%", height: "100%", zIndex: 1 }}>
+      <div style={{ position: "absolute", height: "80%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "center" }}>
         {techTypes.map(t => {
           return (
-            <div key={t}>
-              <h4 onClick={() => { onClickCatEvent(t) }} style={{ cursor: "pointer", fontFamily: "Text", fontWeight: categoryCurrentlyViewed === t ? "bold" : "normal", fontSize: ".9em" }} >{t}</ h4>
-            </div>
+            <h4 onClick={() => { onClickCatEvent(t) }} key={t} style={{ margin: 0, padding: 0, cursor: "pointer", fontFamily: "Text", fontWeight: categoryCurrentlyViewed === t ? "bold" : "normal", fontSize: ".9em" }} >{t}</ h4>
           )
         })}
       </div>
-      {/* <div style={{ position: "absolute", right: `${width! / 100}%` }}>
-        {visibleTech && <TechContainer itemSize={getItemSize()} tech={visibleTech.length === 0 && isDesktop ? tech : visibleTech} itemsPerRow={getItemsPerRow()} />}
-      </div> */}
+      <div style={{ position: "absolute", right: `${width! / 100}%` }}>
+        {visibleTech && <TechContainer itemSize={getTechItemSize(width!)} tech={visibleTech.length === 0 && isDesktop ? tech : visibleTech} itemsPerRow={getTechItemsPerRow(width!)} />}
+      </div>
     </div >
   )
 

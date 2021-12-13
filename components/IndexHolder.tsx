@@ -41,8 +41,8 @@ const IndexHolder: React.FC<props> = ({ children, zone, scroll }) => {
 
   return (
     <div style={{ width: "100%", display: "flex", justifyContent: "center" }}>
-      <a.div style={{ position: "absolute", width: "100%", display: "flex", justifyContent: "center", backgroundColor: "rgba(256,256,256,0.7)", backdropFilter: "blur(4px)", overflow: "hidden", ...styles }}>
-        <div style={{width: "100%", maxWidth:"700px", display: "flex", justifyContent: "space-around",}}>
+      <a.div style={{ position: "absolute", zIndex: 2, width: "100%", display: "flex", justifyContent: "center", backgroundColor: "rgba(256,256,256,0.7)", backdropFilter: "blur(4px)", overflow: "hidden", ...styles }}>
+        <div style={{ width: "100%", maxWidth: "700px", display: "flex", justifyContent: "space-around", }}>
           {children}
         </div>
       </a.div>
