@@ -156,6 +156,11 @@ h2 {
   }
 }
 
+.buttidybuttbutt{
+  color:darkgray;
+}
+
 .buttidybuttbutt:hover {
-  text-decoration: underline;
+  
+  color: black;
 }
