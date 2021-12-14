@@ -27,14 +27,7 @@ const WorkPage: React.FC<props> = ({ project, tech, scroll }) => {
   }, [tech, project.tech])
 
   const getVideoMarginTop = () => {
-    return "50px"
-  }
-  const getVideoMobileMarginTop = () => {
-    return `5%`;
-  }
-
-  const getBottomMallMarginTop = () => {
-    return width! < 356 ? `${-width! / 0.4 / 60}px` : width! < 486 ? `${-width! / 0.4 / 10}px` : width! < 732 ? `${-width! / 0.4 / 100}px` : "auto"
+    return "59px"
   }
 
 
