@@ -50,3 +50,4 @@ export function getNewTouchScroll(last: { X: number, Y: number }, next: { X: num
 export function getClosestThreshold(scroll: number): number | undefined {
   return thresHolds.find(v => Math.abs(scroll - v) < 5)
 }
+
