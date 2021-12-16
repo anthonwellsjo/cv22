@@ -52,22 +52,19 @@ const Work: React.FC<props> = ({ work, scroll, setScroll, tech }) => {
 
 
   return (
-    <div style={{ position: "relative", zIndex: 1, width: "100%", display: "flex", justifyContent: "center" }}>
-      <Scroller scroll={scroll} divHeight={divHeight != null ? `${divHeight}px` : `${200 * TechContainer.length}vh`} zone={[thresHolds[2] - 0.43, thresHolds[3]]}>
-        <div ref={divRef} style={{
-          paddingTop: "200vh",
-          display: "flex",
-          flexDirection: "column",
-          alignItems: "center",
-          justifyContent: "center",
-          width: "80%"
-        }}>
-          {width! < 1400 && height! < 1300 && <div style={{ height: `${height! / 0.9}px` }} />}
-          {width! > 1400 && height! < 1000 && <div style={{ height: `${height! / 0.9}px` }} />}
-          {work.map(w => <WorkPage scroll={scroll} tech={tech} key={w._id} project={w} />)}
-          <div style={{ height: "1500px" }} />
-        </div>
-      </Scroller>
+    <div style={{ position: "relative", zIndex: 1, width: "100%", display: "flex", justifyContent: "center", overflow: "scroll" }}>
+      <div ref={divRef} style={{
+        position: "relative",
+        paddingTop: "5000px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        width: "80%",
+      }}>
+        {work.map(w => <WorkPage scroll={scroll} tech={tech} key={w._id} project={w} />)}
+        <div style={{ height: "1500px" }} />
+      </div>
 
       <FadeIn>
         <div style={{
