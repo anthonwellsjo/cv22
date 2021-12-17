@@ -37,7 +37,7 @@ const WorkPage: React.FC<props> = ({ project, tech, scroll }) => {
 
   return (
     <div id={project._id} style={{ position: "relative", display: "flex", width: "100%", flexDirection: "column", alignItems: "center", justifyContent: "center", marginBottom: "100px", backgroundColor: backgroundColor, padding: "40px", borderRadius: "10px", boxShadow: "1px -3px 80px lightgrey" }}>
-      <h2 style={{ textAlign: "center", fontFamily: "Handwriting", fontSize: "10vw" }}>{project.title}</h2>
+      <h2 style={{ textAlign: "center", fontFamily: "Handwriting", fontSize: "10vw", marginBottom: isMobile ? "0px" : "100px" }}>{project.title}</h2>
       <div style={{ position: "relative", marginTop: width! < 450 ? "-150px" : "-250px", width: "100%", height: "500px", display: "flex", justifyContent: "center", alignItems: "center" }}>
         <BorderAnimAuto mobile={isMobile}>
           <TechContainer itemSize={getTechItemSize(width!)} tech={showTech} itemsPerRow={getTechItemsPerRow(width!)} />

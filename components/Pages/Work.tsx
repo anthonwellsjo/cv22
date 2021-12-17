@@ -7,6 +7,8 @@ import WorkPage from './WorkPage';
 import TechContainer from '../Misc/techContainer/TechContainer';
 import FadeIn from '../Misc/FadeIn';
 import { getPercentageOfZone } from '../utils/scroll-helpers';
+import GetMediaPort from '../Misc/GetMediaPort';
+import { MediaPort } from '../../enums';
 
 interface props {
   work: WorkDocument.RootObject[],
@@ -20,9 +22,12 @@ const Work: React.FC<props> = ({ work, scroll, setScroll, tech }) => {
   const [divHeight, setDivHeight] = useState<undefined | number>(undefined)
   const projectThresholds = useMemo(() => work.map((w, i) => [100 / work.length * i, 100 / work.length * i + 100 / work.length, w._id]), [])
 
+
+
   let divRef: LegacyRef<HTMLDivElement> | null = useMemo(() => createRef(), [])
 
   const { width, height } = useViewport();
+  const isMobile = GetMediaPort({ width, height }) === MediaPort.mobile;
 
   const onWorkItemClickedEventHandler = (item: WorkDocument.RootObject) => {
     console.log(divRef);
@@ -55,12 +60,12 @@ const Work: React.FC<props> = ({ work, scroll, setScroll, tech }) => {
     <div style={{ position: "relative", zIndex: 1, width: "100%", display: "flex", justifyContent: "center", overflow: "scroll" }}>
       <div ref={divRef} style={{
         position: "relative",
-        paddingTop: "5000px",
+        paddingTop: isMobile ? "4500px":"5000px",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        width: "80%",
+        width: isMobile ? "100%":"80%",
       }}>
         {work.map(w => <WorkPage scroll={scroll} tech={tech} key={w._id} project={w} />)}
         <div style={{ height: "1500px" }} />
