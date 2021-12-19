@@ -53,7 +53,7 @@ const Work: React.FC<props> = ({ work, scroll, setScroll, tech, scroller }) => {
   }, [])
 
   return (
-    <div ref={divRef} onScroll={onScrollEventHandler} style={{ position: "relative", zIndex: 1, width: "100%", display: "flex", justifyContent: "center", overflowY: "scroll" }}>
+    <div ref={divRef} onScroll={onScrollEventHandler} style={{ position: "relative", zIndex: 1, width: "100%", display: "flex", justifyContent: "center", overflowY: "scroll", overflowX:"hidden" }}>
       <div style={{
         position: "relative",
         paddingTop: isMobile ? "4000px" : "5000px",
