@@ -34,12 +34,10 @@ const WorkPage: React.FC<props> = ({ project, tech, scroll }) => {
 
   const backgroundColor = project.projectColor + "80";
 
-  console.log("color", project.projectColor, backgroundColor);
-
   return (
     <div id={project._id} style={{ position: "relative", display: "flex", width: "100%", flexDirection: "column", alignItems: "center", justifyContent: "center", marginBottom: "100px", backgroundColor: backgroundColor, padding: "40px", borderRadius: "10px", boxShadow: "1px -3px 80px lightgrey" }}>
       <h2 style={{ textAlign: "center", fontFamily: "Handwriting", fontSize: "10vw", marginBottom: isMobile ? "0px" : "100px" }}>{project.title}</h2>
-      <div style={{ position: "relative", marginTop: width! < 450 ? "-150px" : "-250px", width: "100%", height: "500px", display: "flex", justifyContent: "center", alignItems: "center" }}>
+      <div style={{ position: "relative", marginTop: width! <= 640 ? "-150px" : "-250px", width: "100%", height: "500px", display: "flex", justifyContent: "center", alignItems: "center" }}>
         <BorderAnimAuto mobile={isMobile}>
           <TechContainer itemSize={getTechItemSize(width!)} tech={showTech} itemsPerRow={getTechItemsPerRow(width!)} />
         </BorderAnimAuto>
@@ -61,7 +59,7 @@ const WorkPage: React.FC<props> = ({ project, tech, scroll }) => {
           </a>
         </div>
         <div style={{ position: "relative", right: "50%", transform: "translateX(50%)", zIndex: 2, width: `${width! / 4 * 3}px`, minWidth: "380px", maxWidth: "800px", marginTop: "-100px" }}>
-          <Image layout={"fill"} width={width! / 4 * 3} src="/computerFrame.svg" alt="desktop screen frame" />
+          <Image layout={"fill"} src="/computerFrame.svg" alt="desktop screen frame" />
         </div>
       </div> : null}
 

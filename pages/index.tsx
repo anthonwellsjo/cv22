@@ -42,14 +42,10 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
   const { width, height } = useViewport();
   // const [autoScrollActivatorTimer, setAutoScrollActivatorTimer] = useState<NodeJS.Timeout | undefined>();
   const [autoSroll, setAutoScroll] = useState<NodeJS.Timer | undefined>();
+  let autoScrollActivatorTimer: NodeJS.Timeout;
+  let autoScroll: NodeJS.Timer;
 
   useEffect(() => {
-    console.log("work data", work);
-    console.log("tech", tech);
-
-
-    let autoScrollActivatorTimer: NodeJS.Timeout;
-    let autoScroll: NodeJS.Timer;
     autoScrollActivatorTimer = setTimeout(() => {
       autoScroll = setInterval(() => {
         autoScrollYep();
@@ -62,15 +58,22 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
     }
   }, [])
 
+  useEffect(() => {
+    autoScrollActivatorTimer = setTimeout(() => {
+      autoScroll = setInterval(() => {
+        autoScrollYep();
+      }, 50)
+    }, 500);
+  }, [scrollRef])
+
   const autoScrollYep = () => {
 
     if (scrollIsntCloseToAnyThreshold(scrollRef.current, thresHolds)) {
       if (scrollRef.current < thresHolds[1])
         setScrollExpanded(-0.07);
     } else {
-      console.log("no scroll");
+      clearInterval(autoScroll);
     }
-
   }
 
   const setScrollDirectionExpanded = (newValue: number) => {
