@@ -43,7 +43,6 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
   // const [autoScrollActivatorTimer, setAutoScrollActivatorTimer] = useState<NodeJS.Timeout | undefined>();
   const [autoSroll, setAutoScroll] = useState<NodeJS.Timer | undefined>();
 
-
   useEffect(() => {
     console.log("work data", work);
     console.log("tech", tech);
@@ -63,20 +62,16 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
     }
   }, [])
 
-
-
-
   const autoScrollYep = () => {
 
     if (scrollIsntCloseToAnyThreshold(scrollRef.current, thresHolds)) {
-      if (scrollRef.current > thresHolds[3] || scrollRef.current < thresHolds[2])
+      if (scrollRef.current < thresHolds[1])
         setScrollExpanded(-0.07);
     } else {
       console.log("no scroll");
     }
 
   }
-
 
   const setScrollDirectionExpanded = (newValue: number) => {
     if (scrollDirectionRef.current == null) {
@@ -126,8 +121,6 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
   let scrollDoneTimer: NodeJS.Timeout;
 
 
-
-
   const onScrollFinished = () => {
     console.log("scroll finished");
     const newScroll = scroll;
@@ -138,16 +131,34 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
   const scroller: (e: any) => any = (e: any) => {
     clearTimeout(scrollDoneTimer);
 
-    const Y = e.wheelDeltaY;
-    const X = e.wheelDeltaX;
-    const newValue = scrollCalculator(Y, X);
+    if (scrollRef.current < thresHolds[2] || scrollRef.current > thresHolds[3]) {
+
+      const Y = e.wheelDeltaY;
+      const X = e.wheelDeltaX;
+      const newValue = scrollCalculator(Y, X);
+      setScrollDirectionExpanded(newValue);
+      if (newValue < 0.45 && newValue > -0.45) {
+        if (scrollDirectionRef.current != null) {
+          setScrollExpanded(newValue * scrollDirectionRef.current);
+        }
+      }
+    }
+    // scrollDoneTimer = setTimeout(() => {
+    //   onScrollFinished();
+    // }, 300)
+
+  }
+
+  const workPageScroller: (scroll: number) => void = (scroll) => {
+    clearTimeout(scrollDoneTimer);
+
+    const newValue = scrollCalculator(scroll, 0);
     setScrollDirectionExpanded(newValue);
     if (newValue < 0.45 && newValue > -0.45) {
       if (scrollDirectionRef.current != null) {
         setScrollExpanded(newValue * scrollDirectionRef.current);
       }
     }
-
     // scrollDoneTimer = setTimeout(() => {
     //   onScrollFinished();
     // }, 300)
@@ -271,7 +282,7 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
           <Title scroll={scroll} name="Work" />
-          <Work tech={tech} setScroll={jumpToScroll} {...{ work, scroll }} />
+          <Work scroller={workPageScroller} tech={tech} setScroll={jumpToScroll} {...{ work, scroll }} />
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
           <Title scroll={scroll} name="Social" />

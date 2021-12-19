@@ -10,7 +10,8 @@ import Image from 'next/image';
 interface props {
   project: WorkDocument.RootObject,
   tech: Tech[],
-  scroll: number
+  scroll: number,
+  
 }
 
 

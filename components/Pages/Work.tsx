@@ -14,34 +14,20 @@ interface props {
   work: WorkDocument.RootObject[],
   scroll: number,
   setScroll: (scroll: number) => void,
-  tech: Tech[]
+  tech: Tech[],
+  scroller: (scroll: number) => void
 }
 
-const Work: React.FC<props> = ({ work, scroll, setScroll, tech }) => {
+const Work: React.FC<props> = ({ work, scroll, setScroll, tech, scroller }) => {
   const [currentProject, setCurrentProject] = useState(work[2]);
-  const [divHeight, setDivHeight] = useState<undefined | number>(undefined)
   const projectThresholds = useMemo(() => work.map((w, i) => [100 / work.length * i, 100 / work.length * i + 100 / work.length, w._id]), [])
 
+  const divRef: React.LegacyRef<HTMLDivElement> | undefined = createRef()
 
 
-  let divRef: LegacyRef<HTMLDivElement> | null = useMemo(() => createRef(), [])
 
   const { width, height } = useViewport();
   const isMobile = GetMediaPort({ width, height }) === MediaPort.mobile;
-
-  const onWorkItemClickedEventHandler = (item: WorkDocument.RootObject) => {
-    console.log(divRef);
-    setCurrentProject(item);
-    const amount = (thresHolds[3] - thresHolds[2]) / work.length * work.findIndex(w => w._id === item._id);
-    console.log("amount", amount);
-    setScroll(thresHolds[2] + 0.1 + amount);
-  }
-
-  useEffect(() => {
-    if (divRef != null) {
-      setDivHeight((divRef as any).current.clientHeight);
-    }
-  }, [divRef])
 
   const setCurrentActiveProject = (percentageOfZone: number) => {
     const index = projectThresholds.findIndex(t => percentageOfZone < t[1] && percentageOfZone > t[0]);
@@ -50,22 +36,33 @@ const Work: React.FC<props> = ({ work, scroll, setScroll, tech }) => {
     }
   }
 
-  useEffect(() => {
-    const percentageOfZone = getPercentageOfZone([thresHolds[2], thresHolds[3]], scroll);
-    setCurrentActiveProject(percentageOfZone);
-  }, [scroll])
+  const onScrollEventHandler: React.UIEventHandler<HTMLDivElement> = (e) => {
+    console.log(e.currentTarget.scrollTop, e.currentTarget.clientHeight, e.currentTarget.scrollHeight);
+    const scroll = thresHolds[2] + 0.01 + ((e.currentTarget.scrollTop) / (e.currentTarget.scrollHeight - e.currentTarget.clientHeight)) * 4.999;
+    setScroll(scroll);
+    // const percentageOfZone = getPercentageOfZone([thresHolds[2], thresHolds[3]], scroll);
+    // setCurrentActiveProject(percentageOfZone);
+  }
 
+  useEffect(() => {
+    if (scroll > (thresHolds[2] + 3)) {
+      if (divRef.current != null) {
+        divRef.current.scrollTop = divRef.current.scrollHeight - divRef.current.clientHeight - 200;
+      }
+    }
+  }, [])
 
   return (
-    <div style={{ position: "relative", zIndex: 1, width: "100%", display: "flex", justifyContent: "center", overflow: "scroll" }}>
-      <div ref={divRef} style={{
+    <div ref={divRef} onScroll={onScrollEventHandler} style={{ position: "relative", zIndex: 1, width: "100%", display: "flex", justifyContent: "center", overflowY: "scroll" }}>
+      <div style={{
         position: "relative",
-        paddingTop: isMobile ? "4500px":"5000px",
+        paddingTop: isMobile ? "4000px" : "5000px",
+        paddingBottom: isMobile ? "500vh" : "600vh",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        width: isMobile ? "100%":"80%",
+        width: isMobile ? "100%" : "80%",
       }}>
         {work.map(w => <WorkPage scroll={scroll} tech={tech} key={w._id} project={w} />)}
         <div style={{ height: "1500px" }} />
