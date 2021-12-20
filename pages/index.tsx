@@ -328,6 +328,14 @@ export async function getStaticProps() {
     tech[]->{title, _id},
     videoDesktop{asset->{path,url}},
     videoMobile{asset->{path,url}},
+    description[]{
+      ...,
+    _type == "image" => {
+      ...,
+      asset->
+    }
+  }
+    
   }`);
   const workData = await work.json();
   return {

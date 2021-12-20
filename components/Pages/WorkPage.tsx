@@ -11,7 +11,7 @@ interface props {
   project: WorkDocument.RootObject,
   tech: Tech[],
   scroll: number,
-  
+
 }
 
 
@@ -43,8 +43,13 @@ const WorkPage: React.FC<props> = ({ project, tech, scroll }) => {
         </BorderAnimAuto>
       </div>
       {project.description.map((b, i) => {
+        console.log(project);
         if (b.style == "h2") return React.createElement("h3", { key: b._key, style: { textAlign: "center" } }, b.children[0].text);
         if (b.style == "normal") return React.createElement("p", { key: b._key }, b.children[0].text);
+        if (b._type == "image") {
+          const image = b as WorkDocument.ImageDescription;
+          return <Image width={image.asset.metadata.dimensions.width} height={image.asset.metadata.dimensions.height} layout="intrinsic" src={image.asset.url} alt="artefact" />
+        }
       })}
       {project.videoDesktop ? <div style={{ display: "flex", justifyContent: "center", marginTop: "150px", marginBottom: "50px" }}>
         <div style={{ position: "relative", left: "50%", transform: "translateX(-50%)", width: "50%", marginTop: "-75px", display: "flex", justifyContent: "center", marginBottom: "100px", }}>

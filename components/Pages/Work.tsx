@@ -39,7 +39,6 @@ const Work: React.FC<props> = ({ work, scroll, setScroll, tech, scroller }) => {
 
   const onScrollEventHandler: React.UIEventHandler<HTMLDivElement> = (e) => {
     const scroll = thresHolds[2] + 0.01 + ((e.currentTarget.scrollTop) / (e.currentTarget.scrollHeight - e.currentTarget.clientHeight)) * 4.999;
-    console.log(scroll, thresHolds[2] + 0.1);
     if (scroll <= thresHolds[2] + 0.01) {
       setScroll(thresHolds[1] - 0.1)
     } else {
