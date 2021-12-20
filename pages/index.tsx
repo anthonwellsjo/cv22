@@ -69,7 +69,7 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
   const autoScrollYep = () => {
 
     if (scrollIsntCloseToAnyThreshold(scrollRef.current, thresHolds)) {
-      if (scrollRef.current < thresHolds[1])
+      if (scrollRef.current < thresHolds[2])
         setScrollExpanded(-0.07);
     } else {
       clearInterval(autoScroll);
