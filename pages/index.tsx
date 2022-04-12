@@ -250,8 +250,8 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:site" content="@anthonwellsjo" />
         <meta name="twitter:title" content="Anthon Wellsjö" />
-        <meta name="twitter:description" content="Fullstack developer portfolio" />
-        <meta name="twitter:image" content="big-image.png" />
+        <meta name="twitter:description" content="Swedish fullstack developer and devops engineer." />
+        <meta name="twitter:image" content="/big-image.png" />
       </Head>
       <Canvas style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%" }}>
         <ambientLight />
