@@ -221,7 +221,6 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
     <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center", position: "absolute" }}>
       <Head>
         <title>anthon.tech</title>
-        <meta name="Anthon Wellsjö's online portfolio" content="My fansy pantsy web site" />
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
@@ -251,7 +250,7 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
         <meta name="twitter:site" content="@anthonwellsjo" />
         <meta name="twitter:title" content="Anthon Wellsjö" />
         <meta name="twitter:description" content="Swedish fullstack developer and devops engineer." />
-        <meta name="twitter:image" content="/big-image.png" />
+        <meta name="twitter:image" content="https://anthon.tech/big-image.png" />
       </Head>
       <Canvas style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%" }}>
         <ambientLight />

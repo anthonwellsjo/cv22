@@ -15,7 +15,7 @@ interface props {
 
 function isNear(scroll: number, position: number): boolean {
   const closeNumber = (scroll / maxScroll * 100) - position;
-  if (closeNumber > 0 && closeNumber < 17) return true;
+  if (closeNumber >= 0 && closeNumber < 20) return true;
   return false;
 }
 function isPassed(scroll: number, position: number): boolean {
