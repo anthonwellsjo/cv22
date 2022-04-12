@@ -91,7 +91,7 @@ const BorderAnim: React.FC<props> = ({ children, zone, scroll, rotate, marginTop
       case (divDimensionsRef.current.width < 600 && divDimensionsRef.current.width >= 400): return "0.36vw";
       case (divDimensionsRef.current.width < 1000 && divDimensionsRef.current.width >= 600): return "0.26vw";
       case (divDimensionsRef.current.width < 1200 && divDimensionsRef.current.width >= 1000): return "0.25vw";
-      case (divDimensionsRef.current.width >= 1200): return "2vw";
+      case (divDimensionsRef.current.width >= 1200): return "0.24vw";
       default: return "0.25vw";
     }
 

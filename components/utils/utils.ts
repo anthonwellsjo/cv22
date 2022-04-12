@@ -40,7 +40,7 @@ export const scrollIsntCloseToAnyThreshold = (scroll: number, thresHolds: number
 }
 
 export const calculatePosition = (thresHold: number, maxNumber: number) => {
-  return thresHold / maxNumber * 100;
+  return thresHold / maxNumber * 102;
 
 }
 

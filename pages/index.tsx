@@ -69,7 +69,7 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
   const autoScrollYep = () => {
 
     if (scrollIsntCloseToAnyThreshold(scrollRef.current, thresHolds)) {
-      if (scrollRef.current < thresHolds[2])
+      if (scrollRef.current < thresHolds[4])
         setScrollExpanded(-0.07);
     } else {
       clearInterval(autoScroll);
@@ -101,17 +101,17 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
       return;
     }
 
-    if (scrollRef.current > thresHolds[2] && scrollRef.current < thresHolds[3]) {
-      setScroll(prev => {
-        return (prev - newValue / tech.length * 7)
-      });
-      scrollRef.current = scrollRef.current - newValue / tech.length * 7;
-    } else {
+    // if (scrollRef.current > thresHolds[2] && scrollRef.current < thresHolds[3]) {
+    //   setScroll(prev => {
+    //     return (prev - newValue / tech.length * 7)
+    //   });
+    //   scrollRef.current = scrollRef.current - newValue / tech.length * 7;
+    // } else {
       setScroll(prev => {
         return (prev - newValue)
       });
       scrollRef.current = scrollRef.current - newValue;
-    }
+    // }
 
 
   };
@@ -134,7 +134,7 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
   const scroller: (e: any) => any = (e: any) => {
     clearTimeout(scrollDoneTimer);
 
-    if (scrollRef.current < thresHolds[2] || scrollRef.current > thresHolds[3]) {
+    // if (scrollRef.current < thresHolds[2] || scrollRef.current > thresHolds[3]) {
 
       const Y = e.wheelDeltaY;
       const X = e.wheelDeltaX;
@@ -145,7 +145,7 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
           setScrollExpanded(newValue * scrollDirectionRef.current);
         }
       }
-    }
+    // }
     // scrollDoneTimer = setTimeout(() => {
     //   onScrollFinished();
     // }, 300)
@@ -283,11 +283,11 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
             <Skills {...{ tech, techTypes }} />
           </div>
         </PageWrapper>
-        <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
+        {/* <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
           <Title scroll={scroll} name="Work" />
           <Work scroller={workPageScroller} tech={tech} setScroll={jumpToScroll} {...{ work, scroll }} />
-        </PageWrapper>
-        <PageWrapper scroll={scroll} zone={[thresHolds[3] + 0.01, thresHolds[4]]}>
+        </PageWrapper> */}
+        <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
           <Title scroll={scroll} name="Social" />
           <Social />
         </PageWrapper>
@@ -295,9 +295,9 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
           <Chapter onClickEvent={onChapterClickEventHandler} position={0} {...{ scroll }} />
           <Chapter onClickEvent={onChapterClickEventHandler} title={"bio"} position={calculatePosition(thresHolds[0], maxScroll)} {...{ scroll }} />
           <Chapter onClickEvent={onChapterClickEventHandler} title={"skills"} position={calculatePosition(thresHolds[1], maxScroll)} {...{ scroll }} />
-          <Chapter onClickEvent={onChapterClickEventHandler} title={"work"} position={calculatePosition(thresHolds[2], maxScroll)} {...{ scroll }} />
-          <Chapter onClickEvent={onChapterClickEventHandler} title={"social"} position={calculatePosition(thresHolds[3], maxScroll)} {...{ scroll }} />
-          <Chapter onClickEvent={onChapterClickEventHandler} position={calculatePosition(thresHolds[4], maxScroll)} {...{ scroll }} />
+          {/* <Chapter onClickEvent={onChapterClickEventHandler} title={"work"} position={calculatePosition(thresHolds[2], maxScroll)} {...{ scroll }} /> */}
+          <Chapter onClickEvent={onChapterClickEventHandler} title={"social"} position={calculatePosition(thresHolds[2], maxScroll)} {...{ scroll }} />
+          <Chapter onClickEvent={onChapterClickEventHandler} position={calculatePosition(thresHolds[3], maxScroll)} {...{ scroll }} />
         </IndexHolder>
       </AppFrame>
       <ScrollBar {...{ scroll }} />

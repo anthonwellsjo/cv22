@@ -1,5 +1,5 @@
-export const maxScroll = 30;
-export const thresHolds = [5, 10, 15, 20, 25, 30];
+export const maxScroll = 15;
+export const thresHolds = [3, 6, 9, 12, 15, 30];
 export const mediaThresHolds = {
   mediumDesktop: { width: [641, 1007] },
   largeDesktop: { width: [1008, 9999] },
