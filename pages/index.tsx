@@ -221,7 +221,7 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
     <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center", position: "absolute" }}>
       <Head>
         <title>anthon.tech</title>
-        <meta name="Anthon Wellsjö's online portfolio website" content="An SPA created with Next.js" />
+        <meta name="Anthon Wellsjö's online portfolio" content="My fansy pantsy web site" />
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
@@ -247,6 +247,11 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
           as="font"
           crossOrigin=""
         />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@anthonwellsjo" />
+        <meta name="twitter:title" content="Anthon Wellsjö" />
+        <meta name="twitter:description" content="Fullstack developer portfolio" />
+        <meta name="twitter:image" content="big-image.png" />
       </Head>
       <Canvas style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%" }}>
         <ambientLight />
