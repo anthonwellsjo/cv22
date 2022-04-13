@@ -71,13 +71,13 @@ h2 {
     width: 50%;
   }
   .navbarTitle {
-    font-size: 1.5vw;
+    font-size: 25px;
   }
   p {
-    font-size: 1.2vw;
+    font-size: 20px;
   }
   h1 {
-    font-size: 1.2vw;
+    font-size: 20px;
   }
 }
 @media (min-width: 800px) and (max-width: 1199px) {
@@ -153,6 +153,14 @@ h2 {
   }
   #anthon-wellsjo {
     font-size: 6vw;
+  }
+}
+@media only screen and (min-width: 880px) {
+  .pageHeader {
+    font-size: 10vw;
+  }
+  #anthon-wellsjo {
+    font-size: 8em;
   }
 }
 

@@ -51,7 +51,7 @@ export const getTechItemSize = (width: number) => {
 }
 
 export const getTechItemsPerRow = (width: number) => {
-  const items = Math.floor(width / 170);
+  const items = Math.floor(width / 70);
   if (items > 5) return 5;
   else return items;
 }

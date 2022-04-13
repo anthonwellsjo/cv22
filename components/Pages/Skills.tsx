@@ -52,15 +52,15 @@ const Skills: React.FC<props> = ({ tech, techTypes }) => {
 
 
   return (
-    <div style={{ position: "relative", display: "flex", alignItems: "center", width: "90%", height: "100%", zIndex: 1 }}>
-      <div style={{ position: "absolute", height: "80%", width: "100%", display: "flex", flexDirection: "column", justifyContent: "center" }}>
+    <div style={{position: "relative", display: "flex", alignItems: "center", width: "90%", height: "100%", zIndex: 1, flexDirection:"column",  }}>
+      <div style={{ display:"flex",height:"20%", width: "70%", maxWidth: "400px", marginTop:"10%", justifyContent: "space-between",flexDirection:"row" }}>
         {techTypes.map(t => {
           return (
-            <h4 onClick={() => { onClickCatEvent(t) }} key={t} style={{ margin: 0, padding: 0, cursor: "pointer", fontFamily: "Text", fontWeight: categoryCurrentlyViewed === t ? "bold" : "normal", fontSize: ".9em" }} >{t}</ h4>
+            <h4 onClick={() => { onClickCatEvent(t) }} key={t} style={{ margin: 0, padding: 0, cursor: "pointer", fontFamily: "Text", fontWeight: categoryCurrentlyViewed === t ? "bold" : "normal", fontSize: "1.2em" }} >{t}</ h4>
           )
         })}
       </div>
-      <div style={{ position: "absolute", right: `${width! / 100}%` }}>
+      <div style={{ display:"flex",height:"20%", width: "60%", alignItems:"center", justifyContent: "center",flexDirection:"row"}}>
         {visibleTech && <TechContainer itemSize={getTechItemSize(width!)} tech={visibleTech.length === 0 && isDesktop ? tech : visibleTech} itemsPerRow={getTechItemsPerRow(width!)} />}
       </div>
     </div >

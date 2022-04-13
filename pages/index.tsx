@@ -221,6 +221,11 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
     <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center", position: "absolute" }}>
       <Head>
         <title>anthon.tech</title>
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:site" content="@anthonwellsjo" />
+        <meta name="twitter:title" content="Anthon Wellsjö" />
+        <meta name="twitter:description" content="Swedish fullstack developer and devops engineer." />
+        <meta name="twitter:image" content="http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg" />
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
@@ -246,11 +251,6 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
           as="font"
           crossOrigin=""
         />
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:site" content="@anthonwellsjo" />
-        <meta name="twitter:title" content="Anthon Wellsjö" />
-        <meta name="twitter:description" content="Swedish fullstack developer and devops engineer." />
-        <meta name="twitter:image" content="https://anthon.tech/big-image.png" />
       </Head>
       <Canvas style={{ position: "absolute", left: 0, top: 0, width: "100%", height: "100%" }}>
         <ambientLight />
@@ -283,8 +283,8 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[1] + 0.01, thresHolds[2]]}>
           <Title scroll={scroll} name="Skills" />
-          <div style={{ width: mediaPort === MediaPort.desktop ? "80%" : "90%", position: "relative", padding: "5%" }}>
-            <Skills {...{ tech, techTypes }} />
+          <div style={{ width: mediaPort === MediaPort.desktop ? "80%" : "90%", position: "relative", display:"flex", justifyContent:"center", padding: "5%" }}>
+            <Skills {...{ tech }} techTypes={["Frontend", "Backend", "Devops"]} />
           </div>
         </PageWrapper>
         {/* <PageWrapper scroll={scroll} zone={[thresHolds[2] + 0.01, thresHolds[3]]}>
