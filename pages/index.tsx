@@ -225,7 +225,7 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
         <meta name="twitter:site" content="@anthonwellsjo" />
         <meta name="twitter:title" content="Anthon Wellsjö" />
         <meta name="twitter:description" content="Swedish fullstack developer and devops engineer." />
-        <meta name="twitter:image" content="http://graphics8.nytimes.com/images/2012/02/19/us/19whitney-span/19whitney-span-articleLarge.jpg" />
+        <meta name="twitter:image" content="http://anthon.tech/big-image.png" />
         <link rel="icon" href="/favicon.ico" />
         <link
           rel="preload"
