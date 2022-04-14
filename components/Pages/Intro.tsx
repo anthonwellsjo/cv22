@@ -9,6 +9,7 @@ import { MediaPort } from '../../enums';
 
 const IntroPage: React.FC = () => {
   const [font, setFont] = useState("Handwriting");
+  const [id, setId] = useState("anthon-wellsjo");
   const { width, height } = useViewport();
   const mounted = useRef(false);
 
@@ -26,18 +27,22 @@ const IntroPage: React.FC = () => {
     setTimeout(() => {
       if (mounted.current) {
         setFont("Roboto");
+        setId("anthon-wellsjo-two");
       }
       setTimeout(() => {
         if (mounted.current) {
           setFont("Handwriting");
+          setId("anthon-wellsjo");
         }
         setTimeout(() => {
           if (mounted.current) {
             setFont("Roboto");
+            setId("anthon-wellsjo-two");
           }
           setTimeout(() => {
             if (mounted.current) {
               setFont("Handwriting");
+              setId("anthon-wellsjo");
               fontFlix(Math.random() * 5000, Math.random() * 500);
             }
           }, time2);
@@ -75,14 +80,18 @@ const IntroPage: React.FC = () => {
   if (mediaPort === MediaPort.mobile) return (
 
     <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-      <a.h1 id="anthon-wellsjo" style={{ fontWeight: 400, fontFamily: font, color: styles.color as any, lineBreak: "anywhere" }}>Carl Anthon Wellsjö</a.h1>
+      <div style={{height: "30vh", display:"flex", alignItems: "center"}}>
+       <a.h1 id={id} style={{ fontWeight: 400, fontFamily: font, color: styles.color as any, lineBreak: "anywhere" }}>Carl Anthon Wellsjö</a.h1>
+      </div>
     </div>
 
   )
 
   return (
     <div style={{ width: "100%", height: "100%", display: "flex", justifyContent: "center", alignItems: "center" }}>
-      <a.h1 id="anthon-wellsjo" style={{ fontWeight: 400, fontFamily: font, color: styles.color as any }}>Carl Anthon Wellsjö</a.h1>
+      <div style={{height: "30vh", display:"flex", alignItems: "center"}}>
+        <a.h1 id={id} style={{ fontWeight: 400, fontFamily: font, color: styles.color as any }}>Carl Anthon Wellsjö</a.h1>
+      </div>
     </div>
   )
 }

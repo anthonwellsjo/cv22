@@ -264,20 +264,16 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
       </Canvas>
 
       <AppFrame mobile={mediaPort === MediaPort.mobile}>
-        <PageWrapper marginTop={"-100px"} scroll={scroll} zone={[0, thresHolds[0]]}>
+        <PageWrapper marginTop={mediaPort == MediaPort.mobile ? "-25%": "-10%"} scroll={scroll} zone={[0, thresHolds[0]]}>
           <BorderAnim scroll={scroll} zone={[0 + 0.1, thresHolds[0] - 1]}>
             <FadeIn>
               <IntroPage />
             </FadeIn>
           </BorderAnim>
-          {/* <Scroller scroll={scroll} zone={[0, thresHolds[0]]} > */}
-          <div style={{ width: "2px", height: "2px", backgroundColor: "black" }} />
-          <pre>Build: {builtOn}</pre>
-          {/* </Scroller> */}
         </PageWrapper>
         <PageWrapper scroll={scroll} zone={[thresHolds[0] + 0.01, thresHolds[1]]}>
           <Title scroll={scroll} name="Bio" />
-          <BorderAnim marginTop={"-100px"} scroll={scroll} zone={[thresHolds[0] + 0.1, thresHolds[1] - 1]}>
+          <BorderAnim marginTop={mediaPort == MediaPort.desktop? "-10%": "-35%"} scroll={scroll} zone={[thresHolds[0] + 0.1, thresHolds[1] - 1]}>
             <FadeIn>
               <BioPage />
             </FadeIn>
@@ -308,6 +304,7 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
         </IndexHolder>
       </AppFrame>
       <ScrollBar {...{ scroll }} />
+          <pre style={{position:"fixed", bottom:0, right: "20px", color: "lightgrey"}}>Build: {builtOn}</pre>
     </div>
   )
 }

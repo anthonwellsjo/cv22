@@ -12,13 +12,17 @@ const BioPage: React.FC = () => {
 
   return (
     <div style={{}}>
-      <div>
-        <p><strong>Hey,</strong></p>
+      <div style={{padding:"1em"}}>
+        <p style={{fontSize:"1.5em", marginTop:"-.5em"}}>Hey,</p>
         <div style={{ wordBreak: "break-word" }}>
           <p>
-            My name is <strong>Anthon</strong> and I&apos;m a Swedish <strong>full-stack web developer</strong> based in Perugia, Italy with my wife and three kids.
-
-            I am <strong>fluent in four languages</strong> (Swedish, French, Italian, and English) and other than passionately developing websites, love garden work, kite surfing, and playing the guitar.
+            I&apos;m Anthon and I&apos;m a <strong>full-stack web developer</strong> since 2019. My current role includes <strong>project management</strong> and <strong>devops tasks</strong>.
+            <br></br>
+            <br></br>
+            I develop apps with <strong>Typescript</strong> and <strong>C#</strong> in a feature oriented way. I&apos;m also obsessed with <strong>system architecture</strong> and <strong>documentation</strong>.
+            <br></br>
+            <br></br>
+            I speak <strong>Swedish, French, Italian</strong> and <strong>English</strong> and in the past I&apos;ve worked as a music producer and a fashion model.
             <br></br>
             <br></br>
             If you consider hiring me, then you can count on an <strong>effective and open minded coworker.</strong> I love learning, and arriving at the best solutions, no matter who had the idea.

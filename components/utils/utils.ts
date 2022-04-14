@@ -45,7 +45,7 @@ export const calculatePosition = (thresHold: number, maxNumber: number) => {
 }
 
 export const getTechItemSize = (width: number) => {
-  const size = width / 15;
+  const size = width / 9;
   if (size > 50) return 50;
   return size;
 }
