@@ -68,7 +68,9 @@ const BorderAnim: React.FC<props> = ({ children, zone, scroll, rotate, marginTop
       case (divDimensionsRef.current.height < 250 && divDimensionsRef.current.height >= 200 && divDimensionsRef.current.height > divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 60; break;
       case (divDimensionsRef.current.height < 300 && divDimensionsRef.current.height >= 250 && divDimensionsRef.current.height > divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 50; break;
       case (divDimensionsRef.current.height < 350 && divDimensionsRef.current.height >= 301 && divDimensionsRef.current.height > divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 40; break;
-      case (divDimensionsRef.current.height < 400 && divDimensionsRef.current.height >= 351 && divDimensionsRef.current.height > divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 40; break;
+      case (divDimensionsRef.current.height < 400 && divDimensionsRef.current.height >= 351 && divDimensionsRef.current.height > divDimensionsRef.current.width): sidePlates = divDimensionsRef.current.height / 30; break;
+      case (divDimensionsRef.current.height < 1100 && divDimensionsRef.current.height >= 351 && divDimensionsRef.current.height > divDimensionsRef.current.width && divDimensionsRef.current.width >= 500): sidePlates = divDimensionsRef.current.height / 25; break;
+      case (divDimensionsRef.current.height < 1100 && divDimensionsRef.current.height >= 351 && divDimensionsRef.current.height > divDimensionsRef.current.width && divDimensionsRef.current.width < 500): sidePlates = divDimensionsRef.current.height / 20; break;
       default: sidePlates = divDimensionsRef.current.height / (divDimensionsRef.current.height / 4);
     }
     setPlates({ top: getAnimPlates(horizontalPlates), right: getAnimPlates(sidePlates, horizontalPlates + 1), bottom: getAnimPlates(horizontalPlates, horizontalPlates + sidePlates + 1), left: getAnimPlates(sidePlates, horizontalPlates * 2 + sidePlates + 1) });
