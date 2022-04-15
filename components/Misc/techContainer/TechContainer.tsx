@@ -18,13 +18,9 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow, itemSize }: pro
   const router = useRouter();
 
   const transitions = useTransition(tech, {
-    from: { opacity: 0, transform: "scale(0)" },
-    enter: { opacity: 1, transform: "scale(1)" },
-    leave: { opacity: 0, transform: "scale(0)" },
-    config: {
-      duration: 150
-    }
-
+    from: { opacity: 0 },
+    enter: { opacity: 1 },
+    leave: { opacity: 0 },
   })
 
 
@@ -39,19 +35,17 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow, itemSize }: pro
         padding: "10px",
       }
       }>
-      {transitions(({ opacity, transform }, tech) => (
+      {transitions(({ opacity }, tech) => (
         <Popover
           isOpen={tech._id === hoveredTech}
-          positions={["bottom", "top", 'left', 'right']} // preferred positions by priority
-          content={<div style={{ fontFamily: "Text", fontSize: ".8em", width: "200px", textAlign: "justify", backgroundColor: "white", border: "1px solid black", padding: "5px" }}>{tech.description}</div>}
+          content={<div style={{ fontFamily: "Text", fontSize: ".8em", textAlign: "justify", backgroundColor: "white", position:"fixed", left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}>{tech.title}</div>}
         >
           <animated.div
             onClick={() => { router.push(tech.link) }}
             onMouseEnter={() => { setHoveredTech(tech._id); }}
             onMouseLeave={() => { setHoveredTech(""); }}
             style={{
-              opacity: tech._id === hoveredTech || hoveredTech.length == 0 ? 1 : 0.1,
-              transform: transform.to(z => z),
+              opacity: opacity.to(z => z),
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
