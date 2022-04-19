@@ -45,6 +45,15 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
   let autoScrollActivatorTimer: NodeJS.Timeout;
   let autoScroll: NodeJS.Timer;
 
+  useEffect(()=>{
+    
+  console.log("%cHey!", 'color: green; background: yellow; font-size: 30px;');
+  console.log("%cThis is my personal site and I consider it my code playground to play with new ideas. If you are looking for bad code practices you can stop now, because there are. Lots... ", 'color: black; background: white; font-size: 25px;');
+  console.log("%cIf you are looking for code that I consider production level quality, then maybe you would like to checkout some of my other projects here: https://www.github.com/anthonwellsjo", 'color: white; background: black; font-size: 20px;');
+  }, [])
+    
+    
+    
   useEffect(() => {
     autoScrollActivatorTimer = setTimeout(() => {
       autoScroll = setInterval(() => {
@@ -56,6 +65,8 @@ const Home: NextPage<HomeProps> = ({ builtOn, tech, techTypes, work }) => {
       clearTimeout(autoScrollActivatorTimer);
       clearInterval(autoScroll);
     }
+    
+
   }, [])
 
   useEffect(() => {
