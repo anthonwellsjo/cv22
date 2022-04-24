@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useTransition, animated } from '@react-spring/web'
 import Image from 'next/image';
-import { Popover } from 'react-tiny-popover';
 import { useRouter } from 'next/router'
 
 
@@ -36,10 +35,6 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow, itemSize }: pro
       }
       }>
       {transitions(({ opacity }, tech) => (
-        <Popover
-          isOpen={tech._id === hoveredTech}
-          content={<div style={{ fontFamily: "Text", fontSize: ".8em", textAlign: "justify", backgroundColor: "white", position:"fixed", left: "50%", top: "50%", transform: "translate(-50%, -50%)" }}>{tech.title}</div>}
-        >
           <animated.div
             onClick={() => { router.push(tech.link) }}
             onMouseEnter={() => { setHoveredTech(tech._id); }}
@@ -77,7 +72,6 @@ const TechContainer = ({ tech, onFinishedAnimation, itemsPerRow, itemSize }: pro
               }
             </div>
           </animated.div>
-        </Popover>
       ))
       }
     </div >

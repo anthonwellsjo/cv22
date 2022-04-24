@@ -25,7 +25,7 @@ const BioPage: React.FC = () => {
             I speak <strong>Swedish, French, Italian</strong> and <strong>English</strong> and in the past I&apos;ve worked as a music producer and a fashion model.
             <br></br>
             <br></br>
-            If you consider hiring me, then you can count on an <strong>effective and open minded coworker.</strong> I love learning, and arriving at the best solutions, no matter who had the idea.
+            If you want to work with me, then you can count on an <strong>effective and open minded coworker.</strong> I love learning, and arriving at the best solutions, no matter who had the idea.
           </p>
         </div>
       </div>

@@ -34,7 +34,7 @@ export const scrollIsntCloseToAnyThreshold = (scroll: number, thresHolds: number
   let answer = true;
   thresHolds.forEach(t => {
 
-    if (Math.abs(scroll - t) < 0.1) answer = false; return;
+    if (Math.abs(scroll - t) < 0.08) answer = false; return;
   })
   return answer;
 }
